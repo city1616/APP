@@ -16,6 +16,11 @@ struct ContentView: View {
                     Image(systemName: "list.dash")
                     Text("Menu")
                     }
+            todoList()
+                .tabItem {
+                    Image(systemName: "square.and.pencil")
+                    Text("ToDo")
+            }
             Calendar()
                 .tabItem {
                     Image(systemName: "calendar")
