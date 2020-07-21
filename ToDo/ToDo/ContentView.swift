@@ -10,22 +10,26 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        TabView {
-            Menu()
-                .tabItem {
-                    Image(systemName: "list.dash")
-                    Text("Menu")
-                    }
-            todoList()
-                .tabItem {
-                    Image(systemName: "square.and.pencil")
-                    Text("ToDo")
+        ZStack {
+            Color(#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1))
+            TabView {
+                Menu()
+                    .tabItem {
+                        Image(systemName: "list.dash")
+                        Text("Menu")
+                        }
+                // .edgesIgnoringSafeArea(.all)
+                todoList()
+                    .tabItem {
+                        Image(systemName: "square.and.pencil")
+                        Text("ToDo")
+                }
+                Calendar()
+                    .tabItem {
+                        Image(systemName: "calendar")
+                        Text("Calendar")
+                        }
             }
-            Calendar()
-                .tabItem {
-                    Image(systemName: "calendar")
-                    Text("Calendar")
-                    }
         }
     }
 }
@@ -33,5 +37,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            // .colorScheme(.dark)
     }
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4112985D24C6DB5100239BB4 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4112985C24C6DB5100239BB4 /* Settings.swift */; };
 		4140EE6124C5A9B4005D6243 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4140EE6024C5A9B4005D6243 /* AppDelegate.swift */; };
 		4140EE6324C5A9B4005D6243 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4140EE6224C5A9B4005D6243 /* SceneDelegate.swift */; };
 		4140EE6624C5A9B4005D6243 /* ToDo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4140EE6424C5A9B4005D6243 /* ToDo.xcdatamodeld */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4112985C24C6DB5100239BB4 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		4140EE5D24C5A9B4005D6243 /* ToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4140EE6024C5A9B4005D6243 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4140EE6224C5A9B4005D6243 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 				4140EE7F24C5BA35005D6243 /* todoList.swift */,
 				4140EE7B24C5AFE3005D6243 /* Menu.swift */,
 				4140EE7924C5AF56005D6243 /* Calendar.swift */,
+				4112985C24C6DB5100239BB4 /* Settings.swift */,
 				4140EE6924C5A9B5005D6243 /* Assets.xcassets */,
 				4140EE6E24C5A9B5005D6243 /* LaunchScreen.storyboard */,
 				4140EE7124C5A9B5005D6243 /* Info.plist */,
@@ -164,6 +167,7 @@
 				4140EE7C24C5AFE3005D6243 /* Menu.swift in Sources */,
 				4140EE6124C5A9B4005D6243 /* AppDelegate.swift in Sources */,
 				4140EE6624C5A9B4005D6243 /* ToDo.xcdatamodeld in Sources */,
+				4112985D24C6DB5100239BB4 /* Settings.swift in Sources */,
 				4140EE8024C5BA35005D6243 /* todoList.swift in Sources */,
 				4140EE7E24C5B508005D6243 /* todo.swift in Sources */,
 				4140EE6824C5A9B4005D6243 /* ContentView.swift in Sources */,

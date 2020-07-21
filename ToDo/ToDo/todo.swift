@@ -17,6 +17,7 @@ struct todo: View {
                 .bold()
             TextField("Enter your name", text: $name)
                 // .background(Color.blue)
+            // Color.blue
                 .frame(width: 300.0)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .foregroundColor(Color.blue)

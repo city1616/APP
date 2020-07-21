@@ -10,14 +10,18 @@ import SwiftUI
 
 struct Menu: View {
     var body: some View {
-        NavigationView {
-            List() {
-                Text("1. ")
-                Text("2. ")
+            NavigationView {
+                ZStack {
+                    Color.black
+                        .edgesIgnoringSafeArea(.all)
+                    List() {
+                        Text("1. ")
+                        Text("2. ")
+                    }
+                    
+                    .navigationBarTitle("Menu")
+                }
             }
-        .navigationBarTitle("Menu")
-        }
-        
     }
 }
 

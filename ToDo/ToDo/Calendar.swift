@@ -9,8 +9,28 @@
 import SwiftUI
 
 struct Calendar: View {
+    @State var selectDate = Date()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+//        VStack {
+//
+//            Spacer()
+//        }
+        VStack {
+            Form {
+                DatePicker("When is your birthday?", selection: $selectDate, displayedComponents: .date)
+                    .foregroundColor(.green)
+                    // .background(with: .black)
+            }
+            .frame(height: 350)
+            .background(Color.blue)
+            Form {
+                DatePicker("", selection: $selectDate, displayedComponents: .date)
+                Text("Your selected date: \(selectDate)")
+                    .foregroundColor(.red)
+                    .background(Color.green)
+            }
+        }
     }
 }
 
