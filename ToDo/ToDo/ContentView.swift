@@ -29,6 +29,11 @@ struct ContentView: View {
                         Image(systemName: "calendar")
                         Text("Calendar")
                         }
+                Settings()
+                    .tabItem {
+                        Image(systemName: "hammer.fill")
+                        Text("Settings")
+                }
             }
         }
     }

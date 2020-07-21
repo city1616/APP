@@ -48,7 +48,9 @@ struct Settings: View {
                 }
                 Section() {
                     Button(action: {
-                        print("Perform as action here ")
+                        self.isPrivate = true
+                        self.notificationsEnabled = false
+                        self.previewIndex = 0
                     }) {
                         Text("Reset All Settings")
                     }
