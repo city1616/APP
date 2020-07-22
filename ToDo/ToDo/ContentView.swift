@@ -9,11 +9,11 @@
 import SwiftUI
 
 struct ContentView: View {
-//    init() {
-//        UITabBar.appearance().backgroundColor = UIColor.black
-////        UITabBar.appearance().isTranslucent = false
-////        UITabBar.appearance().barTintColor = UIColor(named: "Secondary")
-//    }
+    init() {
+        UITabBar.appearance().backgroundColor = UIColor.black
+        // UITabBar.appearance().isTranslucent = false
+        UITabBar.appearance().barTintColor = UIColor(named: "Secondary")
+    }
     var body: some View {
         ZStack {
             Color(#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1))
@@ -44,7 +44,7 @@ struct ContentView: View {
                             Text("Settings")
                     }
                 }
-                .background(/*@START_MENU_TOKEN@*/Color.green/*@END_MENU_TOKEN@*/)
+                // .background(/*@START_MENU_TOKEN@*/Color.green/*@END_MENU_TOKEN@*/)
                 .edgesIgnoringSafeArea(.top)
                 .accentColor(Color(#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)))
             }
