@@ -14,6 +14,9 @@ struct Settings: View {
     @State var notificationsEnabled: Bool = false
     @State private var previewIndex = 0
     var previewOptions = ["Always", "When Unlocked", "Never"]
+    @State private var colorIndex = 0
+    var colorOption = ["red", "blue", "green"]
+    @State private var showAlert = false
     
     var body: some View {
         NavigationView {
@@ -34,6 +37,15 @@ struct Settings: View {
                         }
                     }
                 }
+                Section(header: Text("THEME")) {
+                    VStack {
+                        Picker(selection: $colorIndex, label: Text("Color")) {
+                            ForEach(0 ..< colorOption.count) {
+                                Text(self.colorOption[$0])
+                            }
+                        }
+                    }
+                }
                 Section(header: Text("ABOUT")) {
                     VStack {
                         HStack {
@@ -48,16 +60,26 @@ struct Settings: View {
                 }
                 Section() {
                     Button(action: {
-                        self.isPrivate = true
-                        self.notificationsEnabled = false
-                        self.previewIndex = 0
+                        self.showAlert = true
                     }) {
                         Text("Reset All Settings")
+                    }
+                    .alert(isPresented: $showAlert) {
+                        Alert(title: Text("Reset"), message: Text("reset????????"), primaryButton: .destructive(Text("OK"), action: {
+                            self.isPrivate = true
+                            self.notificationsEnabled = false
+                            self.previewIndex = 0
+                        }), secondaryButton: .cancel())
                     }
                 }
             }
             .navigationBarTitle("Settings")
         }
+    }
+    func reset() {
+        self.isPrivate = true
+        self.notificationsEnabled = false
+        self.previewIndex = 0
     }
 }
 
