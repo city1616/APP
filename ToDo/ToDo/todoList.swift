@@ -34,29 +34,42 @@ struct todoList: View {
     var body: some View {
         
         NavigationView {
-            List(t) { todolist_t in
-                NavigationLink(destination: DetailView(work: todolist_t.work)) {
-                    VStack(alignment: .leading) {
-                        Text(todolist_t.work)
+            Form {
+                Section(header: Text("To do")) {
+                    List(t) { todolist_t in
+                        NavigationLink(destination: DetailView(work: todolist_t.work)) {
+                            VStack(alignment: .leading) {
+                                Text(todolist_t.work)
+                            }
+                        }
                     }
                 }
-                // Text("first")
+                
+                Section(header: Text("Doing")) {
+                    Text("a")
+                }
+                
+                Section(header: Text("Done")) {
+                    Text("End")
+                    Text("end")
+                }
+                    
+                Section(header: Text("a")) {
+                    Text("a")
+                }
             }
-//            List {
-//                Text("a")
-//            }
             .navigationBarTitle(Text("ToDo"))
-            .navigationBarItems(leading:
-                HStack {
-                    Image(systemName: "line.horizontal.3")
-                        .font(.title)
-            }, trailing:
-                NavigationLink(destination: todo()) {
+                .navigationBarItems(leading:
                     HStack {
-                        Image(systemName: "square.and.pencil")
+                        Image(systemName: "line.horizontal.3")
                             .font(.title)
-                    // .foregroundColor(Color(.quaternarySystemFill))
-                    }
+                }, trailing:
+                    NavigationLink(destination: todo()) {
+                        HStack {
+                            Image(systemName: "square.and.pencil")
+                                .font(.title)
+                        // .foregroundColor(Color(.quaternarySystemFill))
+                        }
             })
         }
     }
