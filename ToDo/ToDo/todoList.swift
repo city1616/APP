@@ -20,16 +20,16 @@ struct working: Identifiable {
     var work = String()
 }
 
-//struct ToDoRow: View {
-//    var todo: ToDo
-//
-//    var body: some View {
-//        Text("\(todo.id). \(todo.work)")
-//    }
-//}
+struct ToDoRow: View {
+    var todo: working
+    var body: some View {
+        Text("\(todo.id). \(todo.work)")
+    }
+}
 
 struct todoList: View {
     var t: [working] = [working(work: "first"), working(work: "second")]
+    // t.append(working(work: "end"))
     
     var body: some View {
         
@@ -39,23 +39,24 @@ struct todoList: View {
                     List(t) { todolist_t in
                         NavigationLink(destination: DetailView(work: todolist_t.work)) {
                             VStack(alignment: .leading) {
-                                Text(todolist_t.work)
+                                // Text(todolist_t.work)
+                                ToDoRow(todo: todolist_t)
                             }
                         }
                     }
                 }
                 
                 Section(header: Text("Doing")) {
-                    Text("a")
+                    Text("")
                 }
                 
                 Section(header: Text("Done")) {
-                    Text("End")
-                    Text("end")
+                    Text("")
+                    Text("")
                 }
                     
-                Section(header: Text("a")) {
-                    Text("a")
+                Section(header: Text("Don't")) {
+                    Text("")
                 }
             }
             .navigationBarTitle(Text("ToDo"))
