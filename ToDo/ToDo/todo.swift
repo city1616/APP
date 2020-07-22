@@ -69,14 +69,14 @@ struct todo: View {
                 }
                 .background(Color(#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)))
             }
-            .navigationBarTitle("ADD")
-            .navigationBarItems(leading: Button(action: {}) {
-                Image(systemName: "line.horizontal.3")
-                    .font(.title)
-                }, trailing: Button(action: {}) {
-                    Image(systemName: "square.and.pencil")
-                        .font(.title)
-            })
+//            .navigationBarTitle("ADD")
+//            .navigationBarItems(leading: Button(action: {}) {
+//                Image(systemName: "line.horizontal.3")
+//                    .font(.title)
+//                }, trailing: Button(action: {}) {
+//                    Image(systemName: "square.and.pencil")
+//                        .font(.title)
+//            })
         }
     }
 }
