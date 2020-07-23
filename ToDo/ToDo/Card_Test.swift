@@ -14,18 +14,17 @@ struct Card_Test: View {
     var body: some View {
 //        MainView()
         ZStack(alignment: .leading) {
-            MainView(showMenu: self.$showMenu)
-                // .frame(width: geometry.size.width, height: geometry.size.height)
-                // .frame(width: 200)
-//                 .offset(x: self.showMenu ? geometry.size.width / 2 : 0)
-                .offset(x: self.showMenu ? 200 : 0)
-                .disabled(self.showMenu ? true : false)
-            if self.showMenu {
-                MenuView()
-                    // .frame(width: geometry.size.width / 2)
-                    .frame(width: 200)
+            GeometryReader { geometry in
+                MainView(showMenu: self.$showMenu)
+                    .frame(width: geometry.size.width, height: geometry.size.height)
+                     .offset(x: self.showMenu ? geometry.size.width / 2 : 0)
+                    .disabled(self.showMenu ? true : false)
+                if self.showMenu {
+                    MenuView()
+                        .frame(width: geometry.size.width / 2)
+                        .transition(.move(edge: .leading))
+                }
             }
-            
         }
     }
 }
@@ -35,7 +34,9 @@ struct MainView: View {
     var body: some View {
         Button(action: {
 //            print("Open the side menu")
-            self.showMenu = true
+            withAnimation {
+                self.showMenu = true
+            }
         }) {
             Text("Show menu")
         }
