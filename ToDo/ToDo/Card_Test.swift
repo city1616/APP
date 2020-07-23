@@ -16,6 +16,7 @@ struct Card_Test: View {
         ZStack(alignment: .leading) {
             MainView(showMenu: $showMenu)
                 // .frame(width: geometry.size.width, height: geometry.size.height)
+                .frame(width: width)
                 // .offset(x: self.showMenu ? geometry.size.width / 2 : 0)
                 .disabled(self.showMenu ? true : false)
             if self.showMenu {
