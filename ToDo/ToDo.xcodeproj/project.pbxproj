@@ -20,6 +20,7 @@
 		4140EE7E24C5B508005D6243 /* todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4140EE7D24C5B508005D6243 /* todo.swift */; };
 		4140EE8024C5BA35005D6243 /* todoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4140EE7F24C5BA35005D6243 /* todoList.swift */; };
 		41B3AE4924C84B9600732A4E /* Card_Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B3AE4824C84B9600732A4E /* Card_Test.swift */; };
+		41B3AE4B24C9D64D00732A4E /* SideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B3AE4A24C9D64D00732A4E /* SideMenu.swift */; };
 		41C7A0C624C8189200C3FDA9 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C7A0C524C8189200C3FDA9 /* DetailView.swift */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +40,7 @@
 		4140EE7D24C5B508005D6243 /* todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = todo.swift; sourceTree = "<group>"; };
 		4140EE7F24C5BA35005D6243 /* todoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = todoList.swift; sourceTree = "<group>"; };
 		41B3AE4824C84B9600732A4E /* Card_Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card_Test.swift; sourceTree = "<group>"; };
+		41B3AE4A24C9D64D00732A4E /* SideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenu.swift; sourceTree = "<group>"; };
 		41C7A0C524C8189200C3FDA9 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -76,6 +78,7 @@
 				4140EE6224C5A9B4005D6243 /* SceneDelegate.swift */,
 				4140EE6724C5A9B4005D6243 /* ContentView.swift */,
 				41B3AE4824C84B9600732A4E /* Card_Test.swift */,
+				41B3AE4A24C9D64D00732A4E /* SideMenu.swift */,
 				4140EE7D24C5B508005D6243 /* todo.swift */,
 				4140EE7F24C5BA35005D6243 /* todoList.swift */,
 				41C7A0C524C8189200C3FDA9 /* DetailView.swift */,
@@ -173,6 +176,7 @@
 				4140EE7C24C5AFE3005D6243 /* Menu.swift in Sources */,
 				4140EE6124C5A9B4005D6243 /* AppDelegate.swift in Sources */,
 				4140EE6624C5A9B4005D6243 /* ToDo.xcdatamodeld in Sources */,
+				41B3AE4B24C9D64D00732A4E /* SideMenu.swift in Sources */,
 				41C7A0C624C8189200C3FDA9 /* DetailView.swift in Sources */,
 				4112985D24C6DB5100239BB4 /* Settings.swift in Sources */,
 				4140EE8024C5BA35005D6243 /* todoList.swift in Sources */,

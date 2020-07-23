@@ -17,37 +17,45 @@ struct Menu: View {
         // UIView.appearance().backgroundColor = UIColor.red
     }
     
+    @State var showSideMenu = false
+    
     var body: some View {
             NavigationView {
-                ZStack {
-                    
-//                    Color.black
-//                        .edgesIgnoringSafeArea(.all)
-                    List {
-                        ForEach(0 ..< 10) {
-                            Text("Row \($0)")
+                GeometryReader { geometry in
+                    ZStack {
+                        
+    //                    Color.black
+    //                        .edgesIgnoringSafeArea(.all)
+                        List {
+                            ForEach(0 ..< 10) {
+                                Text("Row \($0)")
+                            }
+    //                        Text("1. ")
+    //                        Text("2. ")
+    //                        ListRow()
+                            .listRowBackground(Color.purple)
+                            ListRow()
                         }
-//                        Text("1. ")
-//                        Text("2. ")
-//                        ListRow()
-                        .listRowBackground(Color.purple)
-                        ListRow()
+                        
+                        .navigationBarTitle("Menu", displayMode: .automatic)
+                        .navigationBarItems(leading:
+                            HStack {
+                                Button(action: {
+                                    withAnimation {
+                                        self.showSideMenu.toggle()
+                                    }
+                                }) {
+                                    Image(systemName: "line.horizontal.3")
+                                        .font(.title)
+                                }.foregroundColor(.gray)
+                        }, trailing:
+                            HStack {
+                                Button(action: {}) {
+                                    Image(systemName: "square.and.pencil")
+                                        .font(.title)
+                                }.foregroundColor(.gray)
+                        })
                     }
-                    
-                    .navigationBarTitle("Menu", displayMode: .automatic)
-                    .navigationBarItems(leading:
-                        HStack {
-                            Button(action: {}) {
-                                Image(systemName: "line.horizontal.3")
-                                    .font(.title)
-                            }.foregroundColor(.gray)
-                    }, trailing:
-                        HStack {
-                            Button(action: {}) {
-                                Image(systemName: "square.and.pencil")
-                                    .font(.title)
-                            }.foregroundColor(.gray)
-                    })
                 }
             }
     .navigationViewStyle(StackNavigationViewStyle())
