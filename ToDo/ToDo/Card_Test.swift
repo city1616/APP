@@ -14,14 +14,16 @@ struct Card_Test: View {
     var body: some View {
 //        MainView()
         ZStack(alignment: .leading) {
-            MainView(showMenu: $showMenu)
+            MainView(showMenu: self.$showMenu)
                 // .frame(width: geometry.size.width, height: geometry.size.height)
-                .frame(width: width)
-                // .offset(x: self.showMenu ? geometry.size.width / 2 : 0)
+                // .frame(width: 200)
+//                 .offset(x: self.showMenu ? geometry.size.width / 2 : 0)
+                .offset(x: self.showMenu ? 200 : 0)
                 .disabled(self.showMenu ? true : false)
             if self.showMenu {
                 MenuView()
-                    // .frame(width: width / 2)
+                    // .frame(width: geometry.size.width / 2)
+                    .frame(width: 200)
             }
             
         }
