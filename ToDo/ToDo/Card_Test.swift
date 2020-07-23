@@ -13,6 +13,15 @@ struct Card_Test: View {
     
     var body: some View {
 //        MainView()
+        let drag = DragGesture()
+            .onEnded {
+                if $0.translation.width < -100 {
+                    withAnimation {
+                        self.showMenu = false
+                    }
+                }
+            }
+        
         ZStack(alignment: .leading) {
             GeometryReader { geometry in
                 MainView(showMenu: self.$showMenu)
@@ -25,7 +34,9 @@ struct Card_Test: View {
                         .transition(.move(edge: .leading))
                 }
             }
+            
         }
+    
     }
 }
 
