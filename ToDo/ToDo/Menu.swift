@@ -23,40 +23,47 @@ struct Menu: View {
             NavigationView {
                 GeometryReader { geometry in
                     ZStack {
-                        
+                        MainView(showSideMenu: self.$showSideMenu)
+                            .frame(width: geometry.size.width, height: geometry.size.height)
+                            .offset(x: self.showSideMenu ? geometry.size.width / 2 : 0)
+                            .disabled(self.showSideMenu ? true : false)
     //                    Color.black
     //                        .edgesIgnoringSafeArea(.all)
-                        List {
-                            ForEach(0 ..< 10) {
-                                Text("Row \($0)")
-                            }
-    //                        Text("1. ")
-    //                        Text("2. ")
-    //                        ListRow()
-                            .listRowBackground(Color.purple)
-                            ListRow()
+//                        List {
+//                            ForEach(0 ..< 10) {
+//                                Text("Row \($0)")
+//                            }
+//    //                        Text("1. ")
+//    //                        Text("2. ")
+//    //                        ListRow()
+//                            .listRowBackground(Color.purple)
+//                            ListRow()
+//                        }
+                        if self.showSideMenu {
+                            SideMenu()
+                                .frame(width: geometry.size.width / 2)
+                                .transition(.move(edge: .leading))
                         }
-                        
-                        .navigationBarTitle("Menu", displayMode: .automatic)
-                        .navigationBarItems(leading:
-                            HStack {
-                                Button(action: {
-                                    withAnimation {
-                                        self.showSideMenu.toggle()
-                                    }
-                                }) {
-                                    Image(systemName: "line.horizontal.3")
-                                        .font(.title)
-                                }.foregroundColor(.gray)
-                        }, trailing:
-                            HStack {
-                                Button(action: {}) {
-                                    Image(systemName: "square.and.pencil")
-                                        .font(.title)
-                                }.foregroundColor(.gray)
-                        })
                     }
                 }
+                .navigationBarTitle("Menu", displayMode: .automatic)
+                .navigationBarItems(leading:
+                    HStack {
+                        Button(action: {
+                            withAnimation {
+                                self.showSideMenu.toggle()
+                            }
+                        }) {
+                            Image(systemName: "line.horizontal.3")
+                                .font(.title)
+                        }.foregroundColor(.gray)
+                }, trailing:
+                    HStack {
+                        Button(action: {}) {
+                            Image(systemName: "square.and.pencil")
+                                .font(.title)
+                        }.foregroundColor(.gray)
+                })
             }
     .navigationViewStyle(StackNavigationViewStyle())
     }

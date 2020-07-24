@@ -24,7 +24,7 @@ struct Card_Test: View {
         return NavigationView {
             GeometryReader { geometry in
                 ZStack(alignment: .leading) {
-                    MainView(showMenu: self.$showMenu)
+                    MainView1(showMenu: self.$showMenu)
                         .frame(width: geometry.size.width, height: geometry.size.height)
                          .offset(x: self.showMenu ? geometry.size.width / 2 : 0)
                         .disabled(self.showMenu ? true : false)
@@ -50,7 +50,7 @@ struct Card_Test: View {
     }
 }
 
-struct MainView: View {
+struct MainView1: View {
     @Binding var showMenu: Bool
     var body: some View {
         Button(action: {
