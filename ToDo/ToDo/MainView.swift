@@ -11,10 +11,23 @@ import SwiftUI
 struct MainView: View {
     @Binding var showSideMenu: Bool
     var body: some View {
-        Button(action: {
-            self.showSideMenu = true
-        }) {
-            Text("Show Side Menu")
+        ZStack {
+            VStack {
+                Button(action: {
+                    self.showSideMenu = true
+                }) {
+                    Text("Show Side Menu")
+                }
+//                Button(action: {
+//
+//                }) {
+//                    Text("Color")
+//                }
+                List() {
+                    Text("a")
+                    Text("b")
+                }
+            }
         }
     }
 }

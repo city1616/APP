@@ -30,6 +30,7 @@ struct ToDoRow: View {
 struct todoList: View {
     var t: [working] = [working(work: "first"), working(work: "second")]
     // t.append(working(work: "end"))
+    // @Binding var showSideMenu: Bool
     
     var body: some View {
         
@@ -62,8 +63,14 @@ struct todoList: View {
             .navigationBarTitle(Text("ToDo"))
                 .navigationBarItems(leading:
                     HStack {
-                        Image(systemName: "line.horizontal.3")
-                            .font(.title)
+                        Button(action: {
+//                            withAnimation {
+//                                self.showSideMenu.toggle()
+//                            }
+                        }) {
+                            Image(systemName: "line.horizontal.3")
+                                .font(.title)
+                        }
                 }, trailing:
                     NavigationLink(destination: todo()) {
                         HStack {
@@ -76,9 +83,19 @@ struct todoList: View {
     }
 }
 
+//struct todoList_Previews: PreviewProvider {
+//    // @Binding var showSideMenu: Bool
+//    static var previews: some View {
+//        todoList()
+//        // self.showSideMenu = false
+//        // todoList(showSideMenu: self.$showSideMenu)
+////            .colorScheme(.dark)
+//    }
+//}
+
+
 struct todoList_Previews: PreviewProvider {
     static var previews: some View {
         todoList()
-//            .colorScheme(.dark)
     }
 }

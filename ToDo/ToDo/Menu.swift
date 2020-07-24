@@ -9,13 +9,13 @@
 import SwiftUI
 
 struct Menu: View {
-    init() {  // navigationBar Color
-        let navBarApperance = UINavigationBar.appearance()
-//        navBarApperance.largeTitleTextAttributes = [.foregroundColor: UIColor.purple]
-//        navBarApperance.titleTextAttributes = [.foregroundColor: UIColor.purple]
-        navBarApperance.backgroundColor = UIColor(#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1))
-        // UIView.appearance().backgroundColor = UIColor.red
-    }
+//    init() {  // navigationBar Color
+//        let navBarApperance = UINavigationBar.appearance()
+////        navBarApperance.largeTitleTextAttributes = [.foregroundColor: UIColor.purple]
+////        navBarApperance.titleTextAttributes = [.foregroundColor: UIColor.purple]
+//         navBarApperance.backgroundColor = UIColor(#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1))
+//        // UIView.appearance().backgroundColor = UIColor.red
+//    }
     
     @State var showSideMenu = false
     
@@ -28,6 +28,9 @@ struct Menu: View {
                     }
                 }
             }
+        let navBarApperance = UINavigationBar.appearance()
+        navBarApperance.backgroundColor = UIColor(#colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1))
+        var col = #colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1)
         
             return NavigationView {
                 GeometryReader { geometry in
@@ -72,13 +75,15 @@ struct Menu: View {
                         }.foregroundColor(.gray)
                 }, trailing:
                     HStack {
-                        Button(action: {}) {
+                        Button(action: {
+                            col = #colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1)
+                        }) {
                             Image(systemName: "square.and.pencil")
                                 .font(.title)
                         }.foregroundColor(.gray)
                 })
+                // .navigationViewStyle(StackNavigationViewStyle())
             }
-    .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

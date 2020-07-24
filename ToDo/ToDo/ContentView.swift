@@ -11,9 +11,11 @@ import SwiftUI
 struct ContentView: View {
     init() {
         UITabBar.appearance().backgroundColor = UIColor.black
-        // UITabBar.appearance().isTranslucent = false
+        UITabBar.appearance().isTranslucent = false
         UITabBar.appearance().barTintColor = UIColor(named: "Secondary")
     }
+    
+//    @Binding var showSideMenu: Bool
     
     var body: some View {
         ZStack {
@@ -26,7 +28,7 @@ struct ContentView: View {
                     Menu()
                         .tabItem {
                             Image(systemName: "list.dash")
-                            Text("Menu")
+                            Text("Home")
                             }
                     // .edgesIgnoringSafeArea(.all)
                     todoList()
@@ -47,7 +49,7 @@ struct ContentView: View {
                 }
                 // .background(/*@START_MENU_TOKEN@*/Color.green/*@END_MENU_TOKEN@*/)
                 // .edgesIgnoringSafeArea(.top)
-                .accentColor(Color(#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)))
+                .accentColor(Color(#colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)))
             }
         }
     }
