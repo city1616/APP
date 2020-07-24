@@ -9,20 +9,20 @@
 import SwiftUI
 
 struct Menu: View {
-    init() {  // navigationBar Color
-        let navBarApperance = UINavigationBar.appearance()
-//        navBarApperance.largeTitleTextAttributes = [.foregroundColor: UIColor.purple]
-//        navBarApperance.titleTextAttributes = [.foregroundColor: UIColor.purple]
-        navBarApperance.backgroundColor = UIColor(#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1))
-        // UIView.appearance().backgroundColor = UIColor.red
-    }
+//    init() {  // navigationBar Color
+//        let navBarApperance = UINavigationBar.appearance()
+////        navBarApperance.largeTitleTextAttributes = [.foregroundColor: UIColor.purple]
+////        navBarApperance.titleTextAttributes = [.foregroundColor: UIColor.purple]
+//        navBarApperance.backgroundColor = UIColor(#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1))
+//        // UIView.appearance().backgroundColor = UIColor.red
+//    }
     
     @State var showSideMenu = false
     
     var body: some View {
-            NavigationView {
+            return NavigationView {
                 GeometryReader { geometry in
-                    ZStack {
+                    ZStack(alignment: .leading) {
                         MainView(showSideMenu: self.$showSideMenu)
                             .frame(width: geometry.size.width, height: geometry.size.height)
                             .offset(x: self.showSideMenu ? geometry.size.width / 2 : 0)
@@ -56,6 +56,7 @@ struct Menu: View {
                         }) {
                             Image(systemName: "line.horizontal.3")
                                 .font(.title)
+                                // .imageScale(.large)
                         }.foregroundColor(.gray)
                 }, trailing:
                     HStack {
