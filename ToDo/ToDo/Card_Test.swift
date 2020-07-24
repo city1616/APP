@@ -13,7 +13,7 @@ struct Card_Test: View {
     
     var body: some View {
 //        MainView()
-        let drag = DragGesture()
+        let draga = DragGesture()
             .onEnded {
                 if $0.translation.width < -100 {
                     withAnimation {
@@ -34,7 +34,7 @@ struct Card_Test: View {
                             .transition(.move(edge: .leading))
                     }
                 }
-             .gesture(drag)
+             .gesture(draga)
             }
             .navigationBarTitle(Text("Hello"), displayMode: .inline)
             .navigationBarItems(leading:

@@ -9,20 +9,31 @@
 import SwiftUI
 
 struct Menu: View {
-//    init() {  // navigationBar Color
-//        let navBarApperance = UINavigationBar.appearance()
-////        navBarApperance.largeTitleTextAttributes = [.foregroundColor: UIColor.purple]
-////        navBarApperance.titleTextAttributes = [.foregroundColor: UIColor.purple]
-//        navBarApperance.backgroundColor = UIColor(#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1))
-//        // UIView.appearance().backgroundColor = UIColor.red
-//    }
+    init() {  // navigationBar Color
+        let navBarApperance = UINavigationBar.appearance()
+//        navBarApperance.largeTitleTextAttributes = [.foregroundColor: UIColor.purple]
+//        navBarApperance.titleTextAttributes = [.foregroundColor: UIColor.purple]
+        navBarApperance.backgroundColor = UIColor(#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1))
+        // UIView.appearance().backgroundColor = UIColor.red
+    }
     
     @State var showSideMenu = false
     
     var body: some View {
+        let drag = DragGesture()
+            .onEnded {
+                if $0.translation.width < -100 {
+                    withAnimation {
+                        self.showSideMenu = false
+                    }
+                }
+            }
+        
             return NavigationView {
                 GeometryReader { geometry in
                     ZStack(alignment: .leading) {
+                        Color(#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1))
+                            .edgesIgnoringSafeArea(.all)
                         MainView(showSideMenu: self.$showSideMenu)
                             .frame(width: geometry.size.width, height: geometry.size.height)
                             .offset(x: self.showSideMenu ? geometry.size.width / 2 : 0)
@@ -45,6 +56,7 @@ struct Menu: View {
                                 .transition(.move(edge: .leading))
                         }
                     }
+                .gesture(drag)
                 }
                 .navigationBarTitle("Menu", displayMode: .automatic)
                 .navigationBarItems(leading:
