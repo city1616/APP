@@ -11,7 +11,7 @@ import SwiftUI
 struct ContentView: View {
     init() {
         UITabBar.appearance().backgroundColor = UIColor.black
-        UITabBar.appearance().isTranslucent = false
+        // UITabBar.appearance().isTranslucent = false
         UITabBar.appearance().barTintColor = UIColor(named: "Secondary")
     }
     
