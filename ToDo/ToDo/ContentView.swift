@@ -49,7 +49,8 @@ struct ContentView: View {
                 }
                 // .background(/*@START_MENU_TOKEN@*/Color.green/*@END_MENU_TOKEN@*/)
                 // .edgesIgnoringSafeArea(.top)
-                .accentColor(Color(#colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)))
+                .accentColor(Color(#colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1))) // Button color
+                // #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
             }
         }
     }
