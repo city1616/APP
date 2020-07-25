@@ -35,6 +35,15 @@ struct SideMenu: View {
                     .foregroundColor(.gray)
                     .font(.headline)
             }.padding(.top, 30)
+            HStack {
+                Image(systemName: "gear")
+                    .foregroundColor(.gray)
+                    .imageScale(.large)
+                Text("Settings")
+                    .foregroundColor(.gray)
+                    .font(.headline)
+            }.padding(.top, 30)
+            // Spacer()
             Spacer()
         }
         .padding()
