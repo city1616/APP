@@ -61,7 +61,7 @@ struct Menu: View {
                     }
                 .gesture(drag)
                 }
-                .navigationBarTitle("Menu", displayMode: .automatic)
+                .navigationBarTitle("Home", displayMode: .automatic)
                 .navigationBarItems(leading:
                     HStack {
                         Button(action: {
