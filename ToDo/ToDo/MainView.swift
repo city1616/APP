@@ -18,6 +18,7 @@ struct MainView: View {
                 }) {
                     Text("Show Side Menu")
                 }
+                
 //                Button(action: {
 //
 //                }) {

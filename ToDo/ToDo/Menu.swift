@@ -30,13 +30,13 @@ struct Menu: View {
             }
         let navBarApperance = UINavigationBar.appearance()
         navBarApperance.backgroundColor = UIColor(#colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1))
-        var col = #colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1)
+        var col = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         
             return NavigationView {
                 GeometryReader { geometry in
                     ZStack(alignment: .leading) {
-                        Color(#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1))
-                            .edgesIgnoringSafeArea(.all)
+//                        Color(#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1))
+//                            .edgesIgnoringSafeArea(.all)
                         MainView(showSideMenu: self.$showSideMenu)
                             .frame(width: geometry.size.width, height: geometry.size.height)
                             .offset(x: self.showSideMenu ? geometry.size.width / 2 : 0)
