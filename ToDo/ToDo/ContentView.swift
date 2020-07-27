@@ -19,8 +19,8 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
-            Color(#colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1))
-                .edgesIgnoringSafeArea(.all)
+//            Color(#colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1))
+//                .edgesIgnoringSafeArea(.all)
             VStack {
                 Spacer()
                     .frame(height: 1.0)
@@ -31,7 +31,7 @@ struct ContentView: View {
                             Text("Home")
                             }
                     // .edgesIgnoringSafeArea(.all)
-                    todoList()
+                    ToDoMain()
                         .tabItem {
                             Image(systemName: "square.and.pencil")
                             Text("ToDo")

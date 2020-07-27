@@ -18,6 +18,7 @@ struct Menu: View {
 //    }
     
     @State var showSideMenu = false
+    @State var col = [#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1), #colorLiteral(red: 0.137254902, green: 0.137254902, blue: 0.137254902, alpha: 1), #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1), #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1), #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)]
     
     var body: some View {
         let drag = DragGesture()
@@ -28,22 +29,18 @@ struct Menu: View {
                     }
                 }
             }
-        let navBarApperance = UINavigationBar.appearance()
-        navBarApperance.backgroundColor = UIColor(#colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1))
-        var col = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        
-            return NavigationView {
-                GeometryReader { geometry in
-                    ZStack(alignment: .leading) {
+        return NavigationView {
+            GeometryReader { geometry in
+                ZStack(alignment: .leading) {
 //                        Color(#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1))
 //                            .edgesIgnoringSafeArea(.all)
-                        // MainView(showSideMenu: self.$showSideMenu)
-                        MainView()
-                            .frame(width: geometry.size.width, height: geometry.size.height)
-                            .offset(x: self.showSideMenu ? geometry.size.width / 2 : 0)
-                            .disabled(self.showSideMenu ? true : false)
-    //                    Color.black
-    //                        .edgesIgnoringSafeArea(.all)
+                    // MainView(showSideMenu: self.$showSideMenu)
+                    MainView()
+                        .frame(width: geometry.size.width, height: geometry.size.height)
+                        .offset(x: self.showSideMenu ? geometry.size.width / 2 : 0)
+                        .disabled(self.showSideMenu ? true : false)
+//                    Color.black
+//                        .edgesIgnoringSafeArea(.all)
 //                        List {
 //                            ForEach(0 ..< 10) {
 //                                Text("Row \($0)")
@@ -54,37 +51,37 @@ struct Menu: View {
 //                            .listRowBackground(Color.purple)
 //                            ListRow()
 //                        }
-                        if self.showSideMenu {
-                            SideMenu()
-                                .frame(width: geometry.size.width / 2)
-                                .transition(.move(edge: .leading))
-                        }
+                    if self.showSideMenu {
+                        SideMenu()
+                            .frame(width: geometry.size.width / 2)
+                            .transition(.move(edge: .leading))
                     }
-                .gesture(drag)
                 }
-                .navigationBarTitle("Home", displayMode: .automatic)
-                .navigationBarItems(leading:
-                    HStack {
-                        Button(action: {
-                            withAnimation {
-                                self.showSideMenu.toggle()
-                            }
-                        }) {
-                            Image(systemName: "line.horizontal.3")
-                                .font(.title)
-                                // .imageScale(.large)
-                        }.foregroundColor(.gray)
-                }, trailing:
-                    HStack {
-                        Button(action: {
-                            col = #colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1)
-                        }) {
-                            Image(systemName: "square.and.pencil")
-                                .font(.title)
-                        }.foregroundColor(.gray)
-                })
-                // .navigationViewStyle(StackNavigationViewStyle())
+            .gesture(drag)
             }
+            .navigationBarTitle("Home", displayMode: .automatic)
+            .navigationBarItems(leading:
+                HStack {
+                    Button(action: {
+                        withAnimation {
+                            self.showSideMenu.toggle()
+                        }
+                    }) {
+                        Image(systemName: "line.horizontal.3")
+                            .font(.title)
+                            // .imageScale(.large)
+                    }.foregroundColor(.gray)
+            }, trailing:
+                HStack {
+                    Button(action: {
+                        // col = #colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1)
+                    }) {
+                        Image(systemName: "square.and.pencil")
+                            .font(.title)
+                    }.foregroundColor(.gray)
+            })
+            // .navigationViewStyle(StackNavigationViewStyle())
+        }
     }
 }
 

@@ -101,23 +101,31 @@ struct ToDoMain: View {
                             .font(.title)
                 })
         }.sheet(isPresented: $addItem) {
-            // todo()
-            VStack {
-                HStack {
-                    Text("Work : ")
-                    TextField("Add Work", text: self.$addWork)
+//            todo()
+            Form {
+                Section(header: Text("task")) {
+                    HStack {
+                        Text("할일")
+                        Spacer()
+                        TextField("Add Task", text: self.$addWork)
+                            .frame(width: 250)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                    }
                 }
-                Button(action: {
-                    self.task.append(working(work: self.addWork))
-                    
-                    self.addItem.toggle()
-                    
-                    self.addWork = ""
-                }) {
-                    Text("ADD")
+                Section() {
+                    Button(action: {
+                        self.task.append(working(work: self.addWork))
+
+                        self.addItem.toggle()
+
+                        self.addWork = ""
+                    }) {
+                        Text("ADD")
+                    }
                 }
             }
         }
+        
     }
     func AddTask() {
         self.task.append(working(work: "end"))

@@ -18,68 +18,102 @@ struct Settings: View {
     var colorOption = ["red", "blue", "green"]
     @State private var showAlert = false
     
+    @State var navBarApperance = UINavigationBar.appearance()
+    
     var body: some View {
-        NavigationView {
-            Form {
-                Section(header: Text("PROFILE")) {
-                   TextField("Username", text: $userName)
-                   Toggle(isOn: $isPrivate) {
-                       Text("Private Account")
-                   }
-                }
-                Section(header: Text("NOTIFICATIONS")) {
-                    Toggle(isOn: $notificationsEnabled) {
-                        Text("Enabled")
+        
+        
+//        navBarApperance.backgroundColor = UIColor(#colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1))
+        
+        
+//        switch colorOption {
+//        case ["red"]:
+//            navBarApperance.backgroundColor = UIColor.red
+//        case ["blue"]:
+//            navBarApperance.backgroundColor = UIColor.blue
+//        case ["green"]:
+//            navBarApperance.backgroundColor = UIColor.green
+//        default:
+//            navBarApperance.backgroundColor = UIColor(#colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1))
+//        }
+        
+//        switch self.colorIndex {
+//        case 0:
+//            navBarApperance.backgroundColor = UIColor.red
+//        case 1:
+//            navBarApperance.backgroundColor = UIColor.blue
+//        case 2:
+//            navBarApperance.backgroundColor = UIColor.green
+//        default:
+//            navBarApperance.backgroundColor = UIColor(#colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1))
+//        }
+        
+        return NavigationView {
+            ZStack {
+                Color(#colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1))
+                    .edgesIgnoringSafeArea(.all)
+                Form {
+                    Section(header: Text("PROFILE")) {
+                       TextField("Username", text: $userName)
+                       Toggle(isOn: $isPrivate) {
+                           Text("Private Account")
+                       }
                     }
-                    Picker(selection: $previewIndex, label: Text("Show Previews")) {
-                        ForEach(0 ..< previewOptions.count) {
-                            Text(self.previewOptions[$0])
+                    Section(header: Text("NOTIFICATIONS")) {
+                        Toggle(isOn: $notificationsEnabled) {
+                            Text("Enabled")
+                        }
+                        Picker(selection: $previewIndex, label: Text("Show Previews")) {
+                            ForEach(0 ..< previewOptions.count) {
+                                Text(self.previewOptions[$0])
+                            }
                         }
                     }
-                }
-                Section(header: Text("THEME")) {
-                    VStack {
+                    Section(header: Text("THEME")) {
                         Picker(selection: $colorIndex, label: Text("Color")) {
                             ForEach(0 ..< colorOption.count) {
                                 Text(self.colorOption[$0])
                             }
                         }
-                    }
-                }
-                Section(header: Text("ABOUT")) {
-                    VStack {
-                        HStack {
-                            Text("Version")
-                            Spacer()
-                            Text("1.0")
-                        }
-                        HStack {
-                            Text("Made by city1616")
+                        Button(action: {
+                             self.navBarApperance.backgroundColor = UIColor(#colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1))
+                            // print(self.colorIndex)
+                        }) {
+                            Text("적용")
                         }
                     }
-                }
-                Section() {
-                    Button(action: {
-                        self.showAlert = true
-                    }) {
-                        Text("Reset All Settings")
+                    Section(header: Text("ABOUT")) {
+                        VStack {
+                            HStack {
+                                Text("Version")
+                                Spacer()
+                                Text("1.0")
+                            }
+                            HStack {
+                                Text("Made by city1616")
+                            }
+                        }
                     }
-                    .alert(isPresented: $showAlert) {
-                        Alert(title: Text("Reset"), message: Text("reset????????"), primaryButton: .destructive(Text("OK"), action: {
-                            self.isPrivate = true
-                            self.notificationsEnabled = false
-                            self.previewIndex = 0
-                        }), secondaryButton: .cancel())
+                    Section() {
+                        Button(action: {
+                            self.showAlert = true
+                        }) {
+                            Text("Reset All Settings")
+                        }
+                        .alert(isPresented: $showAlert) {
+                            Alert(title: Text("Reset"), message: Text("reset????????"), primaryButton: .destructive(Text("OK"), action: reset), secondaryButton: .cancel())
+                        }
                     }
                 }
+                .navigationBarTitle("Settings")
             }
-            .navigationBarTitle("Settings")
         }
     }
     func reset() {
         self.isPrivate = true
         self.notificationsEnabled = false
         self.previewIndex = 0
+        self.colorIndex = 0
     }
 }
 
