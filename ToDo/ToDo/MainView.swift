@@ -8,11 +8,35 @@
 
 import SwiftUI
 
+//var circleImage:  Type  {
+//    Image("ㅇㅇㅇ")
+//        .frame(width: 250, height: 250)
+//        .clipShape(Circle())
+//        .overlay(
+//            Circle().stroke(Color.white, lineWidth: 4))
+//        .shadow(radius: 10)
+//}
+
 struct MainView: View {
     // @Binding var showSideMenu: Bool
     var body: some View {
         ZStack {
             VStack {
+                Image("ㅇㅇㅇ")
+                    .frame(width: 250, height: 250)
+                    .clipShape(Circle())
+                    .overlay(
+                        Circle().stroke(Color.white, lineWidth: 4))
+                    .shadow(radius: 10)
+                    .padding()
+                
+                Image("ㅇㅇㅇ")
+                    .frame(width: 250, height: 250)
+                    .clipShape(Circle())
+                    .overlay(
+                        Circle().stroke(Color.white, lineWidth: 4))
+                    .shadow(radius: 10)
+                    .padding()
 //                Button(action: {
 //                    // self.showSideMenu = true
 //                    self.hello()
@@ -27,10 +51,7 @@ struct MainView: View {
 //                }) {
 //                    Text("Color")
 //                }
-                List() {
-                    Text("a")
-                    Text("b")
-                }
+                
             }
         }
     }

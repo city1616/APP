@@ -25,8 +25,8 @@ struct TestView: View {
 //            Text(userName)
 //            Image(systemName: wifiEnabled ? "wifi" : "wifi.slash")
 //        }
-        itemadd()
-    // .padding()
+         itemadd()
+//     .padding()
     }
 }
 
@@ -98,7 +98,7 @@ struct itemadd: View {
                             }, label: {
                                 Image(systemName: "plus")
                             })
-                                
+
                     )
                 // This is our secondary view that'll take in our user's input.
                 // Is presented when addItem is set to true.
@@ -119,10 +119,10 @@ struct itemadd: View {
                         // variables for when then add another item.
                         Button(action: {
                             self.listItems.append(Item(name: self.addItemName, color: self.colorSelection))
-                            
+
                             // This will close our sheet view when the user click our Add button.
                             self.addItem.toggle()
-                            
+
                             // Reset Values
                             self.addItemName = ""
                             self.colorSelection = UIColor.systemRed

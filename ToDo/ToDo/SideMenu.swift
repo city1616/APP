@@ -18,7 +18,7 @@ struct SideMenu: View {
                 Text("Profile")
                     .foregroundColor(.gray)
                     .font(.headline)
-            }.padding(.top, 100)
+            }.padding(.top, 130)
             HStack {
                 Image(systemName: "envelope")
                     .foregroundColor(.gray)

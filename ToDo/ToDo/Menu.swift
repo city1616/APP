@@ -70,7 +70,7 @@ struct Menu: View {
                         Image(systemName: "line.horizontal.3")
                             .font(.title)
                             // .imageScale(.large)
-                    }.foregroundColor(.gray)
+                    }// .foregroundColor(.gray)
             }, trailing:
                 HStack {
                     Button(action: {
@@ -78,7 +78,7 @@ struct Menu: View {
                     }) {
                         Image(systemName: "square.and.pencil")
                             .font(.title)
-                    }.foregroundColor(.gray)
+                    }// .foregroundColor(.gray)
             })
             // .navigationViewStyle(StackNavigationViewStyle())
         }
