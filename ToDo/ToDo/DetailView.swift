@@ -10,13 +10,21 @@ import SwiftUI
 
 struct DetailView: View {
     var work: String
+    var date: Date
     var body: some View {
-        Text("current name is \(work)")
+        VStack {
+            Text("current name is \(work)")
+            HStack {
+                Text("Date")
+                Spacer()
+                Text("\(date)")
+            }.padding()
+        }
     }
 }
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView(work: "t")
+        DetailView(work: "t", date: Calendar.d)
     }
 }

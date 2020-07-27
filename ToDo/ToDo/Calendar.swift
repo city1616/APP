@@ -19,6 +19,7 @@ struct Calendar: View {
         VStack {
             Form {
                 DatePicker("When is your birthday?", selection: $selectDate, displayedComponents: .date)
+                    // .labelsHidden()
                     .foregroundColor(.green)
                     // .background(with: .black)
             }

@@ -18,6 +18,7 @@ import SwiftUI
 struct working: Identifiable {
     let id = UUID()
     var work = String()
+    var date = Date()
 }
 
 struct DoItem: Hashable {
@@ -39,7 +40,7 @@ struct ToDoMain: View {
     // @Binding var showSideMenu: Bool
     
     // var arr = ["a", "b", "c"]
-    
+    @State var selectDate = Date()
     @State var listDoItem = [DoItem]()
     @State var addWork : String = ""
     @State var addItem = false
@@ -49,7 +50,7 @@ struct ToDoMain: View {
             Form {
                 Section(header: Text("To do")) {
                     List(task) { taskList in
-                        NavigationLink(destination: DetailView(work: taskList.work)) {
+                        NavigationLink(destination: DetailView(work: taskList.work, date: taskList.date)) {
                             VStack(alignment: .leading) {
                                 // Text(todolist_t.work)
                                 ToDoRow(todo: taskList)
@@ -111,6 +112,7 @@ struct ToDoMain: View {
                             .frame(width: 250)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                     }
+                    DatePicker("Date", selection: self.$selectDate, displayedComponents: .date)
                 }
                 Section() {
                     Button(action: {
