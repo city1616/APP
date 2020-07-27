@@ -32,6 +32,8 @@ struct todoList: View {
     // t.append(working(work: "end"))
     // @Binding var showSideMenu: Bool
     
+    // var arr = ["a", "b", "c"]
+    
     var body: some View {
         
         NavigationView {
@@ -49,6 +51,14 @@ struct todoList: View {
                 
                 Section(header: Text("Doing")) {
                     Text("")
+                    Button(action: {
+                        // t.append(working(work: "end"))
+                        // print(self.t)
+                        // add()
+                        // self.t += [working(work: "end")]
+                    }) {
+                        Text("add")
+                    }
                 }
                 
                 Section(header: Text("Done")) {
@@ -80,6 +90,10 @@ struct todoList: View {
                         }
             })
         }
+    }
+    mutating func add() {
+        // t.append(working(work: "end"))
+        t += [working(work: "end")]
     }
 }
 
