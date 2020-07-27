@@ -37,7 +37,8 @@ struct Menu: View {
                     ZStack(alignment: .leading) {
 //                        Color(#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1))
 //                            .edgesIgnoringSafeArea(.all)
-                        MainView(showSideMenu: self.$showSideMenu)
+                        // MainView(showSideMenu: self.$showSideMenu)
+                        MainView()
                             .frame(width: geometry.size.width, height: geometry.size.height)
                             .offset(x: self.showSideMenu ? geometry.size.width / 2 : 0)
                             .disabled(self.showSideMenu ? true : false)

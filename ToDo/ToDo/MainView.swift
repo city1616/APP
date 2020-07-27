@@ -9,18 +9,18 @@
 import SwiftUI
 
 struct MainView: View {
-    @Binding var showSideMenu: Bool
+    // @Binding var showSideMenu: Bool
     var body: some View {
         ZStack {
             VStack {
-                Button(action: {
-                    self.showSideMenu = true
-                    self.hello()
-//                    print(self.buildMessageFor(name: "John", count: 100))
-                    print(self.buildMessageFor("John", 100))
-                }) {
-                    Text("Show Side Menu")
-                }
+//                Button(action: {
+//                    // self.showSideMenu = true
+//                    self.hello()
+////                    print(self.buildMessageFor(name: "John", count: 100))
+//                    print(self.buildMessageFor("John", 100))
+//                }) {
+//                    Text("Show Side Menu")
+//                }
                 
 //                Button(action: {
 //
@@ -43,8 +43,10 @@ struct MainView: View {
     }
 }
 
-//struct MainView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        MainView(showSideMenu: false)
-//    }
-//}
+struct MainView_Previews: PreviewProvider {
+    static var previews: some View {
+        // MainView(showSideMenu: false)
+        MainView()
+    }
+}
+

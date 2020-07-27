@@ -66,7 +66,8 @@ struct ContentView_Previews: PreviewProvider {
             ContentView()
                 .previewDevice(PreviewDevice(rawValue: "iPhone X"))
                 .previewDisplayName("iPhone X")
+                // .environment(\.colorScheme, .dark)
         }
-            // .colorScheme(.dark)
+            // .colorScheme(.dark) == .environment(\.colorScheme, .dark) Dark Mode
     }
 }
