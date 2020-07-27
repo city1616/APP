@@ -58,7 +58,15 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        Group {
+            ContentView()
+                .previewDevice(PreviewDevice(rawValue: "iPhone 11 Pro"))
+                .previewDisplayName("iPhone 11 pro")
+                .colorScheme(.dark)
+            ContentView()
+                .previewDevice(PreviewDevice(rawValue: "iPhone X"))
+                .previewDisplayName("iPhone X")
+        }
             // .colorScheme(.dark)
     }
 }

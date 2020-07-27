@@ -15,6 +15,9 @@ struct MainView: View {
             VStack {
                 Button(action: {
                     self.showSideMenu = true
+                    self.hello()
+//                    print(self.buildMessageFor(name: "John", count: 100))
+                    print(self.buildMessageFor("John", 100))
                 }) {
                     Text("Show Side Menu")
                 }
@@ -30,6 +33,13 @@ struct MainView: View {
                 }
             }
         }
+    }
+    
+    func hello() {
+        print("Hello")
+    }
+    func buildMessageFor(_ name: String, _ count: Int) -> String {
+        return "\(name), you are a customer number \(count)"
     }
 }
 
