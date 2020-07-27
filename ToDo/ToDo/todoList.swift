@@ -16,34 +16,43 @@ import SwiftUI
 //}
 
 struct working: Identifiable {
-    var id = UUID()
+    let id = UUID()
     var work = String()
+}
+
+struct DoItem: Hashable {
+    let work: String
 }
 
 struct ToDoRow: View {
     var todo: working
     var body: some View {
-        Text("\(todo.id). \(todo.work)")
+        // Text("\(todo.id). \(todo.work)")
+        Text("\(todo.work)")
     }
 }
 
 struct todoList: View {
-    var t: [working] = [working(work: "first"), working(work: "second")]
+    @State var task = [working]()
     // t.append(working(work: "end"))
     // @Binding var showSideMenu: Bool
     
     // var arr = ["a", "b", "c"]
+    
+    @State var listDoItem = [DoItem]()
+    @State var addWork : String = ""
+    @State var addItem = false
     
     var body: some View {
         
         NavigationView {
             Form {
                 Section(header: Text("To do")) {
-                    List(t) { todolist_t in
-                        NavigationLink(destination: DetailView(work: todolist_t.work)) {
+                    List(task) { taskList in
+                        NavigationLink(destination: DetailView(work: taskList.work)) {
                             VStack(alignment: .leading) {
                                 // Text(todolist_t.work)
-                                ToDoRow(todo: todolist_t)
+                                ToDoRow(todo: taskList)
                             }
                         }
                     }
@@ -51,19 +60,22 @@ struct todoList: View {
                 
                 Section(header: Text("Doing")) {
                     Text("")
-                    Button(action: {
-                        // t.append(working(work: "end"))
+                    Button(action: AddTask
+                        // self.task.append(working(work: "end"))
                         // print(self.t)
                         // add()
                         // self.t += [working(work: "end")]
-                    }) {
+                    ) {
                         Text("add")
                     }
                 }
                 
                 Section(header: Text("Done")) {
-                    Text("")
-                    Text("")
+                    List {
+                        ForEach(listDoItem, id: \.self) { item in
+                            Text(item.work)
+                        }
+                    }
                 }
                     
                 Section(header: Text("Don't")) {
@@ -82,18 +94,33 @@ struct todoList: View {
                                 .font(.title)
                         }
                 }, trailing:
-                    NavigationLink(destination: todo()) {
-                        HStack {
-                            Image(systemName: "square.and.pencil")
-                                .font(.title)
-                        // .foregroundColor(Color(.quaternarySystemFill))
-                        }
-            })
+                    Button(action: {
+                        self.addItem.toggle()
+                    }) {
+                        Image(systemName: "plus")
+                            .font(.title)
+                })
+        }.sheet(isPresented: $addItem) {
+            // todo()
+            VStack {
+                HStack {
+                    Text("Work : ")
+                    TextField("Add Work", text: self.$addWork)
+                }
+                Button(action: {
+                    self.task.append(working(work: self.addWork))
+                    
+                    self.addItem.toggle()
+                    
+                    self.addWork = ""
+                }) {
+                    Text("ADD")
+                }
+            }
         }
     }
-    mutating func add() {
-        // t.append(working(work: "end"))
-        t += [working(work: "end")]
+    func AddTask() {
+        self.task.append(working(work: "end"))
     }
 }
 
