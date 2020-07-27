@@ -1,8 +1,8 @@
 //
-//  todoList.swift
+//  ToDoMain.swift
 //  ToDo
 //
-//  Created by SeungWoo Mun on 2020/07/20.
+//  Created by SeungWoo Mun on 2020/07/27.
 //  Copyright © 2020 SeungWoo Mun. All rights reserved.
 //
 
@@ -32,7 +32,8 @@ struct ToDoRow: View {
     }
 }
 
-struct todoList: View {
+struct ToDoMain: View {
+    
     @State var task = [working]()
     // t.append(working(work: "end"))
     // @Binding var showSideMenu: Bool
@@ -44,7 +45,6 @@ struct todoList: View {
     @State var addItem = false
     
     var body: some View {
-        
         NavigationView {
             Form {
                 Section(header: Text("To do")) {
@@ -86,9 +86,9 @@ struct todoList: View {
                 .navigationBarItems(leading:
                     HStack {
                         Button(action: {
-//                            withAnimation {
-//                                self.showSideMenu.toggle()
-//                            }
+    //                            withAnimation {
+    //                                self.showSideMenu.toggle()
+    //                            }
                         }) {
                             Image(systemName: "line.horizontal.3")
                                 .font(.title)
@@ -124,19 +124,18 @@ struct todoList: View {
     }
 }
 
-//struct todoList_Previews: PreviewProvider {
+//struct ToDoMain_Previews: PreviewProvider {
 //    // @Binding var showSideMenu: Bool
 //    static var previews: some View {
-//        todoList()
+//        ToDoMain()
 //        // self.showSideMenu = false
-//        // todoList(showSideMenu: self.$showSideMenu)
+//        // ToDoMain(showSideMenu: self.$showSideMenu)
 ////            .colorScheme(.dark)
 //    }
 //}
 
-
-struct todoList_Previews: PreviewProvider {
+struct ToDoMain_Previews: PreviewProvider {
     static var previews: some View {
-        todoList()
+        ToDoMain()
     }
 }
