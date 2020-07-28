@@ -15,33 +15,39 @@ import SwiftUI
 //    // var Done = String()
 //}
 
-struct working: Identifiable {
-    let id = UUID()
+struct working: Codable, Identifiable {
+    let id = Int()
     var work = String()
     var date = Date()
 }
 
-struct DoItem: Hashable {
-    let work: String
-}
+//struct DoItem: Hashable {
+//    let work: String
+//}
 
 struct ToDoRow: View {
+    
     var todo: working
+    
     var body: some View {
         // Text("\(todo.id). \(todo.work)")
-        Text("\(todo.work)")
+        NavigationLink(destination: DetailView(work: todo)) {
+            VStack(alignment: .leading) {
+                Text("\(todo.work)")
+            }
+        }
     }
 }
 
 struct ToDoMain: View {
     
-    @State var task = [working]()
+    @State var task : [working] = []
     // t.append(working(work: "end"))
     // @Binding var showSideMenu: Bool
     
     // var arr = ["a", "b", "c"]
     @State var selectDate = Date()
-    @State var listDoItem = [DoItem]()
+    // @State var listDoItem = [DoItem]()
     @State var addWork : String = ""
     @State var addItem = false
     
@@ -49,58 +55,49 @@ struct ToDoMain: View {
         NavigationView {
             Form {
                 Section(header: Text("To do")) {
-                    List(task) { taskList in
-                        NavigationLink(destination: DetailView(work: taskList.work, date: taskList.date)) {
-                            VStack(alignment: .leading) {
-                                // Text(todolist_t.work)
-                                ToDoRow(todo: taskList)
-                            }
+                    List {
+                        // Text("")
+                        ForEach(task) { taskList in
+                            ToDoRow(todo: taskList)
                         }
+                        .onDelete(perform: deleteItems)
+                        .onMove(perform: moveItems)
                     }
                 }
                 
                 Section(header: Text("Doing")) {
                     Text("")
-                    Button(action: AddTask
-                        // self.task.append(working(work: "end"))
-                        // print(self.t)
-                        // add()
-                        // self.t += [working(work: "end")]
-                    ) {
-                        Text("add")
-                    }
                 }
                 
                 Section(header: Text("Done")) {
                     List {
-                        ForEach(listDoItem, id: \.self) { item in
-                            Text(item.work)
-                        }
+                        Text("")
+//                        ForEach(listDoItem, id: \.self) { item in
+//                            Text(item.work)
+//                        .onDelete(perform: deleteItems)
+//                        .onMove(perform: moveItems)
                     }
                 }
-                    
+                
                 Section(header: Text("Don't")) {
                     Text("")
                 }
+                Section() {
+                    Button(action: AddTask) {
+                        Text("add")
+                    }
+                }
             }
             .navigationBarTitle(Text("ToDo"))
-                .navigationBarItems(leading:
-                    HStack {
-                        Button(action: {
-    //                            withAnimation {
-    //                                self.showSideMenu.toggle()
-    //                            }
-                        }) {
-                            Image(systemName: "line.horizontal.3")
-                                .font(.title)
-                        }
-                }, trailing:
+            .navigationBarItems(leading:
+                HStack {
                     Button(action: {
                         self.addItem.toggle()
                     }) {
                         Image(systemName: "plus")
                             .font(.title)
-                })
+                    }
+                }, trailing: EditButton())
         }.sheet(isPresented: $addItem) {
 //            todo()
             Form {
@@ -131,6 +128,12 @@ struct ToDoMain: View {
     }
     func AddTask() {
         self.task.append(working(work: "end"))
+    }
+    func deleteItems(at offets: IndexSet) {
+        task.remove(atOffsets: offets)
+    }
+    func moveItems(from source: IndexSet, to destination: Int) {
+        task.move(fromOffsets: source, toOffset: destination)
     }
 }
 

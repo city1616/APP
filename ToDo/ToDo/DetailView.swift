@@ -9,22 +9,43 @@
 import SwiftUI
 
 struct DetailView: View {
-    var work: String
-    var date: Date
+    
+    var work: working
+    
     var body: some View {
-        VStack {
-            Text("current name is \(work)")
-            HStack {
-                Text("Date")
-                Spacer()
-                Text("\(date)")
-            }.padding()
+        Form {
+            Section(header: Text("Work")) {
+                HStack {
+                    Text("할일")
+                    Spacer()
+                    Text(work.work)
+                }
+            }
+            Section(header: Text("DATE")) {
+                HStack {
+                    Text("Date")
+                    Spacer()
+                    Text("\(work.date)")
+                }
+                // .padding()
+            }
+            Section() {
+                HStack(alignment: .center) {
+                    Spacer()
+                    Button(action: {}) {
+                        Text("Done")
+                    }
+                    Spacer()
+                }
+            }
+        // .navigationBarTitle(Text("Details"))
+        // .navigationBarHidden(true)
         }
     }
 }
 
-//struct DetailView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        DetailView(work: "t", date: Calendar.d)
-//    }
-//}
+struct DetailView_Previews: PreviewProvider {
+    static var previews: some View {
+        DetailView(work: working())
+    }
+}
