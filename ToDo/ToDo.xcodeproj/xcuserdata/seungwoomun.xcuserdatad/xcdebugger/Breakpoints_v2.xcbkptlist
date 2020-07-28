@@ -8,7 +8,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "BE7A7CBC-7A3A-4A22-941B-2650920C6B77"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ToDo/ToDoMain.swift"
@@ -30,8 +30,8 @@
                   urlString = "file:///Users/seungwoomun/Documents/Study/App/ToDo/ToDo/ToDoMain.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "53"
-                  endingLineNumber = "53"
+                  startingLineNumber = "56"
+                  endingLineNumber = "56"
                   offsetFromSymbolStart = "204">
                </Location>
                <Location
@@ -45,8 +45,8 @@
                   urlString = "file:///Users/seungwoomun/Documents/Study/App/ToDo/ToDo/ToDoMain.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "52"
-                  endingLineNumber = "52"
+                  startingLineNumber = "55"
+                  endingLineNumber = "55"
                   offsetFromSymbolStart = "420">
                </Location>
             </Locations>

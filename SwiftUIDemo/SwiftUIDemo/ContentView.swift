@@ -9,8 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     
-    var colors: [Color] = [.black, .red, .green, .blue]
-    var colornames = ["Black", "Red", "Green", "Blue"]
+    var colors: [Color] = [.purple, .black, .red, .green, .blue]
+    var colornames = ["Purple", "Black", "Red", "Green", "Blue"]
     
     @State private var colorIndex = 0
     @State private var rotation: Double = 0
@@ -21,11 +21,11 @@ struct ContentView: View {
             VStack {
                 VStack {
                     Spacer()
-                    Text("Hello, world!")
+                    Text("!LOLOLOLOLOLOLOL!")
                         .font(.largeTitle)
                         .fontWeight(.heavy)
                         .rotationEffect(.degrees(self.rotation))
-                        .animation(.easeInOut(duration: 5))
+                        .animation(.easeInOut(duration: 2))
                         .foregroundColor(self.colors[self.colorIndex])
                     Spacer()
                     Divider()
