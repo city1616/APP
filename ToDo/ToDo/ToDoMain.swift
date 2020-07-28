@@ -14,34 +14,34 @@ import SwiftUI
 //    var work = String()
 //    // var Done = String()
 //}
-
-struct working: Codable, Identifiable {
-    let id = Int()
-    var work = String()
-    var date = Date()
-}
-
-//struct DoItem: Hashable {
-//    let work: String
+//
+//struct working: Codable, Identifiable {
+//    let id = Int()
+//    var work = String()
+//    var date = Date()
 //}
 
 struct ToDoRow: View {
     
-    var todo: working
+    var task: Task
     
     var body: some View {
         // Text("\(todo.id). \(todo.work)")
-        NavigationLink(destination: DetailView(work: todo)) {
+        NavigationLink(destination: DetailView(selectedWork: task)) {
             VStack(alignment: .leading) {
-                Text("\(todo.work)")
+                Text("\(task.work)")
             }
         }
     }
 }
 
+
+
 struct ToDoMain: View {
     
-    @State var task : [working] = []
+    @ObservedObject var taskStore: TaskStore = TaskStore(tasks: [])
+    
+    // @State var task : [working] = []
     // t.append(working(work: "end"))
     // @Binding var showSideMenu: Bool
     
@@ -49,6 +49,7 @@ struct ToDoMain: View {
     @State var selectDate = Date()
     // @State var listDoItem = [DoItem]()
     @State var addWork : String = ""
+    @State var addDescription: String = ""
     @State var addItem = false
     
     var body: some View {
@@ -57,8 +58,8 @@ struct ToDoMain: View {
                 Section(header: Text("To do")) {
                     List {
                         // Text("")
-                        ForEach(task) { taskList in
-                            ToDoRow(todo: taskList)
+                        ForEach(taskStore.tasks) { task in
+                            ToDoRow(task: task)
                         }
                         .onDelete(perform: deleteItems)
                         .onMove(perform: moveItems)
@@ -82,6 +83,7 @@ struct ToDoMain: View {
                 Section(header: Text("Don't")) {
                     Text("")
                 }
+                
                 Section() {
                     Button(action: AddTask) {
                         Text("add")
@@ -113,8 +115,8 @@ struct ToDoMain: View {
                 }
                 Section() {
                     Button(action: {
-                        self.task.append(working(work: self.addWork))
-
+                        // self.task.append(working(work: self.addWork))
+                        self.AddTask()
                         self.addItem.toggle()
 
                         self.addWork = ""
@@ -127,13 +129,21 @@ struct ToDoMain: View {
         
     }
     func AddTask() {
-        self.task.append(working(work: "end"))
+        let newTask = Task(id: UUID().uuidString, work: addWork, date: selectDate, description: addDescription)
+        taskStore.tasks.append(newTask)
+        // self.task.append(working(work: "end"))
     }
     func deleteItems(at offets: IndexSet) {
-        task.remove(atOffsets: offets)
+        taskStore.tasks.remove(atOffsets: offets)
     }
     func moveItems(from source: IndexSet, to destination: Int) {
-        task.move(fromOffsets: source, toOffset: destination)
+        taskStore.tasks.move(fromOffsets: source, toOffset: destination)
+    }
+    func doneTask(from source: IndexSet, to destination: Int) {
+        taskStore.tasks.move(fromOffsets: source, toOffset: destination)
+        let newTask = Task(id: UUID().uuidString, work: addWork, date: selectDate, description: addDescription)
+        taskStore.tasks.append(newTask)
+        
     }
 }
 

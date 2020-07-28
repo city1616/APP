@@ -10,7 +10,7 @@ import SwiftUI
 
 struct DetailView: View {
     
-    var work: working
+    var selectedWork: Task
     
     var body: some View {
         Form {
@@ -18,14 +18,14 @@ struct DetailView: View {
                 HStack {
                     Text("할일")
                     Spacer()
-                    Text(work.work)
+                    Text(selectedWork.work)
                 }
             }
             Section(header: Text("DATE")) {
                 HStack {
                     Text("Date")
                     Spacer()
-                    Text("\(work.date)")
+                    Text("\(selectedWork.date)")
                 }
                 // .padding()
             }
@@ -46,6 +46,6 @@ struct DetailView: View {
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView(work: working())
+        DetailView(selectedWork: taskData[0])
     }
 }
