@@ -16,44 +16,46 @@ struct Settings: View {
     var previewOptions = ["Always", "When Unlocked", "Never"]
     
     @State private var colorIndex = 0
-    var colorOption = ["red", "blue", "green"]
+    var colors: [Color] = [.purple, .black, .red, .green, .blue]
+    var colorOption = ["Purple", "Black", "Red", "Green", "Blue"]
+    
+    @State private var colIndex = 0
+    var colOption = ["Purple", "Black", "Pink", "Blue", "Green"]
+    @State var cols: [UIColor] = [#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1), #colorLiteral(red: 0.137254902, green: 0.137254902, blue: 0.137254902, alpha: 1), #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1), #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1), #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)]
     
     @State private var showAlert = false
     
     @State var navBarApperance = UINavigationBar.appearance()
+    
+    fileprivate func NaviColorChange() {
+        //                            self.navBarApperance.backgroundColor = UIColor(Color(self.cols[self.colIndex]))
+        // self.navBarApperance.backgroundColor = UIColor(#colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1))
+        // print(self.colorIndex)
+        switch self.colIndex {
+        case 0:
+            self.navBarApperance.backgroundColor = UIColor(#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1))
+        case 1:
+            self.navBarApperance.backgroundColor = UIColor(#colorLiteral(red: 0.137254902, green: 0.137254902, blue: 0.137254902, alpha: 1))
+        case 2:
+            self.navBarApperance.backgroundColor = UIColor(#colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1))
+        case 3:
+            self.navBarApperance.backgroundColor = UIColor(#colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1))
+        case 4:
+            self.navBarApperance.backgroundColor = UIColor(#colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1))
+        default:
+            self.navBarApperance.backgroundColor = UIColor(#colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1))
+        }
+    }
     
     var body: some View {
         
         
 //        navBarApperance.backgroundColor = UIColor(#colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1))
         
-        
-//        switch colorOption {
-//        case ["red"]:
-//            navBarApperance.backgroundColor = UIColor.red
-//        case ["blue"]:
-//            navBarApperance.backgroundColor = UIColor.blue
-//        case ["green"]:
-//            navBarApperance.backgroundColor = UIColor.green
-//        default:
-//            navBarApperance.backgroundColor = UIColor(#colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1))
-//        }
-        
-//        switch self.colorIndex {
-//        case 0:
-//            navBarApperance.backgroundColor = UIColor.red
-//        case 1:
-//            navBarApperance.backgroundColor = UIColor.blue
-//        case 2:
-//            navBarApperance.backgroundColor = UIColor.green
-//        default:
-//            navBarApperance.backgroundColor = UIColor(#colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1))
-//        }
-        
         return NavigationView {
             ZStack {
-                Color(#colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1))
-                    .edgesIgnoringSafeArea(.all)
+//                Color(#colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1))
+//                    .edgesIgnoringSafeArea(.all)
                 Form {
                     Section(header: Text("PROFILE")) {
                        TextField("Username", text: $userName)
@@ -72,15 +74,21 @@ struct Settings: View {
                         }
                     }
                     Section(header: Text("THEME")) {
-                        Picker(selection: $colorIndex, label: Text("Color")) {
+                        Picker(selection: $colorIndex, label: Text("Button Color").foregroundColor(self.colors[self.colorIndex])) {
                             ForEach(0 ..< colorOption.count) {
                                 Text(self.colorOption[$0])
+                                    .foregroundColor(self.colors[$0])
+                            }
+                        }
+                        Picker(selection: $colIndex, label: Text("Background Color").foregroundColor(Color(self.cols[self.colIndex]))) {
+                            ForEach(0 ..< colOption.count) {
+                                Text(self.colOption[$0])
+                                    .foregroundColor(Color(self.cols[$0]))
                             }
                         }
                         // .pickerStyle(WheelPickerStyle())
                         Button(action: {
-                             self.navBarApperance.backgroundColor = UIColor(#colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1))
-                            // print(self.colorIndex)
+                            self.NaviColorChange()
                         }) {
                             Text("적용")
                         }
@@ -108,15 +116,19 @@ struct Settings: View {
                         }
                     }
                 }
+                .accentColor(Color(self.cols[self.colIndex]))
                 .navigationBarTitle("Settings")
             }
         }
+        // .accentColor(UIColor(Color(#colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1))))
+            // .accentColor(UIColor(Color(self.colors[self.colorIndex]))) // Button color
     }
     func reset() {
         self.isPrivate = true
         self.notificationsEnabled = false
         self.previewIndex = 0
         self.colorIndex = 0
+        self.colIndex = 0
     }
 }
 

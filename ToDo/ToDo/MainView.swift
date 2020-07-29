@@ -68,7 +68,7 @@ struct MainView: View {
                 .padding(10)
                 .background(Color(.systemGray6))
                 .cornerRadius(30) // 12
-                .padding(.vertical, 10)
+                    .padding(.all, 10)
                 
                 ScrollView {
                     VStack {
@@ -99,8 +99,6 @@ struct MainView: View {
             }
         }
     }
-
-    
     func hello() {
         print("Hello")
     }
@@ -116,3 +114,100 @@ struct MainView_Previews: PreviewProvider {
     }
 }
 
+struct Home: View {
+    var body: some View {
+        ScrollView(.vertical, showsIndicators: false, content: {
+            VStack {
+                // now going to do strechy header
+                
+                Image("ㅇㅇㅇ")
+                    .resizable()
+                    .frame(height: UIScreen.main.bounds.height / 2.2)
+                
+                VStack {
+                    HStack {
+                        Text("New Home")
+                            .font(.title)
+                            .fontWeight(.bold)
+                        Spacer()
+                        Button(action: {
+                            
+                        }) {
+                            Text("See All")
+                                .fontWeight(.bold)
+                        }
+                    }
+    //                // testing data..
+    //                CardView(data: data[0])
+                    VStack(spacing: 20) {
+                        ForEach(data) { i in
+                            CardView(data: i)
+                        }
+                    }
+                    .padding(.top)
+                }
+                .padding()
+                
+                Spacer()
+            }
+        })
+            
+        .edgesIgnoringSafeArea(.top)
+    }
+}
+
+// CardView...
+struct CardView: View {
+    
+    var data: Card
+    
+    var body: some View {
+        HStack(alignment: .top, spacing: 20) {
+            Image(self.data.image)
+                .resizable()
+                .frame(width: 80, height: 80)
+            VStack(alignment: .leading, spacing: 6) {
+                Text(self.data.title)
+                    .fontWeight(.bold)
+                Text(self.data.subTitle)
+                    .font(.caption)
+                    .foregroundColor(.gray)
+                HStack(spacing: 12) {
+                    Button(action: {}) {
+                        Text("Get")
+                            .fontWeight(.bold)
+                            .padding(.vertical, 10)
+                            .padding(.horizontal, 25)
+                            // for adapting to dark mode ...
+                            .background(Color.primary.opacity(0.06))
+                            .clipShape(Capsule())
+                    }
+                    Text("In-App\n Purchases")
+                        .font(.caption)
+                        .foregroundColor(.gray)
+                }
+            }
+            Spacer(minLength: 0)
+        }
+    }
+}
+
+
+// sample data for cards...
+struct Card: Identifiable {
+    var id: Int
+    var image: String
+    var title: String
+    var subTitle: String
+}
+var data = [
+    Card(id: 0, image: "ㅇㅇㅇ", title: "Zombie Gunship Survival", subTitle: "Tour the apocalypse"),
+    Card(id: 1, image: "ㅇㅇㅇ", title: "Portal", subTitle: "Travel through dimensions"),
+    Card(id: 2, image: "ㅇㅇㅇ", title: "Wave Form", subTitle: "Fun enagaging wave game"),
+    Card(id: 3, image: "ㅇㅇㅇ", title: "Temple Run", subTitle: "Run for your life"),
+    Card(id: 4, image: "ㅇㅇㅇ", title: "World of Warcraft", subTitle: "Be whoever you want"),
+    Card(id: 5, image: "ㅇㅇㅇ", title: "Alto's Adventure", subTitle: "A snowboarding odyssey"),
+    Card(id: 6, image: "ㅇㅇㅇ", title: "Space Frog", subTitle: "Jump and have fun"),
+    Card(id: 7, image: "ㅇㅇㅇ", title: "Dinosaur Mario", subTitle: "Keep running")
+    
+]
