@@ -26,6 +26,11 @@ struct TestView: View {
 //            Image(systemName: wifiEnabled ? "wifi" : "wifi.slash")
 //        }
          itemadd()
+//        List {
+//            Text("a")
+//            Text("b")
+//        }
+//        .listStyle(GroupedListStyle())
 //     .padding()
     }
 }

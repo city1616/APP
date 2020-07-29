@@ -14,8 +14,10 @@ struct Settings: View {
     @State var notificationsEnabled: Bool = false
     @State private var previewIndex = 0
     var previewOptions = ["Always", "When Unlocked", "Never"]
+    
     @State private var colorIndex = 0
     var colorOption = ["red", "blue", "green"]
+    
     @State private var showAlert = false
     
     @State var navBarApperance = UINavigationBar.appearance()
@@ -75,6 +77,7 @@ struct Settings: View {
                                 Text(self.colorOption[$0])
                             }
                         }
+                        // .pickerStyle(WheelPickerStyle())
                         Button(action: {
                              self.navBarApperance.backgroundColor = UIColor(#colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1))
                             // print(self.colorIndex)

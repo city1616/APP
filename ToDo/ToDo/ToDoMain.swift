@@ -64,6 +64,8 @@ struct ToDoMain: View {
                         .onDelete(perform: deleteItems)
                         .onMove(perform: moveItems)
                     }
+                    // .listRowBackground(Color.red)
+                // .listStyle(GroupedListStyle())
                 }
                 
                 Section(header: Text("Doing")) {
@@ -90,6 +92,11 @@ struct ToDoMain: View {
                     }
                 }
             }
+//            Section() {
+//                Button(action: {}) {
+//                    Text("abc:)")
+//                }
+//            }
             .navigationBarTitle(Text("ToDo"))
             .navigationBarItems(leading:
                 HStack {
