@@ -212,13 +212,19 @@ struct AddPage: View {
     @State var date = Date()
     @State var task = ""
     @Environment(\.presentationMode) var present
+    // moving vies up when keyboard appears
+    @State var keyboardHeight: CGFloat = 0
     
     var body: some View {
         VStack {
             Spacer(minLength: 0)
 
+            // going to shrink this view when keyboard appears for phones like iphone se
             CalendarView(date: self.$date)
-                .padding(.vertical, 20)
+                .scaleEffect((UIScreen.main.bounds.height < 750 && self.keyboardHeight != 0) ? 0.65 : 1)
+                // since view is shrinked we are reducing height
+                .padding(.vertical, (UIScreen.main.bounds.height < 750 && self.keyboardHeight != 0) ? -60 : 0)
+//                .padding(.vertical, 20)
             
             Spacer(minLength: 0)
             
@@ -229,6 +235,7 @@ struct AddPage: View {
                 .padding(.horizontal)
                 .padding(.vertical)
         }
+        .padding(.bottom, self.keyboardHeight)
         .navigationBarTitle("Add New Task", displayMode: .large)
         .background(Color.black.opacity(0.06).edgesIgnoringSafeArea(.bottom))
         .navigationBarItems(trailing:
@@ -240,6 +247,26 @@ struct AddPage: View {
             })
                 .disabled(self.task == "" ? true : false)
         )
+            .onAppear {
+                NotificationCenter.default.addObserver(forName: UIResponder.keyboardDidShowNotification, object: nil, queue: .main) { (notification) in
+                    let frame = notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue
+                    
+                    let height = frame.cgRectValue.height
+                    
+                    withAnimation {
+                        // reducing bottom safe area height
+                        self.keyboardHeight = height - (UIApplication.shared.windows.first?.safeAreaInsets.bottom)!
+                    }
+                    
+                }
+                NotificationCenter.default.addObserver(forName: UIResponder.keyboardDidHideNotification, object: nil, queue: .main) { (notification) in
+                   
+                    withAnimation {
+                        self.keyboardHeight = 0
+                    }
+                    
+                }
+        }
     }
     
     // saving data in Core Data
