@@ -62,16 +62,25 @@ struct Home: View {
                 }
                 
                 GeometryReader { _ in
-                    if self.todayTasks.isEmpty {
+                    if !self.todayTasks.isEmpty {
                         ScrollView(.vertical, showsIndicators: false) {
                             VStack {
                                 ForEach(0 ..< self.todayTasks.count, id: \.self) { i in
                                     HStack {
+                                        Button(action: {
+                                            self.DeleteTask(task: i)
+                                        }) {
+                                            Image(systemName: "checkmark.circle")
+                                                .resizable()
+                                                .frame(width: 22, height: 22)
+                                                .foregroundColor(.green)
+                                                .padding(.trailing, 10)
+                                        }
                                         Text(self.todayTasks[i])
                                         Spacer()
                                     }
                                     .padding(.horizontal)
-                                    .padding(.top)
+                                    .padding(.top, 20)
                                 }
                             }
                         }
@@ -81,6 +90,10 @@ struct Home: View {
             }
             .navigationBarTitle("ToDo", displayMode: .large)
             .background(Color.black.opacity(0.06).edgesIgnoringSafeArea(.bottom))
+            .onAppear {
+                self.getTasks()
+                self.DeleteOldTasks()
+            }
         }
     }
     // reading data
@@ -94,9 +107,103 @@ struct Home: View {
         let req = NSFetchRequest<NSFetchRequestResult>(entityName: "Todo")
         
         do {
+            // going to fetch all data
+            let result = try context.fetch(req)
             
+            self.todayTasks.removeAll()
+            
+            for i in result as! [NSManagedObject] {
+                let task = i.value(forKey: "task") as! String
+                let date = i.value(forKey: "date") as! Date
+                
+                // comparing data and displaying only today tasks
+                
+                let formatter = DateFormatter()
+                formatter.dateFormat = "dd-MM-YYYY"
+                
+                if formatter.string(from: date) == formatter.string(from: Date()) {
+                    // append to array
+                    self.todayTasks.append(task)
+                }
+            }
+        }
+        catch {
+            print(error.localizedDescription)
         }
     }
+    
+    func DeleteOldTasks() {
+        
+        // deleting all old data
+        
+        let app = UIApplication.shared.delegate as! AppDelegate
+        
+        // creating context from app delegate
+        let context = app.persistentContainer.viewContext
+        
+        let req = NSFetchRequest<NSFetchRequestResult>(entityName: "Todo")
+        
+        do {
+            // going to fetch all data
+            let result = try context.fetch(req)
+            
+//            self.todayTasks.removeAll()
+            
+            for i in result as! [NSManagedObject] {
+                let date = i.value(forKey: "date") as! Date
+                
+                // comparing data and displaying only today tasks
+                
+                let formatter = DateFormatter()
+                formatter.dateFormat = "dd-MM-YYYY"
+                
+                // quering old data
+                if formatter.string(from: date) < formatter.string(from: Date()) {
+                    context.delete(i)
+                    try context.save()
+                }
+            }
+        }
+        catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    // separate deletion
+    func DeleteTask(task: Int) {
+            
+            // deleting all old data
+            
+            let app = UIApplication.shared.delegate as! AppDelegate
+            
+            // creating context from app delegate
+            let context = app.persistentContainer.viewContext
+            
+            let req = NSFetchRequest<NSFetchRequestResult>(entityName: "Todo")
+            
+            do {
+                // going to fetch all data
+                let result = try context.fetch(req)
+                
+    //            self.todayTasks.removeAll()
+                
+                for i in result as! [NSManagedObject] {
+                    let currentTask = i.value(forKey: "task") as! String
+                    
+                    if self.todayTasks[task] == currentTask {
+                        context.delete(i)
+                        try context.save()
+                        
+                        self.todayTasks.remove(at: task)
+                        
+                        return
+                    }
+                }
+            }
+            catch {
+                print(error.localizedDescription)
+            }
+        }
 }
 
 // Add Page
