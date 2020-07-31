@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+// import CoreData
 
 struct DetailView: View {
     
@@ -18,7 +19,7 @@ struct DetailView: View {
                 HStack {
                     Text("할일")
                     Spacer()
-                    Text(selectedWork.work)
+                    Text("\(selectedWork.work)")
                 }
             }
             Section(header: Text("DATE")) {
@@ -42,6 +43,31 @@ struct DetailView: View {
         // .navigationBarHidden(true)
         }
     }
+//    func DeleteTask(task: Int) {
+//        let app = UIApplication.shared.delegate as! AppDelegate
+//        let context = app.persistentContainer.viewContext
+//        let req = NSFetchRequest<NSFetchRequestResult>(entityName: "Todo")
+//
+//        do {
+//            let result = try context.fetch(req)
+//
+//            for i in result as! [NSManagedObject] {
+//                let currentTask = i.value(forKey: "task") as! String
+//
+//                if self.selectedWork.work == currentTask {
+//                    context.delete(i)
+//                    try context.save()
+//
+//                    self.selectedWork
+//
+//                    return
+//                }
+//            }
+//        }
+//        catch {
+//            print(error.localizedDescription)
+//        }
+//    }
 }
 
 struct DetailView_Previews: PreviewProvider {

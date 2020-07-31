@@ -62,21 +62,9 @@ struct ToDoMain: View {
                     List {
                         // Text("")
                         ForEach(taskStore.tasks) { task in
-                            HStack {
-//                                Button(action: {
-//                                    self.DeleteTask(task: task)
-//                                }) {
-//                                    Image(systemName: "checkmark.circle")
-//                                        .resizable()
-//                                        .frame(width: 22, height: 22)
-//                                        .foregroundColor(.purple)
-//                                        .padding(.trailing, 10)
-//                                }
                                 ToDoRow(task: task)
-                            }
                         }
                         .onDelete(perform: deleteItems)
-                        // .onDelete(perform: DeleteTask(task: task))
                         .onMove(perform: moveItems)
                     }
                     // .listRowBackground(Color.red)
@@ -85,6 +73,22 @@ struct ToDoMain: View {
                 
                 Section(header: Text("Doing")) {
                     Text("")
+//                    List {
+//                        ForEach(0 ..< self.taskStore.tasks.count, id: \.self) { i in
+//                            HStack {
+//                                Button(action: {
+//                                    self.DeleteTask(task: i)
+//                                }) {
+//                                    Image(systemName: "checkmark.circle")
+//                                        .resizable()
+//                                        .frame(width: 22, height: 22)
+//                                        .foregroundColor(.purple)
+//                                        .padding(.trailing, 10)
+//                                }
+//                                Text(self.taskStore.tasks[i].work)
+//                            }
+//                        }
+//                    }
                 }
                 
                 Section(header: Text("Done")) {
@@ -122,9 +126,9 @@ struct ToDoMain: View {
                             .font(.title)
                     }
                 }, trailing: EditButton())
-            .onAppear {
-                self.getTasks()
-            }
+//            .onAppear {
+//                self.getTasks()
+//            }
         }.sheet(isPresented: $addItem) {
 //            todo()
             Form {
@@ -140,9 +144,8 @@ struct ToDoMain: View {
                 }
                 Section() {
                     Button(action: {
-                        // self.task.append(working(work: self.addWork))
-                        self.saveTask() // core data
-                        self.getTasks() // read core data
+                        // self.saveTask() // core data
+                        // self.getTasks() // read core data
                         // self.AddTask()
                         self.addItem.toggle()
 
@@ -155,73 +158,73 @@ struct ToDoMain: View {
         }
         
     }
-    func saveTask() { // saving data in core data
-        let app = UIApplication.shared.delegate as! AppDelegate
-        
-        let context = app.persistentContainer.viewContext
-        
-        let entity = NSEntityDescription.insertNewObject(forEntityName: "Todo", into: context)
-        
-        entity.setValue(self.addWork, forKey: "work")
-        entity.setValue(self.selectDate, forKey: "date")
-        
-        do {
-            try context.save()
-            
-            self.present.wrappedValue.dismiss()
-        }
-        catch {
-            print(error.localizedDescription)
-        }
-    }
-    func getTasks() {
-        let app = UIApplication.shared.delegate as! AppDelegate
-        let context = app.persistentContainer.viewContext
-        let req = NSFetchRequest<NSFetchRequestResult>(entityName: "Todo")
-        do {
-            let result = try context.fetch(req)
-            
-            self.taskStore.tasks.removeAll()
-            
-            for i in result as! [NSManagedObject] {
-                let work = i.value(forKey: "work") as! String
-                let date = i.value(forKey: "date") as! Date
-                
-                let formatter = DateFormatter()
-                formatter.dateFormat = "dd-MM-YYYY"
-                
-                taskStore.tasks.append(Task(id: UUID().uuidString, work: work, date: date, description: ""))
-            }
-        }
-        catch {
-            print(error.localizedDescription)
-        }
-    }
-    func DeleteTask(task: Int) {
-        let app = UIApplication.shared.delegate as! AppDelegate
-        let context = app.persistentContainer.viewContext
-        let req = NSFetchRequest<NSFetchRequestResult>(entityName: "Todo")
-        
-        do {
-            let result = try context.fetch(req)
-            
-            for i in result as! [NSManagedObject] {
-                let currentTask = i.value(forKey: "task") as! String
-                
-                if self.taskStore.tasks[task].work == currentTask {
-                    context.delete(i)
-                    try context.save()
-                    
-                    self.taskStore.tasks.remove(at: task)
-                    
-                    return
-                }
-            }
-        }
-        catch {
-            print(error.localizedDescription)
-        }
-    }
+//    func saveTask() { // saving data in core data
+//        let app = UIApplication.shared.delegate as! AppDelegate
+//
+//        let context = app.persistentContainer.viewContext
+//
+//        let entity = NSEntityDescription.insertNewObject(forEntityName: "Todo", into: context)
+//
+//        entity.setValue(self.addWork, forKey: "work")
+//        entity.setValue(self.selectDate, forKey: "date")
+//
+//        do {
+//            try context.save()
+//
+//            self.present.wrappedValue.dismiss()
+//        }
+//        catch {
+//            print(error.localizedDescription)
+//        }
+//    }
+//    func getTasks() {
+//        let app = UIApplication.shared.delegate as! AppDelegate
+//        let context = app.persistentContainer.viewContext
+//        let req = NSFetchRequest<NSFetchRequestResult>(entityName: "Todo")
+//        do {
+//            let result = try context.fetch(req)
+//
+//            self.taskStore.tasks.removeAll()
+//
+//            for i in result as! [NSManagedObject] {
+//                let work = i.value(forKey: "work") as! String
+//                let date = i.value(forKey: "date") as! Date
+//
+//                let formatter = DateFormatter()
+//                formatter.dateFormat = "dd-MM-YYYY"
+//
+//                taskStore.tasks.append(Task(id: UUID().uuidString, work: work, date: date, description: ""))
+//            }
+//        }
+//        catch {
+//            print(error.localizedDescription)
+//        }
+//    }
+//    func DeleteTask(task: Int) {
+//        let app = UIApplication.shared.delegate as! AppDelegate
+//        let context = app.persistentContainer.viewContext
+//        let req = NSFetchRequest<NSFetchRequestResult>(entityName: "Todo")
+//
+//        do {
+//            let result = try context.fetch(req)
+//
+//            for i in result as! [NSManagedObject] {
+//                let currentTask = i.value(forKey: "task") as! String
+//
+//                if self.taskStore.tasks[task].work == currentTask {
+//                    context.delete(i)
+//                    try context.save()
+//
+//                    self.taskStore.tasks.remove(at: task)
+//
+//                    return
+//                }
+//            }
+//        }
+//        catch {
+//            print(error.localizedDescription)
+//        }
+//    }
     
     func AddTask() {
         let newTask = Task(id: UUID().uuidString, work: addWork, date: selectDate, description: addDescription)
