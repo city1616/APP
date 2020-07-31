@@ -18,6 +18,7 @@
 		4140EE7A24C5AF56005D6243 /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4140EE7924C5AF56005D6243 /* Calendar.swift */; };
 		4140EE7C24C5AFE3005D6243 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4140EE7B24C5AFE3005D6243 /* Menu.swift */; };
 		4140EE7E24C5B508005D6243 /* todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4140EE7D24C5B508005D6243 /* todo.swift */; };
+		4156EF2E24D443FB003D28FB /* TabViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4156EF2D24D443FB003D28FB /* TabViewTest.swift */; };
 		418D180524D047A400464E72 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418D180424D047A400464E72 /* Task.swift */; };
 		41B3AE4924C84B9600732A4E /* Card_Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B3AE4824C84B9600732A4E /* Card_Test.swift */; };
 		41B3AE4B24C9D64D00732A4E /* SideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B3AE4A24C9D64D00732A4E /* SideMenu.swift */; };
@@ -41,6 +42,7 @@
 		4140EE7924C5AF56005D6243 /* Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
 		4140EE7B24C5AFE3005D6243 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		4140EE7D24C5B508005D6243 /* todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = todo.swift; sourceTree = "<group>"; };
+		4156EF2D24D443FB003D28FB /* TabViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewTest.swift; sourceTree = "<group>"; };
 		418D180424D047A400464E72 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		41B3AE4824C84B9600732A4E /* Card_Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card_Test.swift; sourceTree = "<group>"; };
 		41B3AE4A24C9D64D00732A4E /* SideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenu.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 				41B3AE4C24CAF41C00732A4E /* MainView.swift */,
 				4140EE7924C5AF56005D6243 /* Calendar.swift */,
 				4112985C24C6DB5100239BB4 /* Settings.swift */,
+				4156EF2D24D443FB003D28FB /* TabViewTest.swift */,
 				4140EE6924C5A9B5005D6243 /* Assets.xcassets */,
 				4140EE6E24C5A9B5005D6243 /* LaunchScreen.storyboard */,
 				4140EE7124C5A9B5005D6243 /* Info.plist */,
@@ -196,6 +199,7 @@
 				4140EE6824C5A9B4005D6243 /* ContentView.swift in Sources */,
 				4140EE6324C5A9B4005D6243 /* SceneDelegate.swift in Sources */,
 				4140EE7A24C5AF56005D6243 /* Calendar.swift in Sources */,
+				4156EF2E24D443FB003D28FB /* TabViewTest.swift in Sources */,
 				41B3AE4924C84B9600732A4E /* Card_Test.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
