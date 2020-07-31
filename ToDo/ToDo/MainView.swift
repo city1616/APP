@@ -10,12 +10,17 @@ import SwiftUI
 
 struct circleImage: View {
     var body: some View {
-        Image("ㅇㅇㅇ")
-            .frame(width: 250, height: 250)
-            .clipShape(Circle())
-            .overlay(
-                Circle().stroke(Color.white, lineWidth: 4))
-            .shadow(radius: 10)
+        ZStack {
+            Image("ㅇㅇㅇ")
+                .frame(width: 250, height: 250)
+                .clipShape(Circle())
+                .overlay(
+                    Circle().stroke(Color.white, lineWidth: 4))
+                .shadow(radius: 10)
+//            Text("1")
+//                .padding(.top, 200)
+//                .padding(.leading, 200)
+        }
     }
 }
 
@@ -73,22 +78,25 @@ struct MainView: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 20) {
                         GeometryReader { geometry in
-                            Group {
-                                circleImage()
-                                    .padding()
-                                circleImage()
-                                    .padding()
-                                circleImage()
-                                    .padding()
+                            
+                            HStack {
+                                Group {
+                                    circleImage()
+                                        .padding()
+                                    circleImage()
+                                        .padding()
+                                    circleImage()
+                                        .padding()
+                                }
+                                // .rotation3DEffect(Angle(degrees: 30), axis: (x: 10.0, y: 10, z: 10.0))
+                                // .rotation3DEffect(Angle(degrees: Double(geometry.frame(in: .global).minX) / -20), axis: (x: 10.0, y: 10.0, z: 10.0))
                             }
-                            .rotation3DEffect(Angle(degrees: 30), axis: (x: 0, y: 10, z: 0))
-//                            .rotation3DEffect(Angle(degrees:
-//                                Double(geometry.frame(in: .global).minX) / -20), axis: (x: 0, y: 10.0, z: 0))
                         }
                         .frame(width: 300, height: 300)
                     }
                 }
                 .padding(40)
+                
                 Spacer()
 //                Button(action: {
 //                    // self.showSideMenu = true
