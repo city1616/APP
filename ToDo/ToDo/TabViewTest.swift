@@ -11,6 +11,8 @@ import SwiftUI
 struct TabViewTest: View {
     
     @State var index = 0
+    //Swiftui 2.0
+    // var columns = Array(repeating: GridItem(.flexible(), spacing: 20), count: 2)
     
     var body: some View {
         VStack {
@@ -68,7 +70,8 @@ struct TabViewTest: View {
             .padding(.top, 25)
             
             // DashBoard Grid
-            
+            // SwiftUI 2.0
+            // LazyVGrid(columns)
             
             Spacer(minLength: 0)
         }
@@ -81,3 +84,31 @@ struct TabViewTest_Previews: PreviewProvider {
         TabViewTest()
     }
 }
+
+struct Fitness: Identifiable {
+    var id: Int
+    var title: String
+    var image: String
+    var data: String
+    var suggest: String
+}
+
+// Daily Data
+var fit_Data = [
+    Fitness(id: 0, title: "Heart Rate", image: "", data: "124 bpm", suggest: "80-120\nHealthy"),
+    Fitness(id: 1, title: "Sleep", image: "", data: "6h 43m", suggest: "Deep Sleep\n5h 13m"),
+    Fitness(id: 2, title: "Energy Burn", image: "", data: "583 kcal", suggest: "Daily Goal\n900 kcal"),
+    Fitness(id: 3, title: "Steps", image: "", data: "16,742", suggest: "Daily Goal\n20,000 Steps"),
+    Fitness(id: 4, title: "Running", image: "", data: "5.3 km", suggest: "Daily Goal\n10 km"),
+    Fitness(id: 5, title: "Cycling", image: "", data: "15.3 km", suggest: "Daily Goal\n20 km")
+]
+
+// Monthly Data
+var week_Fit_Data = [
+    Fitness(id: 0, title: "Heart Rate", image: "", data: "124 bpm", suggest: "80-120\nHealthy"),
+    Fitness(id: 1, title: "Sleep", image: "", data: "6h 43m", suggest: "Deep Sleep\n5h 13m"),
+    Fitness(id: 2, title: "Energy Burn", image: "", data: "583 kcal", suggest: "Daily Goal\n900 kcal"),
+    Fitness(id: 3, title: "Steps", image: "", data: "16,742", suggest: "Daily Goal\n20,000 Steps"),
+    Fitness(id: 4, title: "Running", image: "", data: "5.3 km", suggest: "Daily Goal\n10 km"),
+    Fitness(id: 5, title: "Cycling", image: "", data: "15.3 km", suggest: "Daily Goal\n20 km")
+]
