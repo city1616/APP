@@ -8,8 +8,29 @@
 import SwiftUI
 
 struct Home: View {
+    
+    @State var index = 0
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            HStack {
+                Text("STAT")
+                    .font(.title)
+                    .fontWeight(.bold)
+                    // .foregroundColor(Color("Color"))
+                
+                Spacer(minLength: 0)
+            }
+            .padding(.horizontal)
+            
+            // Tab View
+            HStack(spacing: 0) {
+                Text("Day")
+            }
+            
+            Spacer(minLength: 0)
+        }
+        .padding(.top)
     }
 }
 

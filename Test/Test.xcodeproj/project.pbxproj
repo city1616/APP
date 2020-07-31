@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		412B76BE24D43AAD00938895 /* ScrollViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412B76BD24D43AAD00938895 /* ScrollViewTest.swift */; };
+		412B76C024D4420F00938895 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412B76BF24D4420F00938895 /* Home.swift */; };
 		41C1BCBA24CF48AA00A2CABC /* TestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C1BCB924CF48AA00A2CABC /* TestApp.swift */; };
 		41C1BCBC24CF48AA00A2CABC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C1BCBB24CF48AA00A2CABC /* ContentView.swift */; };
 		41C1BCBE24CF48AB00A2CABC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41C1BCBD24CF48AB00A2CABC /* Assets.xcassets */; };
@@ -33,6 +35,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		412B76BD24D43AAD00938895 /* ScrollViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewTest.swift; sourceTree = "<group>"; };
+		412B76BF24D4420F00938895 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		41C1BCB624CF48A900A2CABC /* Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41C1BCB924CF48AA00A2CABC /* TestApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestApp.swift; sourceTree = "<group>"; };
 		41C1BCBB24CF48AA00A2CABC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -97,6 +101,8 @@
 			children = (
 				41C1BCB924CF48AA00A2CABC /* TestApp.swift */,
 				41C1BCBB24CF48AA00A2CABC /* ContentView.swift */,
+				412B76BD24D43AAD00938895 /* ScrollViewTest.swift */,
+				412B76BF24D4420F00938895 /* Home.swift */,
 				41C1BCBD24CF48AB00A2CABC /* Assets.xcassets */,
 				41C1BCC224CF48AB00A2CABC /* Info.plist */,
 				41C1BCBF24CF48AB00A2CABC /* Preview Content */,
@@ -261,6 +267,8 @@
 			files = (
 				41C1BCBC24CF48AA00A2CABC /* ContentView.swift in Sources */,
 				41C1BCBA24CF48AA00A2CABC /* TestApp.swift in Sources */,
+				412B76C024D4420F00938895 /* Home.swift in Sources */,
+				412B76BE24D43AAD00938895 /* ScrollViewTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
