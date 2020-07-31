@@ -25,7 +25,7 @@ struct MainView: View {
     @State var placeholder: String
     
     var body: some View {
-        ZStack {
+        VStack {
             VStack {
                 HStack {
                     
@@ -68,19 +68,28 @@ struct MainView: View {
                 .padding(10)
                 .background(Color(.systemGray6))
                 .cornerRadius(30) // 12
-                    .padding(.all, 10)
+                .padding(.all, 10)
                 
-                ScrollView {
-                    VStack {
-                        circleImage()
-                            .padding()
-                        circleImage()
-                            .padding()
-                        circleImage()
-                            .padding()
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 20) {
+                        GeometryReader { geometry in
+                            Group {
+                                circleImage()
+                                    .padding()
+                                circleImage()
+                                    .padding()
+                                circleImage()
+                                    .padding()
+                            }
+                            .rotation3DEffect(Angle(degrees: 30), axis: (x: 0, y: 10, z: 0))
+//                            .rotation3DEffect(Angle(degrees:
+//                                Double(geometry.frame(in: .global).minX) / -20), axis: (x: 0, y: 10.0, z: 0))
+                        }
+                        .frame(width: 300, height: 300)
                     }
-                    .frame(width: 375)
                 }
+                .padding(40)
+                Spacer()
 //                Button(action: {
 //                    // self.showSideMenu = true
 //                    self.hello()
@@ -97,6 +106,9 @@ struct MainView: View {
 //                }
                 
             }
+            .frame(width: UIScreen.main.bounds.width, height: 460)
+            
+            Spacer()
         }
     }
     func hello() {

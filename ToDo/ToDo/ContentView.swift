@@ -16,7 +16,7 @@ struct ContentView: View {
     }
     
 //    @Binding var showSideMenu: Bool
-    @State var selectedView = 4
+    @State var selectedView = 0
     // var col = #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
      // @Binding var colorIndex: Int
     
