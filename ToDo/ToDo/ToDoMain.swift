@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 //struct ToDo: Identifiable {
 //    var id = UUID()
@@ -40,6 +41,8 @@ struct ToDoRow: View {
 struct ToDoMain: View {
     
     @ObservedObject var taskStore: TaskStore = TaskStore(tasks: [])
+    
+    @Environment(\.presentationMode) var present
     
     // @State var task : [working] = []
     // t.append(working(work: "end"))
@@ -123,7 +126,8 @@ struct ToDoMain: View {
                 Section() {
                     Button(action: {
                         // self.task.append(working(work: self.addWork))
-                        self.AddTask()
+                        self.saveTask() // core data
+                        // self.AddTask()
                         self.addItem.toggle()
 
                         self.addWork = ""
@@ -134,6 +138,48 @@ struct ToDoMain: View {
             }
         }
         
+    }
+    func saveTask() { // saving data in core data
+        let app = UIApplication.shared.delegate as! AppDelegate
+        
+        let context = app.persistentContainer.viewContext
+        
+        let entity = NSEntityDescription.insertNewObject(forEntityName: "Todo", into: context)
+        
+        entity.setValue(self.addWork, forKey: "work")
+        entity.setValue(self.selectDate, forKey: "date")
+        
+        do {
+            try context.save()
+            
+            self.present.wrappedValue.dismiss()
+        }
+        catch {
+            print(error.localizedDescription)
+        }
+    }
+    func getTasks() {
+        let app = UIApplication.shared.delegate as! AppDelegate
+        let context = app.persistentContainer.viewContext
+        let req = NSFetchRequest<NSFetchRequestResult>(entityName: "Todo")
+        do {
+            let result = try context.fetch(req)
+            
+            self.taskStore.tasks.removeAll()
+            
+            for i in result as! [NSManagedObject] {
+                let work = i.value(forKey: "work") as! String
+                let date = i.value(forKey: "date") as! Date
+                
+                let formatter = DateFormatter()
+                formatter.dateFormat = "dd-MM-YYYY"
+                
+                taskStore.tasks.append(Task(id: UUID().uuidString, work: work, date: date, description: ""))
+            }
+        }
+        catch {
+            print(error.localizedDescription)
+        }
     }
     func AddTask() {
         let newTask = Task(id: UUID().uuidString, work: addWork, date: selectDate, description: addDescription)
@@ -150,7 +196,6 @@ struct ToDoMain: View {
         taskStore.tasks.move(fromOffsets: source, toOffset: destination)
         let newTask = Task(id: UUID().uuidString, work: addWork, date: selectDate, description: addDescription)
         taskStore.tasks.append(newTask)
-        
     }
 }
 
