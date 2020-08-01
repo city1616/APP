@@ -26,7 +26,7 @@ struct Card_Test: View {
                 ZStack(alignment: .leading) {
                     MainView1(showMenu: self.$showMenu)
                         .frame(width: geometry.size.width, height: geometry.size.height)
-                         .offset(x: self.showMenu ? geometry.size.width / 2 : 0)
+                        .offset(x: self.showMenu ? geometry.size.width / 2 : 0)
                         .disabled(self.showMenu ? true : false)
                     if self.showMenu {
                         MenuView()
@@ -53,50 +53,62 @@ struct Card_Test: View {
 struct MainView1: View {
     @Binding var showMenu: Bool
     var body: some View {
-        Button(action: {
-//            print("Open the side menu")
-            withAnimation {
-                self.showMenu = true
+        VStack {
+            HStack {
+                Button(action: {
+        //            print("Open the side menu")
+                    withAnimation {
+                        self.showMenu = true
+                    }
+                }) {
+                    Text("Show menu")
+                }
             }
-        }) {
-            Text("Show menu")
+            Image("ㅇㅇㅇ")
+            
         }
     }
 }
 
 struct MenuView: View {
     var body: some View {
-        VStack(alignment: .leading) {
-            HStack {
-                Image(systemName: "person")
-                    .foregroundColor(.gray)
-                    .imageScale(.large)
-                Text("Profile")
-                    .foregroundColor(.gray)
-                    .font(.headline)
-            }.padding(.top, 100)
-            HStack {
-                Image(systemName: "envelope")
-                    .foregroundColor(.gray)
-                    .imageScale(.large)
-                Text("Message")
-                    .foregroundColor(.gray)
-                    .font(.headline)
-            }.padding(.top, 30)
-            HStack {
-                Image(systemName: "gear")
-                    .foregroundColor(.gray)
-                    .imageScale(.large)
-                Text("Settings")
-                    .foregroundColor(.gray)
-                    .font(.headline)
-            }.padding(.top, 30)
-            Spacer()
+        NavigationView {
+            VStack(alignment: .leading) {
+                
+                HStack {
+                    NavigationLink(destination: ContentView()) {
+                        Image(systemName: "person")
+                            .foregroundColor(.gray)
+                            .imageScale(.large)
+                    }
+                        Text("Profile")
+                            .foregroundColor(.gray)
+                            .font(.headline)
+                }.padding(.top, 100)
+                
+                HStack {
+                    Image(systemName: "envelope")
+                        .foregroundColor(.gray)
+                        .imageScale(.large)
+                    Text("Message")
+                        .foregroundColor(.gray)
+                        .font(.headline)
+                }.padding(.top, 30)
+                HStack {
+                    Image(systemName: "gear")
+                        .foregroundColor(.gray)
+                        .imageScale(.large)
+                    Text("Settings")
+                        .foregroundColor(.gray)
+                        .font(.headline)
+                }.padding(.top, 30)
+                Spacer()
+            }
+            .padding()
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(Color(red: 32/255, green: 32/255, blue: 32/255))
+            .edgesIgnoringSafeArea(.all)
         }
-        .padding()
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(Color(red: 32/255, green: 32/255, blue: 32/255))
-        .edgesIgnoringSafeArea(.all)
     }
 }
 

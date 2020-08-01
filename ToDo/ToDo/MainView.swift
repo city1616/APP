@@ -29,91 +29,93 @@ struct MainView: View {
     
     var body: some View {
         VStack {
-            VStack {
-                HStack {
-                    
-                    if searchbar != "" {
-                        Image(systemName: "magnifyingglass").foregroundColor(.secondary)
-                    }
-                    else {
-                        Image(systemName: "book.fill").foregroundColor(.secondary)
-                    }
-                    
-                    TextField(placeholder, text: $searchbar)
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack {
+                    HStack {
                         
-                    if searchbar != "" {
-                        Image(systemName: "xmark.circle.fill")
-                            .imageScale(.medium)
-                            .foregroundColor(Color(.systemGray3))
-                            // .padding(.leading, 320)
-                            // .padding(.trailing, 30)
-                            .padding(3)
-                            .onTapGesture {
-                                withAnimation{
-                                    self.searchbar = ""
-                                }
-                            }
-                    }
-                    else {
-                        Image(systemName: "magnifyingglass")
-                            .imageScale(.medium)
-                            .foregroundColor(Color(.systemGray3))
-                            // .padding(.leading, 320 )
-                            // .padding(.trailing, 30)
-                            .padding(3)
-                            .onTapGesture {
-                                withAnimation{
-                                    self.searchbar = ""
-                                }
-                            }
-                    }
-                }
-                .padding(10)
-                .background(Color(.systemGray6))
-                .cornerRadius(30) // 12
-                .padding(.all, 10)
-                
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 20) {
-                        ForEach(0 ..< 7 ) {i in
-                            GeometryReader { geometry in
-    //                                HStack {
-                                        circleImage()
-//                                        circleImage()
-//                                        circleImage()
-                                            
-                                        
-                                        // .rotation3DEffect(Angle(degrees: 30), axis: (x: 10.0, y: 10, z: 10.0))
-                                        .rotation3DEffect(Angle(degrees: (Double(geometry.frame(in: .global).minX) - 40) / 10), axis: (x: 0, y: 50, z: 50))
-    //                                }
-                               // }
-                            }
-                            .frame(width: 246, height: 250)
+                        if searchbar != "" {
+                            Image(systemName: "magnifyingglass").foregroundColor(.secondary)
                         }
-                        // .frame(width: 300, height: 300)
+                        else {
+                            Image(systemName: "book.fill").foregroundColor(.secondary)
+                        }
+                        
+                        TextField(placeholder, text: $searchbar)
+                            
+                        if searchbar != "" {
+                            Image(systemName: "xmark.circle.fill")
+                                .imageScale(.medium)
+                                .foregroundColor(Color(.systemGray3))
+                                // .padding(.leading, 320)
+                                // .padding(.trailing, 30)
+                                .padding(3)
+                                .onTapGesture {
+                                    withAnimation{
+                                        self.searchbar = ""
+                                    }
+                                }
+                        }
+                        else {
+                            Image(systemName: "magnifyingglass")
+                                .imageScale(.medium)
+                                .foregroundColor(Color(.systemGray3))
+                                // .padding(.leading, 320 )
+                                // .padding(.trailing, 30)
+                                .padding(3)
+                                .onTapGesture {
+                                    withAnimation{
+                                        self.searchbar = ""
+                                    }
+                                }
+                        }
                     }
-                    .padding(40)
-                    // Spacer()
+                    .padding(10)
+                    .background(Color(.systemGray6))
+                    .cornerRadius(30) // 12
+                    .padding(.all, 10)
+                    
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 20) {
+                            ForEach(0 ..< 7 ) {i in
+                                GeometryReader { geometry in
+        //                                HStack {
+                                            circleImage()
+    //                                        circleImage()
+    //                                        circleImage()
+                                                
+                                            
+                                            // .rotation3DEffect(Angle(degrees: 30), axis: (x: 10.0, y: 10, z: 10.0))
+                                            .rotation3DEffect(Angle(degrees: (Double(geometry.frame(in: .global).minX) - 40) / 10), axis: (x: 0, y: 50, z: 50))
+        //                                }
+                                   // }
+                                }
+                                .frame(width: 246, height: 250)
+                            }
+                            // .frame(width: 300, height: 300)
+                        }
+                        .padding(40)
+                        // Spacer()
+                    }
+                    .frame(width: UIScreen.main.bounds.width, height: 300)
+                    // .padding(40)
+                    
+                    Spacer(minLength: 0)
+    //                Button(action: {
+    //                    // self.showSideMenu = true
+    //                    self.hello()
+    ////                    print(self.buildMessageFor(name: "John", count: 100))
+    //                    print(self.buildMessageFor("John", 100))
+    //                }) {
+    //                    Text("Show Side Menu")
+    //                }
+                    
+    //                Button(action: {
+    //
+    //                }) {
+    //                    Text("Color")
+    //                }
+                    
                 }
-                .frame(width: UIScreen.main.bounds.width, height: 300)
-                // .padding(40)
-                
-                Spacer(minLength: 0)
-//                Button(action: {
-//                    // self.showSideMenu = true
-//                    self.hello()
-////                    print(self.buildMessageFor(name: "John", count: 100))
-//                    print(self.buildMessageFor("John", 100))
-//                }) {
-//                    Text("Show Side Menu")
-//                }
-                
-//                Button(action: {
-//
-//                }) {
-//                    Text("Color")
-//                }
-                
             }
             // .frame(width: UIScreen.main.bounds.width, height: 460)
             
