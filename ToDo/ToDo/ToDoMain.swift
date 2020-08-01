@@ -232,7 +232,30 @@ struct ToDoMain: View {
         // self.task.append(working(work: "end"))
     }
     func deleteItems(at offets: IndexSet) {
-        taskStore.tasks.remove(atOffsets: offets)
+        let app = UIApplication.shared.delegate as! AppDelegate
+        let context = app.persistentContainer.viewContext
+        let req = NSFetchRequest<NSFetchRequestResult>(entityName: "Todo")
+        
+        
+        
+        do {
+            let result = try context.fetch(req)
+           
+            for i in result as! [NSManagedObject] {
+                
+                context.delete(i)
+                
+                try context.save()
+
+                // self.taskStore.tasks.remove(at: task)
+                taskStore.tasks.remove(atOffsets: offets)
+                
+                return
+            }
+        }
+        catch {
+            print(error.localizedDescription)
+        }
     }
     func moveItems(from source: IndexSet, to destination: Int) {
         taskStore.tasks.move(fromOffsets: source, toOffset: destination)
