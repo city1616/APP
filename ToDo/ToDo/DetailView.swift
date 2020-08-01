@@ -27,9 +27,17 @@ struct DetailView: View {
                 HStack {
                     Text("Date")
                     Spacer()
-                    Text("\(selectedWork.date)")
+                    Text("\(selectedWork.date, formatter: self.taskDateFormat())")
                 }
                 // .padding()
+            }
+            Section(header: Text("Description")) {
+                HStack {
+                    Text("할일")
+                    Spacer()
+                    Text("\(selectedWork.description)")
+                        .frame(height: 200)
+                }
             }
             Section() {
                 HStack(alignment: .center) {
@@ -69,16 +77,16 @@ struct DetailView: View {
 //            print(error.localizedDescription)
 //        }
 //    }
-    func date(date: Date) {
+    func taskDateFormat() -> DateFormatter {
         let formatter = DateFormatter()
-        formatter.dateFormat = "dd-MM-YYYY"
-        
-        return 
+        // formatter.dateFormat = "dd-MM-YYYY"
+        formatter.dateStyle = .long
+        return formatter
     }
 }
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView(selectedWork: taskData[0])
+        DetailView(selectedWork: Task(id: UUID().uuidString, work: "", date: Date(), description: ""))
     }
 }

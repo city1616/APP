@@ -123,35 +123,35 @@ struct ToDoMain: View {
                         Image(systemName: "plus")
                             .font(.title)
                     }
+                    .sheet(isPresented: $addItem) {
+                        Form {
+                            Section(header: Text("task")) {
+                                HStack {
+                                    Text("할일")
+                                    Spacer()
+                                    TextField("Add Task", text: self.$addWork)
+                                        .frame(width: 250)
+                                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                                }
+                                DatePicker("Date", selection: self.$selectDate, displayedComponents: .date)
+                            }
+                            Section() {
+                                Button(action: {
+                                    self.saveTask() // core data
+                                    self.getTasks() // read core data
+                                    // self.AddTask()
+                                    self.addItem.toggle()
+
+                                    self.addWork = ""
+                                }) {
+                                    Text("ADD")
+                                }
+                            }
+                        }
+                    }
                 }, trailing: EditButton())
             .onAppear {
                 self.getTasks()
-            }
-        }.sheet(isPresented: $addItem) {
-//            todo()
-            Form {
-                Section(header: Text("task")) {
-                    HStack {
-                        Text("할일")
-                        Spacer()
-                        TextField("Add Task", text: self.$addWork)
-                            .frame(width: 250)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                    }
-                    DatePicker("Date", selection: self.$selectDate, displayedComponents: .date)
-                }
-                Section() {
-                    Button(action: {
-                        self.saveTask() // core data
-                        self.getTasks() // read core data
-                        // self.AddTask()
-                        self.addItem.toggle()
-
-                        self.addWork = ""
-                    }) {
-                        Text("ADD")
-                    }
-                }
             }
         }
         
@@ -264,16 +264,6 @@ struct ToDoMain: View {
         taskStore.tasks.append(newTask)
     }
 }
-
-//struct ToDoMain_Previews: PreviewProvider {
-//    // @Binding var showSideMenu: Bool
-//    static var previews: some View {
-//        ToDoMain()
-//        // self.showSideMenu = false
-//        // ToDoMain(showSideMenu: self.$showSideMenu)
-////            .colorScheme(.dark)
-//    }
-//}
 
 struct ToDoMain_Previews: PreviewProvider {
     static var previews: some View {

@@ -15,7 +15,6 @@ struct Task: Codable, Identifiable {
     var date = Date()
     
     var description: String
-    
 }
 
 var taskData: [Task] = []
