@@ -25,7 +25,8 @@ struct TestView: View {
 //            Text(userName)
 //            Image(systemName: wifiEnabled ? "wifi" : "wifi.slash")
 //        }
-         itemadd()
+         // itemadd()
+        homeView()
 //        List {
 //            Text("a")
 //            Text("b")
@@ -144,5 +145,39 @@ struct itemadd: View {
 struct TestView_Previews: PreviewProvider {
     static var previews: some View {
         TestView()
+    }
+}
+
+struct sheetView: View {
+    var body: some View {
+        Text("Detail View1")
+    }
+}
+struct sheetView1: View {
+    var body: some View {
+        Text("Detail View2")
+    }
+}
+
+struct homeView: View {
+    @State var showing = false
+    @State var showing1 = false
+    var body: some View {
+        VStack {
+            Button(action: {
+                self.showing.toggle()
+            }) {
+                Text("Show Detail")
+            }.sheet(isPresented: $showing) {
+                sheetView()
+            }
+            Button(action: {
+                self.showing1.toggle()
+            }) {
+                Text("Show Detail")
+            }.sheet(isPresented: $showing1) {
+                sheetView1()
+            }
+        }
     }
 }

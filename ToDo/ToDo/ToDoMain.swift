@@ -23,9 +23,9 @@ import CoreData
 //}
 
 struct ToDoRow: View {
-    
+
     var task: Task
-    
+
     var body: some View {
         // Text("\(todo.id). \(todo.work)")
         NavigationLink(destination: DetailView(selectedWork: task)) {
@@ -47,10 +47,8 @@ struct ToDoMain: View {
     // @State var task : [working] = []
     // t.append(working(work: "end"))
     // @Binding var showSideMenu: Bool
-    
-    // var arr = ["a", "b", "c"]
+
     @State var selectDate = Date()
-    // @State var listDoItem = [DoItem]()
     @State var addWork : String = ""
     @State var addDescription: String = ""
     @State var addItem = false
@@ -60,7 +58,7 @@ struct ToDoMain: View {
             Form {
                 Section(header: Text("To do")) {
                     List {
-                        // Text("")
+//                        Text("")
                         ForEach(taskStore.tasks) { task in
                                 ToDoRow(task: task)
                         }
@@ -200,31 +198,31 @@ struct ToDoMain: View {
             print(error.localizedDescription)
         }
     }
-    func DeleteTask(task: Int) {
-        let app = UIApplication.shared.delegate as! AppDelegate
-        let context = app.persistentContainer.viewContext
-        let req = NSFetchRequest<NSFetchRequestResult>(entityName: "Todo")
-
-        do {
-            let result = try context.fetch(req)
-
-            for i in result as! [NSManagedObject] {
-                let currentTask = i.value(forKey: "task") as! String
-
-                if self.taskStore.tasks[task].work == currentTask {
-                    context.delete(i)
-                    try context.save()
-
-                    self.taskStore.tasks.remove(at: task)
-
-                    return
-                }
-            }
-        }
-        catch {
-            print(error.localizedDescription)
-        }
-    }
+//    func DeleteTask(task: Int) {
+//        let app = UIApplication.shared.delegate as! AppDelegate
+//        let context = app.persistentContainer.viewContext
+//        let req = NSFetchRequest<NSFetchRequestResult>(entityName: "Todo")
+//
+//        do {
+//            let result = try context.fetch(req)
+//
+//            for i in result as! [NSManagedObject] {
+//                let currentTask = i.value(forKey: "task") as! String
+//
+//                if self.taskStore.tasks[task].work == currentTask {
+//                    context.delete(i)
+//                    try context.save()
+//
+//                    self.taskStore.tasks.remove(at: task)
+//
+//                    return
+//                }
+//            }
+//        }
+//        catch {
+//            print(error.localizedDescription)
+//        }
+//    }
     
     func AddTask() {
         let newTask = Task(id: UUID().uuidString, work: addWork, date: selectDate, description: addDescription)

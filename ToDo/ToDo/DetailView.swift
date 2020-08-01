@@ -13,6 +13,7 @@ struct DetailView: View {
     
     var selectedWork: Task
     
+    
     var body: some View {
         Form {
             Section(header: Text("Work")) {
@@ -68,6 +69,12 @@ struct DetailView: View {
 //            print(error.localizedDescription)
 //        }
 //    }
+    func date(date: Date) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd-MM-YYYY"
+        
+        return 
+    }
 }
 
 struct DetailView_Previews: PreviewProvider {
