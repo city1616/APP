@@ -10,7 +10,6 @@ import SwiftUI
 
 struct circleImage: View {
     var body: some View {
-        ZStack {
             Image("ㅇㅇㅇ")
                 .frame(width: 250, height: 250)
                 .clipShape(Circle())
@@ -20,7 +19,6 @@ struct circleImage: View {
 //            Text("1")
 //                .padding(.top, 200)
 //                .padding(.leading, 200)
-        }
     }
 }
 
@@ -77,27 +75,30 @@ struct MainView: View {
                 
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 20) {
-                        GeometryReader { geometry in
-                            
-                            HStack {
-                                Group {
-                                    circleImage()
-                                        .padding()
-                                    circleImage()
-                                        .padding()
-                                    circleImage()
-                                        .padding()
-                                }
-                                // .rotation3DEffect(Angle(degrees: 30), axis: (x: 10.0, y: 10, z: 10.0))
-                                // .rotation3DEffect(Angle(degrees: Double(geometry.frame(in: .global).minX) / -20), axis: (x: 10.0, y: 10.0, z: 10.0))
+                        ForEach(0 ..< 7 ) {i in
+                            GeometryReader { geometry in
+    //                                HStack {
+                                        circleImage()
+//                                        circleImage()
+//                                        circleImage()
+                                            
+                                        
+                                        // .rotation3DEffect(Angle(degrees: 30), axis: (x: 10.0, y: 10, z: 10.0))
+                                        .rotation3DEffect(Angle(degrees: (Double(geometry.frame(in: .global).minX) - 40) / 10), axis: (x: 0, y: 50, z: 50))
+    //                                }
+                               // }
                             }
+                            .frame(width: 246, height: 250)
                         }
-                        .frame(width: 300, height: 300)
+                        // .frame(width: 300, height: 300)
                     }
+                    .padding(40)
+                    // Spacer()
                 }
-                .padding(40)
+                .frame(width: UIScreen.main.bounds.width, height: 300)
+                // .padding(40)
                 
-                Spacer()
+                Spacer(minLength: 0)
 //                Button(action: {
 //                    // self.showSideMenu = true
 //                    self.hello()
@@ -114,7 +115,7 @@ struct MainView: View {
 //                }
                 
             }
-            .frame(width: UIScreen.main.bounds.width, height: 460)
+            // .frame(width: UIScreen.main.bounds.width, height: 460)
             
             Spacer()
         }
