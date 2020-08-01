@@ -33,7 +33,7 @@ struct DetailView: View {
             }
             Section(header: Text("Description")) {
                 HStack {
-                    Text("할일")
+                    Text("상세 일정")
                     Spacer()
                     Text("\(selectedWork.description)")
                         .frame(height: 200)

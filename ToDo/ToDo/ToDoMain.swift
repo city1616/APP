@@ -135,6 +135,15 @@ struct ToDoMain: View {
                                 }
                                 DatePicker("Date", selection: self.$selectDate, displayedComponents: .date)
                             }
+                            Section(header: Text("Description")) {
+                                HStack {
+                                    Text("상세 일정")
+                                    Spacer()
+                                    TextField("Description", text: self.$addDescription)
+                                        .frame(width: 250)
+                                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                                }
+                            }
                             Section() {
                                 Button(action: {
                                     self.saveTask() // core data
@@ -142,7 +151,12 @@ struct ToDoMain: View {
                                     // self.AddTask()
                                     self.addItem.toggle()
 
+                                    
+                                    // Reset
                                     self.addWork = ""
+                                    self.selectDate = Date()
+                                    self.addDescription = ""
+                                    
                                 }) {
                                     Text("ADD")
                                 }
@@ -165,6 +179,7 @@ struct ToDoMain: View {
 
         entity.setValue(self.addWork, forKey: "work")
         entity.setValue(self.selectDate, forKey: "date")
+        entity.setValue(self.addDescription, forKey: "descript")
 
         do {
             try context.save()
@@ -187,11 +202,12 @@ struct ToDoMain: View {
             for i in result as! [NSManagedObject] {
                 let work = i.value(forKey: "work") as! String
                 let date = i.value(forKey: "date") as! Date
+                let descript = i.value(forKey: "descript") as! String
+//
+//                let formatter = DateFormatter()
+//                formatter.dateFormat = "dd-MM-YYYY"
 
-                let formatter = DateFormatter()
-                formatter.dateFormat = "dd-MM-YYYY"
-
-                taskStore.tasks.append(Task(id: UUID().uuidString, work: work, date: date, description: ""))
+                taskStore.tasks.append(Task(id: UUID().uuidString, work: work, date: date, description: descript))
             }
         }
         catch {
@@ -227,7 +243,6 @@ struct ToDoMain: View {
     func AddTask() {
         let newTask = Task(id: UUID().uuidString, work: addWork, date: selectDate, description: addDescription)
         taskStore.tasks.append(newTask)
-        // self.task.append(working(work: "end"))
     }
     func deleteItems(at offets: IndexSet) {
         let app = UIApplication.shared.delegate as! AppDelegate
