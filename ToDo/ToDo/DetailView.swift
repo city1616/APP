@@ -80,6 +80,8 @@ struct DetailView: View {
     func taskDateFormat() -> DateFormatter {
         let formatter = DateFormatter()
         // formatter.dateFormat = "dd-MM-YYYY"
+        // formatter.dateFormat = "HH : mm"
+        // formatter.timeStyle = .long
         formatter.dateStyle = .long
         return formatter
     }

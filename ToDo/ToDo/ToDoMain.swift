@@ -170,6 +170,7 @@ struct ToDoMain: View {
         }
         
     }
+    
     func saveTask() { // saving data in core data
         let app = UIApplication.shared.delegate as! AppDelegate
 
@@ -190,6 +191,7 @@ struct ToDoMain: View {
             print(error.localizedDescription)
         }
     }
+    
     func getTasks() {
         let app = UIApplication.shared.delegate as! AppDelegate
         let context = app.persistentContainer.viewContext
@@ -214,6 +216,7 @@ struct ToDoMain: View {
             print(error.localizedDescription)
         }
     }
+    
 //    func DeleteTask(task: Int) {
 //        let app = UIApplication.shared.delegate as! AppDelegate
 //        let context = app.persistentContainer.viewContext
@@ -244,6 +247,7 @@ struct ToDoMain: View {
         let newTask = Task(id: UUID().uuidString, work: addWork, date: selectDate, description: addDescription)
         taskStore.tasks.append(newTask)
     }
+    
     func deleteItems(at offets: IndexSet) {
         let app = UIApplication.shared.delegate as! AppDelegate
         let context = app.persistentContainer.viewContext
@@ -270,9 +274,11 @@ struct ToDoMain: View {
             print(error.localizedDescription)
         }
     }
+    
     func moveItems(from source: IndexSet, to destination: Int) {
         taskStore.tasks.move(fromOffsets: source, toOffset: destination)
     }
+    
     func doneTask(from source: IndexSet, to destination: Int) {
         taskStore.tasks.move(fromOffsets: source, toOffset: destination)
         let newTask = Task(id: UUID().uuidString, work: addWork, date: selectDate, description: addDescription)

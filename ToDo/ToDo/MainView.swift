@@ -96,9 +96,22 @@ struct MainView: View {
                         .padding(40)
                         // Spacer()
                     }
-                    .frame(width: UIScreen.main.bounds.width, height: 300)
+                        .background(LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)), Color(#colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1))]), startPoint: .top, endPoint: .bottom))
+                        .edgesIgnoringSafeArea(.top)
+                        .frame(width: UIScreen.main.bounds.width, height: 300)
                     // .padding(40)
-                    
+                    VStack {
+                        Image("ㅇㅇㅇ")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(maxWidth: .infinity)
+                        Text("abcdefg")
+                    }
+                    .padding(.all, 30)
+                    .padding(.vertical, 30)
+                    .frame(maxWidth: .infinity)
+                    .background(LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)), Color(#colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1))]), startPoint: .top, endPoint: .bottom))
+                    .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
                     Spacer(minLength: 0)
     //                Button(action: {
     //                    // self.showSideMenu = true
