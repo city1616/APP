@@ -30,33 +30,35 @@ struct Menu: View {
             }
         return NavigationView {
             GeometryReader { geometry in
-                ZStack(alignment: .leading) {
-//                        Color(#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1))
-//                            .edgesIgnoringSafeArea(.all)
-                    // MainView(showSideMenu: self.$showSideMenu)
-                    MainView(searchbar: "", placeholder: "search task!")
-                        .frame(width: geometry.size.width, height: geometry.size.height)
-                        .offset(x: self.showSideMenu ? geometry.size.width / 2 : 0)
-                        .disabled(self.showSideMenu ? true : false)
-//                    Color.black
-//                        .edgesIgnoringSafeArea(.all)
-//                        List {
-//                            ForEach(0 ..< 10) {
-//                                Text("Row \($0)")
-//                            }
-//    //                        Text("1. ")
-//    //                        Text("2. ")
-//    //                        ListRow()
-//                            .listRowBackground(Color.purple)
-//                            ListRow()
-//                        }
-                    if self.showSideMenu {
-                        SideMenu()
-                            .frame(width: geometry.size.width / 2)
-                            .transition(.move(edge: .leading))
+                ScrollView(.vertical, showsIndicators: false) {
+                    ZStack(alignment: .leading) {
+    //                        Color(#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1))
+    //                            .edgesIgnoringSafeArea(.all)
+                        // MainView(showSideMenu: self.$showSideMenu)
+                        MainView(searchbar: "", placeholder: "search task!")
+                            .frame(width: geometry.size.width, height: geometry.size.height)
+                            .offset(x: self.showSideMenu ? geometry.size.width / 2 : 0)
+                            .disabled(self.showSideMenu ? true : false)
+    //                    Color.black
+    //                        .edgesIgnoringSafeArea(.all)
+    //                        List {
+    //                            ForEach(0 ..< 10) {
+    //                                Text("Row \($0)")
+    //                            }
+    //    //                        Text("1. ")
+    //    //                        Text("2. ")
+    //    //                        ListRow()
+    //                            .listRowBackground(Color.purple)
+    //                            ListRow()
+    //                        }
+                        if self.showSideMenu {
+                            SideMenu()
+                                .frame(width: geometry.size.width / 2)
+                                .transition(.move(edge: .leading))
+                        }
                     }
+                    .gesture(drag)
                 }
-            .gesture(drag)
             }
             .navigationBarTitle("Home", displayMode: .automatic)
             .navigationBarItems(leading:

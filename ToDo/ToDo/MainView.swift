@@ -170,8 +170,9 @@ struct MainView: View {
                                 .clipShape(RoundedRectangle(cornerRadius: 10))
                             }
                             Spacer()
-                            Text("aa")
+                            Text("test")
                         }
+                        .padding()
                         
                         Button(action: {
                             self.taskStore.tasks.append(Task(id: UUID().uuidString, work: "Test", date: Date(), description: "Description Test"))
