@@ -150,10 +150,33 @@ struct MainView: View {
                         
                         HStack {
                             ForEach(0 ..< self.taskStore.tasks.count, id: \.self) { i in
-                                Text("\(self.taskStore.tasks[i].work)")
+                                HStack {
+                                    VStack {
+                                        Text("\(self.taskStore.tasks[i].work)")
+//                                            .foregroundColor(.white)
+//                                            .padding(.horizontal, 10)
+//                                            .padding(.vertical, 20)
+//                                            .background(Color.black)
+//                                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                                        Text("\(self.taskStore.tasks[i].date)")
+                                    }
+                                    Spacer(minLength: 0)
+                                    Text("\(self.taskStore.tasks[i].description)")
+                                }
+                                .foregroundColor(.white)
+                                .padding(.horizontal, 10)
+                                .padding(.vertical, 20)
+                                .background(Color.black)
+                                .clipShape(RoundedRectangle(cornerRadius: 10))
                             }
                             Spacer()
                             Text("aa")
+                        }
+                        
+                        Button(action: {
+                            self.taskStore.tasks.append(Task(id: UUID().uuidString, work: "Test", date: Date(), description: "Description Test"))
+                        }) {
+                            Text("Add")
                         }
                     }
                     Spacer(minLength: 0)
