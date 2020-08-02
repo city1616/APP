@@ -23,9 +23,13 @@ struct circleImage: View {
 }
 
 struct MainView: View {
+    
+    @ObservedObject var taskStore: TaskStore = TaskStore(tasks: [])
+    
     // @Binding var showSideMenu: Bool
     @State var searchbar: String
     @State var placeholder: String
+    @State var index = 0
     
     var body: some View {
         VStack {
@@ -96,22 +100,62 @@ struct MainView: View {
                         .padding(40)
                         // Spacer()
                     }
-                        .background(LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)), Color(#colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1))]), startPoint: .top, endPoint: .bottom))
-                        .edgesIgnoringSafeArea(.top)
+//                        .background(LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)), Color(#colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1))]), startPoint: .top, endPoint: .bottom))
+//                        .edgesIgnoringSafeArea(.top)
                         .frame(width: UIScreen.main.bounds.width, height: 300)
-                    // .padding(40)
+                        .padding(.top, 10)
+                        // .padding(40)
+                    // gradientViewTest()
                     VStack {
-                        Image("ㅇㅇㅇ")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(maxWidth: .infinity)
-                        Text("abcdefg")
+                        HStack {
+                            Text("Task")
+                                .font(.title)
+                                .fontWeight(.bold)
+                            Spacer(minLength: 0)
+                        }
+                        .padding(.horizontal)
+                        .padding(.top, 10)
+                        
+                        HStack {
+                            Text("today")
+                                .foregroundColor(self.index == 0 ? .white : Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)).opacity(0.7))
+                                .fontWeight(.bold)
+                                .padding(.vertical, 10)
+                                .padding(.horizontal, 35)
+                                .background(Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)).opacity(self.index == 0 ? 1 : 0))
+                                .clipShape(Capsule())
+                                .onTapGesture {
+                                    withAnimation {
+                                         self.index = 0
+                                    }
+                            }
+                            Spacer(minLength: 0)
+                            Text("Future")
+                                .foregroundColor(self.index == 1 ? .white : Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)).opacity(0.7))
+                                .fontWeight(.bold)
+                                .padding(.vertical, 10)
+                                .padding(.horizontal, 35)
+                                .background(Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)).opacity(self.index == 1 ? 1 : 0))
+                                .clipShape(Capsule())
+                                .onTapGesture {
+                                    withAnimation{
+                                        self.index = 1
+                                    }
+                                }
+                        }
+                        .background(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)).opacity(0.06))
+                        .clipShape(Capsule())
+                        .padding(.horizontal)
+                        .padding(.top, 25)
+                        
+                        HStack {
+                            ForEach(0 ..< self.taskStore.tasks.count, id: \.self) { i in
+                                Text("\(self.taskStore.tasks[i].work)")
+                            }
+                            Spacer()
+                            Text("aa")
+                        }
                     }
-                    .padding(.all, 30)
-                    .padding(.vertical, 30)
-                    .frame(maxWidth: .infinity)
-                    .background(LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)), Color(#colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1))]), startPoint: .top, endPoint: .bottom))
-                    .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
                     Spacer(minLength: 0)
     //                Button(action: {
     //                    // self.showSideMenu = true
@@ -130,9 +174,11 @@ struct MainView: View {
                     
                 }
             }
+            .background(LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)), Color(#colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1))]), startPoint: .top, endPoint: .bottom))
+            // .edgesIgnoringSafeArea(.top)
             // .frame(width: UIScreen.main.bounds.width, height: 460)
             
-            Spacer()
+            // Spacer()
         }
     }
     func hello() {
@@ -339,3 +385,20 @@ var data = [
     Card(id: 7, image: "ㅇㅇㅇ", title: "Dinosaur Mario", subTitle: "Keep running")
     
 ]
+
+struct gradientViewTest: View {
+    var body: some View {
+        VStack {
+            Image("ㅇㅇㅇ")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(maxWidth: .infinity)
+            Text("Test")
+        }
+        .padding(.all, 30)
+        .padding(.vertical, 30)
+        .frame(maxWidth: .infinity)
+        .background(LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)), Color(#colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1))]), startPoint: .top, endPoint: .bottom))
+        .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
+    }
+}

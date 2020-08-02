@@ -79,7 +79,7 @@ struct Menu: View {
                             .font(.title)
                     }// .foregroundColor(.gray)
             })
-            // .navigationViewStyle(StackNavigationViewStyle())
+            .navigationViewStyle(StackNavigationViewStyle())
         }
     }
 }

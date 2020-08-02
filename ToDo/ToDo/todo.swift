@@ -14,10 +14,16 @@ struct todo: View {
     
     var body: some View {
         
-        NavigationView {
-            ZStack {
-                Color(#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1))
-                    .edgesIgnoringSafeArea(.all)
+        
+        ZStack {
+            Color(#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1))
+                .edgesIgnoringSafeArea(.all)
+            VStack {
+                Image(systemName : "pencil")
+                    .resizable()
+                    .frame(width: 200, height: 200)
+                    .background(LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)), Color(#colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1))]), startPoint: .top, endPoint: .bottom))
+                    .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
                 Form {
                     Section(header: Text("work")) {
                         HStack {
@@ -58,6 +64,7 @@ struct todo: View {
                                 .frame(width: 250)
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                         }
+                        
                         // TextField("", text: $name)
                             // .background(Color.blue)
                         // Color.blue
@@ -66,10 +73,14 @@ struct todo: View {
                             
                         Text("Hello, \(doing)!!")
                         Spacer()
-                    }.padding()
+                    }
+                    .padding()
+                    .background(LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)), Color(#colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1))]), startPoint: .top, endPoint: .bottom))
+                    .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
                 }
-                .background(Color(#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)))
             }
+            // .background(Color(#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)))
+        }
 //            .navigationBarTitle("ADD")
 //            .navigationBarItems(leading: Button(action: {}) {
 //                Image(systemName: "line.horizontal.3")
@@ -78,7 +89,7 @@ struct todo: View {
 //                    Image(systemName: "square.and.pencil")
 //                        .font(.title)
 //            })
-        }
+
     }
 }
 
