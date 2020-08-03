@@ -62,7 +62,7 @@ struct ToDoMain: View {
                         ForEach(taskStore.tasks) { task in
                                 ToDoRow(task: task)
                         }
-                        .onDelete(perform: deleteItems)
+                        .onDelete(perform: deleteItems(at:))
                         .onMove(perform: moveItems)
                     }
                     // .listRowBackground(Color.red)
@@ -217,31 +217,31 @@ struct ToDoMain: View {
         }
     }
     
-//    func DeleteTask(task: Int) {
-//        let app = UIApplication.shared.delegate as! AppDelegate
-//        let context = app.persistentContainer.viewContext
-//        let req = NSFetchRequest<NSFetchRequestResult>(entityName: "Todo")
-//
-//        do {
-//            let result = try context.fetch(req)
-//
-//            for i in result as! [NSManagedObject] {
-//                let currentTask = i.value(forKey: "task") as! String
-//
-//                if self.taskStore.tasks[task].work == currentTask {
-//                    context.delete(i)
-//                    try context.save()
-//
-//                    self.taskStore.tasks.remove(at: task)
-//
-//                    return
-//                }
-//            }
-//        }
-//        catch {
-//            print(error.localizedDescription)
-//        }
-//    }
+    func DeleteTask(task: Int) {
+        let app = UIApplication.shared.delegate as! AppDelegate
+        let context = app.persistentContainer.viewContext
+        let req = NSFetchRequest<NSFetchRequestResult>(entityName: "Todo")
+
+        do {
+            let result = try context.fetch(req)
+
+            for i in result as! [NSManagedObject] {
+                let currentTask = i.value(forKey: "task") as! String
+
+                if self.taskStore.tasks[task].work == currentTask {
+                    context.delete(i)
+                    try context.save()
+
+                    self.taskStore.tasks.remove(at: task)
+
+                    return
+                }
+            }
+        }
+        catch {
+            print(error.localizedDescription)
+        }
+    }
     
     func AddTask() {
         let newTask = Task(id: UUID().uuidString, work: addWork, date: selectDate, description: addDescription)
@@ -263,9 +263,8 @@ struct ToDoMain: View {
                 context.delete(i)
                 
                 try context.save()
-
                 // self.taskStore.tasks.remove(at: task)
-                taskStore.tasks.remove(atOffsets: offets)
+                self.taskStore.tasks.remove(atOffsets: offets)
                 
                 return
             }

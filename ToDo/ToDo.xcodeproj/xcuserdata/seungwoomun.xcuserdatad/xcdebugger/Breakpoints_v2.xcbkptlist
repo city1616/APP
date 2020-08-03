@@ -20,7 +20,7 @@
             landmarkType = "24">
             <Locations>
                <Location
-                  uuid = "BE7A7CBC-7A3A-4A22-941B-2650920C6B77 - 943406ac2e8ef523"
+                  uuid = "BE7A7CBC-7A3A-4A22-941B-2650920C6B77 - a4967ed560998fab"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -35,7 +35,7 @@
                   offsetFromSymbolStart = "204">
                </Location>
                <Location
-                  uuid = "BE7A7CBC-7A3A-4A22-941B-2650920C6B77 - 6e9f7f4ce1958385"
+                  uuid = "BE7A7CBC-7A3A-4A22-941B-2650920C6B77 - 5e3d0735af82f92c"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
