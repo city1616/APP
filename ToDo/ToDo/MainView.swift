@@ -27,183 +27,242 @@ struct MainView: View {
     @ObservedObject var taskStore: TaskStore = TaskStore(tasks: [])
     
     // @Binding var showSideMenu: Bool
-    @State var searchbar: String
-    @State var placeholder: String
+    @State var searchbar: String = ""
+    @State var placeholder: String = "search task!!!"
     @State var index = 0
     
+    @State var showSideMenu = false
+    
     var body: some View {
-        VStack {
-            ScrollView(.vertical, showsIndicators: false) {
-                VStack {
-                    HStack {
-                        
-                        if searchbar != "" {
-                            Image(systemName: "magnifyingglass").foregroundColor(.secondary)
-                        }
-                        else {
-                            Image(systemName: "book.fill").foregroundColor(.secondary)
-                        }
-                        
-                        TextField(placeholder, text: $searchbar)
-                            
-                        if searchbar != "" {
-                            Image(systemName: "xmark.circle.fill")
-                                .imageScale(.medium)
-                                .foregroundColor(Color(.systemGray3))
-                                // .padding(.leading, 320)
-                                // .padding(.trailing, 30)
-                                .padding(3)
-                                .onTapGesture {
-                                    withAnimation{
-                                        self.searchbar = ""
-                                    }
-                                }
-                        }
-                        else {
-                            Image(systemName: "magnifyingglass")
-                                .imageScale(.medium)
-                                .foregroundColor(Color(.systemGray3))
-                                // .padding(.leading, 320 )
-                                // .padding(.trailing, 30)
-                                .padding(3)
-                                .onTapGesture {
-                                    withAnimation{
-                                        self.searchbar = ""
-                                    }
-                                }
-                        }
+        
+        let drag = DragGesture()
+            .onEnded {
+                if $0.translation.width < -100 {
+                    withAnimation {
+                        self.showSideMenu = false
                     }
-                    .padding(10)
-                    .background(Color(.systemGray6))
-                    .cornerRadius(30) // 12
-                    .padding(.all, 10)
-                    
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 20) {
-                            ForEach(0 ..< 7 ) {i in
-                                GeometryReader { geometry in
-        //                                HStack {
-                                            circleImage()
-    //                                        circleImage()
-    //                                        circleImage()
-                                                
-                                            
-                                            // .rotation3DEffect(Angle(degrees: 30), axis: (x: 10.0, y: 10, z: 10.0))
-                                            .rotation3DEffect(Angle(degrees: (Double(geometry.frame(in: .global).minX) - 40) / 10), axis: (x: 0, y: 50, z: 50))
-        //                                }
-                                   // }
-                                }
-                                .frame(width: 246, height: 250)
-                            }
-                            // .frame(width: 300, height: 300)
-                        }
-                        .padding(40)
-                        // Spacer()
-                    }
-//                        .background(LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)), Color(#colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1))]), startPoint: .top, endPoint: .bottom))
-//                        .edgesIgnoringSafeArea(.top)
-                        .frame(width: UIScreen.main.bounds.width, height: 300)
-                        .padding(.top, 10)
-                        // .padding(40)
-                    // gradientViewTest()
-                    VStack {
-                        HStack {
-                            Text("Task")
-                                .font(.title)
-                                .fontWeight(.bold)
-                            Spacer(minLength: 0)
-                        }
-                        .padding(.horizontal)
-                        .padding(.top, 10)
-                        
-                        HStack {
-                            Text("today")
-                                .foregroundColor(self.index == 0 ? .white : Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)).opacity(0.7))
-                                .fontWeight(.bold)
-                                .padding(.vertical, 10)
-                                .padding(.horizontal, 35)
-                                .background(Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)).opacity(self.index == 0 ? 1 : 0))
-                                .clipShape(Capsule())
-                                .onTapGesture {
-                                    withAnimation {
-                                         self.index = 0
-                                    }
-                            }
-                            Spacer(minLength: 0)
-                            Text("Future")
-                                .foregroundColor(self.index == 1 ? .white : Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)).opacity(0.7))
-                                .fontWeight(.bold)
-                                .padding(.vertical, 10)
-                                .padding(.horizontal, 35)
-                                .background(Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)).opacity(self.index == 1 ? 1 : 0))
-                                .clipShape(Capsule())
-                                .onTapGesture {
-                                    withAnimation{
-                                        self.index = 1
-                                    }
-                                }
-                        }
-                        .background(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)).opacity(0.06))
-                        .clipShape(Capsule())
-                        .padding(.horizontal)
-                        .padding(.top, 25)
-                        
-                        HStack {
-                            ForEach(0 ..< self.taskStore.tasks.count, id: \.self) { i in
-                                HStack {
-                                    VStack {
-                                        Text("\(self.taskStore.tasks[i].work)")
-//                                            .foregroundColor(.white)
-//                                            .padding(.horizontal, 10)
-//                                            .padding(.vertical, 20)
-//                                            .background(Color.black)
-//                                            .clipShape(RoundedRectangle(cornerRadius: 10))
-                                        Text("\(self.taskStore.tasks[i].date)")
-                                    }
-                                    Spacer(minLength: 0)
-                                    Text("\(self.taskStore.tasks[i].description)")
-                                }
-                                .foregroundColor(.white)
-                                .padding(.horizontal, 10)
-                                .padding(.vertical, 20)
-                                .background(Color.black)
-                                .clipShape(RoundedRectangle(cornerRadius: 10))
-                            }
-                            Spacer()
-                            Text("test")
-                        }
-                        .padding()
-                        
-                        Button(action: {
-                            self.taskStore.tasks.append(Task(id: UUID().uuidString, work: "Test", date: Date(), description: "Description Test"))
-                        }) {
-                            Text("Add")
-                        }
-                    }
-                    Spacer(minLength: 0)
-    //                Button(action: {
-    //                    // self.showSideMenu = true
-    //                    self.hello()
-    ////                    print(self.buildMessageFor(name: "John", count: 100))
-    //                    print(self.buildMessageFor("John", 100))
-    //                }) {
-    //                    Text("Show Side Menu")
-    //                }
-                    
-    //                Button(action: {
-    //
-    //                }) {
-    //                    Text("Color")
-    //                }
-                    
                 }
             }
-            .background(LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)), Color(#colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1))]), startPoint: .top, endPoint: .bottom))
-            // .edgesIgnoringSafeArea(.top)
-            // .frame(width: UIScreen.main.bounds.width, height: 460)
+        
+        return ZStack(alignment: .leading) {
+            VStack {
+                HStack {
+                    Button(action: {
+                        withAnimation {
+                            self.showSideMenu.toggle()
+                        }
+                    }) {
+                        Image(systemName: "line.horizontal.3")
+                            .font(.title)
+                    }
+                    
+                    Spacer(minLength: 0)
+                    
+                    VStack {
+                        Text("Home")
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                        
+                        Text("To Do")
+                    }
+                    
+                    Spacer(minLength: 0)
+                    
+                    Button(action: {
+                        withAnimation {
+                            self.showSideMenu.toggle()
+                        }
+                    }) {
+                        Image(systemName: "square.and.pencil")
+                            .font(.title)
+                    }
+                }
+                .padding(.horizontal)
+                .padding(.vertical)
+                
+//                    HStack {
+//                        Text("Home")
+//                            .font(.largeTitle)
+//                            .fontWeight(.bold)
+//
+//                        Spacer(minLength: 0)
+//                    }
+//                    .padding(.horizontal)
+                
+                ScrollView(.vertical, showsIndicators: false) {
+                    VStack {
+                        HStack {
+                            
+                            if self.searchbar != "" {
+                                Image(systemName: "magnifyingglass").foregroundColor(.secondary)
+                            }
+                            else {
+                                Image(systemName: "book.fill").foregroundColor(.secondary)
+                            }
+                            
+                            TextField(self.placeholder, text: self.$searchbar)
+                                
+                            if self.searchbar != "" {
+                                Image(systemName: "xmark.circle.fill")
+                                    .imageScale(.medium)
+                                    .foregroundColor(Color(.systemGray3))
+                                    // .padding(.leading, 320)
+                                    // .padding(.trailing, 30)
+                                    .padding(3)
+                                    .onTapGesture {
+                                        withAnimation{
+                                            self.searchbar = ""
+                                        }
+                                    }
+                            }
+                            else {
+                                Image(systemName: "magnifyingglass")
+                                    .imageScale(.medium)
+                                    .foregroundColor(Color(.systemGray3))
+                                    // .padding(.leading, 320 )
+                                    // .padding(.trailing, 30)
+                                    .padding(3)
+                                    .onTapGesture {
+                                        withAnimation{
+                                            self.searchbar = ""
+                                        }
+                                    }
+                            }
+                        }
+                        .padding(10)
+                        .background(Color(.systemGray6))
+                        .cornerRadius(30) // 12
+                        .padding(.all, 10)
+                        
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 20) {
+                                ForEach(0 ..< 7 ) {i in
+                                    GeometryReader { geometry in
+            //                                HStack {
+                                                circleImage()
+        //                                        circleImage()
+        //                                        circleImage()
+                                                    
+                                                
+                                                // .rotation3DEffect(Angle(degrees: 30), axis: (x: 10.0, y: 10, z: 10.0))
+                                                .rotation3DEffect(Angle(degrees: (Double(geometry.frame(in: .global).minX) - 40) / 10), axis: (x: 0, y: 50, z: 50))
+            //                                }
+                                       // }
+                                    }
+                                    .frame(width: 246, height: 250)
+                                }
+                                // .frame(width: 300, height: 300)
+                            }
+                            .padding(40)
+                            // Spacer()
+                        }
+    //                        .background(LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)), Color(#colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1))]), startPoint: .top, endPoint: .bottom))
+    //                        .edgesIgnoringSafeArea(.top)
+                            .frame(width: UIScreen.main.bounds.width, height: 300)
+                            .padding(.top, 10)
+                            // .padding(40)
+                        // gradientViewTest()
+                        VStack {
+                            HStack {
+                                Text("Task")
+                                    .font(.title)
+                                    .fontWeight(.bold)
+                                Spacer(minLength: 0)
+                            }
+                            .padding(.horizontal)
+                            .padding(.top, 10)
+                            
+                            HStack {
+                                Text("today")
+                                    .foregroundColor(self.index == 0 ? .white : Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)).opacity(0.7))
+                                    .fontWeight(.bold)
+                                    .padding(.vertical, 10)
+                                    .padding(.horizontal, 35)
+                                    .background(Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)).opacity(self.index == 0 ? 1 : 0))
+                                    .clipShape(Capsule())
+                                    .onTapGesture {
+                                        withAnimation {
+                                             self.index = 0
+                                        }
+                                }
+                                Spacer(minLength: 0)
+                                Text("Future")
+                                    .foregroundColor(self.index == 1 ? .white : Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)).opacity(0.7))
+                                    .fontWeight(.bold)
+                                    .padding(.vertical, 10)
+                                    .padding(.horizontal, 35)
+                                    .background(Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)).opacity(self.index == 1 ? 1 : 0))
+                                    .clipShape(Capsule())
+                                    .onTapGesture {
+                                        withAnimation{
+                                            self.index = 1
+                                        }
+                                    }
+                            }
+                            .background(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)).opacity(0.06))
+                            .clipShape(Capsule())
+                            .padding(.horizontal)
+                            .padding(.top, 25)
+                            
+                            HStack {
+                                ForEach(0 ..< self.taskStore.tasks.count, id: \.self) { i in
+                                    HStack {
+                                        VStack {
+                                            Text("\(self.taskStore.tasks[i].work)")
+    //                                            .foregroundColor(.white)
+    //                                            .padding(.horizontal, 10)
+    //                                            .padding(.vertical, 20)
+    //                                            .background(Color.black)
+    //                                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                                            Text("\(self.taskStore.tasks[i].date)")
+                                        }
+                                        Spacer(minLength: 0)
+                                        Text("\(self.taskStore.tasks[i].description)")
+                                    }
+                                    .foregroundColor(.white)
+                                    .padding(.horizontal, 10)
+                                    .padding(.vertical, 20)
+                                    .background(Color.black)
+                                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                                }
+                                Spacer()
+                                Text("test")
+                            }
+                            .padding()
+                            
+                            Button(action: {
+                                self.taskStore.tasks.append(Task(id: UUID().uuidString, work: "Test", date: Date(), description: "Description Test"))
+                            }) {
+                                Text("Add")
+                            }
+                        }
+                        Spacer(minLength: 0)
+                    }
+                }
+                .background(LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)), Color(#colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1))]), startPoint: .top, endPoint: .bottom))
+                // .edgesIgnoringSafeArea(.top)
+                // .frame(width: UIScreen.main.bounds.width, height: 460)
+                
+                // Spacer()
+            }
+            // .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+            .offset(x: self.showSideMenu ? UIScreen.main.bounds.width / 2 : 0)
+            .disabled(self.showSideMenu ? true : false)
+            .onTapGesture {
+                withAnimation {
+                    self.showSideMenu = false
+                }
+            }
             
-            // Spacer()
+            if self.showSideMenu {
+                SideMenu()
+                    // .frame(width: geo.size.width / 2)
+                    .frame(width: UIScreen.main.bounds.width / 2)
+                    .transition(.move(edge: .leading))
+                    .edgesIgnoringSafeArea(.top)
+            }
         }
+        .gesture(drag)
     }
     func hello() {
         print("Hello")
@@ -219,6 +278,8 @@ struct MainView_Previews: PreviewProvider {
         MainView(searchbar: "", placeholder: "placeholder")
     }
 }
+
+
 
 struct Home: View {
     

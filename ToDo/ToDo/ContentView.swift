@@ -30,7 +30,7 @@ struct ContentView: View {
 //                Spacer()
 //                    .frame(height: 1.0)
                 TabView(selection: $selectedView) {
-                    Menu()
+                    MainView()
                         .tabItem {
                             Image(systemName: "list.dash")
                             Text("Home")
