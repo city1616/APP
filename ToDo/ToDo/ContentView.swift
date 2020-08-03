@@ -26,43 +26,38 @@ struct ContentView: View {
         ZStack {
 //            Color(#colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1))
 //                .edgesIgnoringSafeArea(.all)
-            VStack {
-//                Spacer()
-//                    .frame(height: 1.0)
-                TabView(selection: $selectedView) {
-                    MainView()
-                        .tabItem {
-                            Image(systemName: "list.dash")
-                            Text("Home")
-                    }.tag(0)
-                    // .edgesIgnoringSafeArea(.all)
-                    ToDoMain()
-                        .tabItem {
-                            Image(systemName: "square.and.pencil")
-                            Text("ToDo")
-                    }.tag(1)
-                    Calendar()
-                        .tabItem {
-                            Image(systemName: "calendar")
-                            Text("Calendar")
-                    }.tag(2)
-                    Settings(colorIndex: $colIndex)
-                        .tabItem {
-                            Image(systemName: "hammer.fill")
-                            Text("Settings")
-                    }.tag(3)
+            TabView(selection: $selectedView) {
+                MainView()
+                    .tabItem {
+                        Image(systemName: "list.dash")
+                        Text("Home")
+                }.tag(0)
+                ToDoMain()
+                    .tabItem {
+                        Image(systemName: "square.and.pencil")
+                        Text("ToDo")
+                }.tag(1)
+                Calendar()
+                    .tabItem {
+                        Image(systemName: "calendar")
+                        Text("Calendar")
+                }.tag(2)
+                Settings(colorIndex: $colIndex)
+                    .tabItem {
+                        Image(systemName: "hammer.fill")
+                        Text("Settings")
+                }.tag(3)
 //                    Home()
 //                        .tabItem {
 //                            Image(systemName: "person")
 //                            Text("Home")
 //                    }.tag(4)
-                }
-                .padding(.top, 45)
-                .background(Color(#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)))
-                .edgesIgnoringSafeArea(.top)
-                .accentColor(Color(col[colIndex])) // Button color
-                // #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
             }
+            // .padding(.top, 45)
+            // .background(Color(#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)))
+            // .edgesIgnoringSafeArea(.top)
+            .accentColor(Color(col[colIndex])) // Button color
+            // #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
         }
     }
 }

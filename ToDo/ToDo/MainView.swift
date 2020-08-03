@@ -46,48 +46,46 @@ struct MainView: View {
         
         return ZStack(alignment: .leading) {
             VStack {
-                HStack {
-                    Button(action: {
-                        withAnimation {
-                            self.showSideMenu.toggle()
+                VStack {
+                    HStack {
+                        Button(action: {
+                            withAnimation {
+                                self.showSideMenu.toggle()
+                                print("toggle")
+                            }
+                        }) {
+                            Image(systemName: "line.horizontal.3")
+                                .font(.title)
                         }
-                    }) {
-                        Image(systemName: "line.horizontal.3")
-                            .font(.title)
-                    }
-                    
-                    Spacer(minLength: 0)
-                    
-                    VStack {
-                        Text("Home")
-                            .font(.largeTitle)
-                            .fontWeight(.bold)
-                        
-                        Text("To Do")
-                    }
-                    
-                    Spacer(minLength: 0)
-                    
-                    Button(action: {
-                        withAnimation {
+                        .onTapGesture {
                             self.showSideMenu.toggle()
+                            print("top button")
                         }
-                    }) {
-                        Image(systemName: "square.and.pencil")
-                            .font(.title)
+    //                    .animation(.default)
+
+                        Spacer(minLength: 0)
+
+                        VStack {
+                            Text("Home")
+                                .font(.largeTitle)
+                                .fontWeight(.bold)
+
+                            Text("To Do")
+                        }
+
+                        Spacer(minLength: 0)
+
+                        Button(action: {}) {
+                            Image(systemName: "square.and.pencil")
+                                .font(.title)
+                        }
                     }
+                    .padding(.horizontal)
+                    .padding(.top, 45)
+                    
+                    Text("test")
                 }
-                .padding(.horizontal)
-                .padding(.vertical)
-                
-//                    HStack {
-//                        Text("Home")
-//                            .font(.largeTitle)
-//                            .fontWeight(.bold)
-//
-//                        Spacer(minLength: 0)
-//                    }
-//                    .padding(.horizontal)
+                // .padding(.vertical)
                 
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack {
@@ -232,6 +230,8 @@ struct MainView: View {
                             
                             Button(action: {
                                 self.taskStore.tasks.append(Task(id: UUID().uuidString, work: "Test", date: Date(), description: "Description Test"))
+                                
+                                print("add Main View Task")
                             }) {
                                 Text("Add")
                             }
@@ -239,20 +239,23 @@ struct MainView: View {
                         Spacer(minLength: 0)
                     }
                 }
-                .background(LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)), Color(#colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1))]), startPoint: .top, endPoint: .bottom))
+                
                 // .edgesIgnoringSafeArea(.top)
                 // .frame(width: UIScreen.main.bounds.width, height: 460)
                 
-                // Spacer()
+                Spacer()
             }
-            // .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+            // .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 130)
             .offset(x: self.showSideMenu ? UIScreen.main.bounds.width / 2 : 0)
             .disabled(self.showSideMenu ? true : false)
             .onTapGesture {
                 withAnimation {
                     self.showSideMenu = false
+                    print("onTapGesture")
                 }
             }
+            .background(LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)), Color(#colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1))]), startPoint: .top, endPoint: .bottom))
+            .edgesIgnoringSafeArea(.top)
             
             if self.showSideMenu {
                 SideMenu()

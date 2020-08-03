@@ -129,9 +129,9 @@ struct Settings: View {
     }
 }
 
-//struct Settings_Previews: PreviewProvider {
-//    @Binding var a: Int
-//    static var previews: some View {
-//        Settings(colorIndex: $a)
-//    }
-//}
+struct Settings_Previews: PreviewProvider {
+    @Binding var a: Int
+    static var previews: some View {
+        Settings(colorIndex: .constant(0))
+    }
+}
