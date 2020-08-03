@@ -236,6 +236,7 @@ struct Home: View {
                     GeometryReader { g in
                         Image("ㅇㅇㅇ")
                             .resizable()
+                            // .aspectRatio(contentMode: .fit)
                             // fixing the view to the top will give strechy effect
                             // increasing height by drag amount
                             .offset(y: g.frame(in: .global).minY > 0 ? -g.frame(in: .global).minY : 0)

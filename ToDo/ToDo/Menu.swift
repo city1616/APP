@@ -11,9 +11,9 @@ import SwiftUI
 struct Menu: View {
 //    init() {  // navigationBar Color
 //        let navBarApperance = UINavigationBar.appearance()
-////        navBarApperance.largeTitleTextAttributes = [.foregroundColor: UIColor.purple]
-////        navBarApperance.titleTextAttributes = [.foregroundColor: UIColor.purple]
-//         navBarApperance.backgroundColor = UIColor(#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1))
+//        navBarApperance.largeTitleTextAttributes = [.foregroundColor: UIColor.purple]
+//        navBarApperance.titleTextAttributes = [.foregroundColor: UIColor.purple]
+//        navBarApperance.backgroundColor = UIColor(#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1))
 //        // UIView.appearance().backgroundColor = UIColor.red
 //    }
     
@@ -82,6 +82,7 @@ struct Menu: View {
                     }// .foregroundColor(.gray)
             })
             .navigationViewStyle(StackNavigationViewStyle())
+            // .edgesIgnoringSafeArea(.top)
         }
     }
 }

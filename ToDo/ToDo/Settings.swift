@@ -15,9 +15,9 @@ struct Settings: View {
     @State private var previewIndex = 0
     var previewOptions = ["Always", "When Unlocked", "Never"]
     
-    @State private var colorIndex = 0
-    var colors: [Color] = [.purple, .black, .red, .green, .blue]
-    var colorOption = ["Purple", "Black", "Red", "Green", "Blue"]
+    @Binding var colorIndex: Int
+    var colors: [Color] = [Color(#colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)), Color(#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)), Color(#colorLiteral(red: 0.137254902, green: 0.137254902, blue: 0.137254902, alpha: 1)), Color(#colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)), Color(#colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1))]  // [.purple, .black, .red, .green, .blue]
+    var colorOption = ["Green", "Purple", "Black", "Pink", "Blue"]
     
     @State private var colIndex = 0
     var colOption = ["Purple", "Black", "Pink", "Blue", "Green"]
@@ -48,9 +48,6 @@ struct Settings: View {
     }
     
     var body: some View {
-        
-        
-//        navBarApperance.backgroundColor = UIColor(#colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1))
         
         return NavigationView {
             ZStack {
@@ -116,7 +113,7 @@ struct Settings: View {
                         }
                     }
                 }
-                .accentColor(Color(self.cols[self.colIndex]))
+                // .accentColor(Color(self.colors[self.colerIndex]))
                 .navigationBarTitle("Settings")
             }
         }
@@ -132,8 +129,9 @@ struct Settings: View {
     }
 }
 
-struct Settings_Previews: PreviewProvider {
-    static var previews: some View {
-        Settings()
-    }
-}
+//struct Settings_Previews: PreviewProvider {
+//    @Binding var a: Int
+//    static var previews: some View {
+//        Settings(colorIndex: $a)
+//    }
+//}

@@ -19,8 +19,8 @@ struct ContentView: View {
     @State var selectedView = 0
     // var col = #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
      // @Binding var colorIndex: Int
-    
-    @State var col = [#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1), #colorLiteral(red: 0.137254902, green: 0.137254902, blue: 0.137254902, alpha: 1), #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1), #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1), #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)]
+    @State var col = [#colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1), #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1), #colorLiteral(red: 0.137254902, green: 0.137254902, blue: 0.137254902, alpha: 1), #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1), #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)]
+    @State var colIndex = 0
     
     var body: some View {
         ZStack {
@@ -46,20 +46,21 @@ struct ContentView: View {
                             Image(systemName: "calendar")
                             Text("Calendar")
                     }.tag(2)
-                    Settings()
+                    Settings(colorIndex: $colIndex)
                         .tabItem {
                             Image(systemName: "hammer.fill")
                             Text("Settings")
                     }.tag(3)
-                    Home()
-                        .tabItem {
-                            Image(systemName: "person")
-                            Text("Home")
-                    }.tag(4)
+//                    Home()
+//                        .tabItem {
+//                            Image(systemName: "person")
+//                            Text("Home")
+//                    }.tag(4)
                 }
-                // .background(/*@START_MENU_TOKEN@*/Color.green/*@END_MENU_TOKEN@*/)
-                // .edgesIgnoringSafeArea(.top)
-                .accentColor(Color(#colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1))) // Button color
+                .padding(.top, 45)
+                .background(Color(#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)))
+                .edgesIgnoringSafeArea(.top)
+                .accentColor(Color(col[colIndex])) // Button color
                 // #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
             }
         }

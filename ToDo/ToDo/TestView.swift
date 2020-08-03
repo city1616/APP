@@ -27,6 +27,7 @@ struct TestView: View {
 //        }
          // itemadd()
         homeView()
+        // gradientViewTest()
 //        List {
 //            Text("a")
 //            Text("b")
