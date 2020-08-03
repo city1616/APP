@@ -26,6 +26,7 @@
 		41B3AE4F24CEEFF000732A4E /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B3AE4E24CEEFF000732A4E /* TestView.swift */; };
 		41B3AE5124CF1BB700732A4E /* ToDoMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B3AE5024CF1BB700732A4E /* ToDoMain.swift */; };
 		41C7A0C624C8189200C3FDA9 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C7A0C524C8189200C3FDA9 /* DetailView.swift */; };
+		41DB622724D8224100D365DA /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DB622624D8224100D365DA /* test.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		41B3AE4E24CEEFF000732A4E /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		41B3AE5024CF1BB700732A4E /* ToDoMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoMain.swift; sourceTree = "<group>"; };
 		41C7A0C524C8189200C3FDA9 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		41DB622624D8224100D365DA /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 				41C7A0C524C8189200C3FDA9 /* DetailView.swift */,
 				4140EE7B24C5AFE3005D6243 /* Menu.swift */,
 				41B3AE4E24CEEFF000732A4E /* TestView.swift */,
+				41DB622624D8224100D365DA /* test.swift */,
 				41B3AE4C24CAF41C00732A4E /* MainView.swift */,
 				4140EE7924C5AF56005D6243 /* Calendar.swift */,
 				4112985C24C6DB5100239BB4 /* Settings.swift */,
@@ -186,6 +189,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				41B3AE4F24CEEFF000732A4E /* TestView.swift in Sources */,
+				41DB622724D8224100D365DA /* test.swift in Sources */,
 				4140EE7C24C5AFE3005D6243 /* Menu.swift in Sources */,
 				41B3AE5124CF1BB700732A4E /* ToDoMain.swift in Sources */,
 				41B3AE4D24CAF41C00732A4E /* MainView.swift in Sources */,

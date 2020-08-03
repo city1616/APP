@@ -8,20 +8,6 @@
 
 import SwiftUI
 
-struct circleImage: View {
-    var body: some View {
-            Image("ㅇㅇㅇ")
-                .frame(width: 250, height: 250)
-                .clipShape(Circle())
-                .overlay(
-                    Circle().stroke(Color.white, lineWidth: 4))
-                .shadow(radius: 10)
-//            Text("1")
-//                .padding(.top, 200)
-//                .padding(.leading, 200)
-    }
-}
-
 struct MainView: View {
     
     @ObservedObject var taskStore: TaskStore = TaskStore(tasks: [])
@@ -51,15 +37,10 @@ struct MainView: View {
                         Button(action: {
                             withAnimation {
                                 self.showSideMenu.toggle()
-                                print("toggle")
                             }
                         }) {
                             Image(systemName: "line.horizontal.3")
                                 .font(.title)
-                        }
-                        .onTapGesture {
-                            self.showSideMenu.toggle()
-                            print("top button")
                         }
     //                    .animation(.default)
 
@@ -83,7 +64,6 @@ struct MainView: View {
                     .padding(.horizontal)
                     .padding(.top, 45)
                     
-                    Text("test")
                 }
                 // .padding(.vertical)
                 
@@ -282,7 +262,19 @@ struct MainView_Previews: PreviewProvider {
     }
 }
 
-
+struct circleImage: View {
+    var body: some View {
+            Image("ㅇㅇㅇ")
+                .frame(width: 250, height: 250)
+                .clipShape(Circle())
+                .overlay(
+                    Circle().stroke(Color.white, lineWidth: 4))
+                .shadow(radius: 10)
+//            Text("1")
+//                .padding(.top, 200)
+//                .padding(.leading, 200)
+    }
+}
 
 struct Home: View {
     
