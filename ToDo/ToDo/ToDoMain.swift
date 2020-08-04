@@ -62,7 +62,7 @@ struct ToDoMain: View {
                         ForEach(taskStore.tasks) { task in
                                 ToDoRow(task: task)
                         }
-                        .onDelete(perform: deleteItems(at:))
+                        .onDelete(perform: deleteItems)
                         .onMove(perform: moveItems)
                     }
                     // .listRowBackground(Color.red)
@@ -195,6 +195,7 @@ struct ToDoMain: View {
     func getTasks() {
         let app = UIApplication.shared.delegate as! AppDelegate
         let context = app.persistentContainer.viewContext
+        
         let req = NSFetchRequest<NSFetchRequestResult>(entityName: "Todo")
         do {
             let result = try context.fetch(req)
@@ -249,23 +250,38 @@ struct ToDoMain: View {
     }
     
     func deleteItems(at offets: IndexSet) {
+        
         let app = UIApplication.shared.delegate as! AppDelegate
         let context = app.persistentContainer.viewContext
         let req = NSFetchRequest<NSFetchRequestResult>(entityName: "Todo")
         
-        
-        
+//        for index in offets {
+//            do {
+//                let obj = taskStore.tasks[index]
+//
+//                // context.delete(obj)
+//
+//                try context.save()
+//
+//                // let index = taskStore.tasks.firstIndex(of: obj)
+//
+//                taskStore.tasks.remove(at: index)
+//            }
+//            catch {
+//                print(error.localizedDescription)
+//            }
+//        }
         do {
             let result = try context.fetch(req)
-           
+
             for i in result as! [NSManagedObject] {
-                
+
                 context.delete(i)
-                
+
                 try context.save()
                 // self.taskStore.tasks.remove(at: task)
                 self.taskStore.tasks.remove(atOffsets: offets)
-                
+
                 return
             }
         }
