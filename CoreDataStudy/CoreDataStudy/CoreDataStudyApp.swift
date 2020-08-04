@@ -21,7 +21,7 @@ struct CoreDataStudyApp: App {
 // Copy this from any existing core data project
 
 var persistentContainer: NSPersistentContainer = {
-    let container = NSPersistentContainer(name: "Data")
+    let container = NSPersistentContainer(name: "CoreData")
     container.loadPersistentStores(completionHandler: { (storeDescription, error) in
         if let error = error as NSError? {
             fatalError("Unresolved error \(error), \(error.userInfo)")
