@@ -31,11 +31,13 @@ struct Home: View {
     @StateObject var model = dataModel()
     
     var body: some View {
+        
         VStack {
             List {
                 ForEach(model.data, id: \.objectID) { obj in
                     // extracting data from object
                     Text(model.getValue(obj: obj))
+                        .onTapGesture {model.openUpdateView(obj: obj)}
                 }
                 .onDelete(perform: model.deleteData)
             }
@@ -51,6 +53,27 @@ struct Home: View {
             }
             .padding()
         }
+        .sheet(isPresented: $model.isUpdate) {
+            // Update View
+            UpdateView(model: model)
+        }
+    }
+}
+
+struct UpdateView: View {
+    
+    @ObservedObject var model: dataModel
+    
+    var body: some View {
+        VStack(spacing: 20) {
+            TextField("Update Here", text: $model.updateTxt)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+            
+            Button(action: model.updateData) {
+                Text("Update")
+            }
+        }
+        .padding()
     }
 }
 
@@ -58,6 +81,9 @@ struct Home: View {
 class dataModel: ObservableObject {
     @Published var data: [NSManagedObject] = []
     @Published var txt = ""
+    @Published var isUpdate = false
+    @Published var updateTxt = ""
+    @Published var selectedObj = NSManagedObject()
     
     let context = persistentContainer.viewContext
     
@@ -98,14 +124,69 @@ class dataModel: ObservableObject {
     }
     
     func deleteData(indexSet: IndexSet) {
-        
+        for index in indexSet {
+            do {
+                let obj = data[index]
+                
+                context.delete(obj)
+                
+                try context.save()
+                
+                // if success means removing data from list
+                let index = data.firstIndex(of: obj)
+                
+                data.remove(at: index!)
+            }
+            catch {
+                print(error.localizedDescription)
+            }
+        }
     }
     
     func updateData() {
+        // Updating and closing View
         
+        // finding index
+        let index = data.firstIndex(of: selectedObj)
+        
+        // Fetching and updating data
+        
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Data")
+        
+        do {
+            let results = try context.fetch(request) as! [NSManagedObject]
+            
+            // updating data
+            
+            let obj = results.first { (obj) -> Bool in
+                if obj == selectedObj {
+                    return true
+                }
+                else {
+                    return false
+                }
+            }
+            obj?.setValue(updateTxt, forKey: "value")
+            
+            // saving
+            try context.save()
+            
+            // if success means update and close the view
+            data[index!] = obj!
+            isUpdate.toggle()
+            updateTxt = ""
+        }
+        catch {
+            print(error.localizedDescription)
+        }
     }
     
     func getValue(obj: NSManagedObject) -> String {
         return obj.value(forKey: "value") as! String
+    }
+    
+    func openUpdateView(obj: NSManagedObject) {
+        selectedObj = obj
+        isUpdate.toggle()
     }
 }
