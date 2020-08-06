@@ -17,7 +17,7 @@ struct Task: Codable, Identifiable {
     var description: String
 }
 
-var taskData: [Task] = []
+// var taskData: [Task] = []
 
 class TaskStore: ObservableObject {
     @Published var tasks: [Task]

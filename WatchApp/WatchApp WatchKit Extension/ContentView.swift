@@ -9,8 +9,18 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var ti = Date()
     var body: some View {
-        Text("Hello, World!")
+        ScrollView {
+            VStack {
+                Text("Hello, World!")
+                Text("app")
+                Text("hello")
+                Text("Watch")
+                Text("\(ti)")
+            }
+        }
+        
     }
 }
 

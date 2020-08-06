@@ -5,7 +5,7 @@
         <attribute name="descrit" optional="YES" attributeType="String"/>
         <attribute name="work" optional="YES" attributeType="String"/>
     </entity>
-    <entity name="Todo" representedClassName=".Todo" syncable="YES">
+    <entity name="Todo" representedClassName=".Todo" syncable="YES" codeGenerationType="class">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="descript" optional="YES" attributeType="String"/>
         <attribute name="work" optional="YES" attributeType="String"/>
