@@ -45,6 +45,13 @@ struct MainView: View {
                                 .font(.title)
                         }
     //                    .animation(.default)
+//                        Image(systemName: "line.horizontal.3")
+//                            .font(.title)
+//                            .onTapGesture {
+//                                withAnimation {
+//                                    self.showSideMenu.toggle()
+//                                }
+//                            }
 
                         Spacer(minLength: 0)
 
@@ -113,6 +120,11 @@ struct MainView: View {
                                         GeometryReader { geometry in
                 //                                HStack {
                                                     circleImage()
+//                                                        .onTapGesture {
+//                                                            withAnimation {
+//                                                                self.showSideMenu.toggle()
+//                                                            }
+//                                                        }
             //                                        circleImage()
             //                                        circleImage()
                                                         
