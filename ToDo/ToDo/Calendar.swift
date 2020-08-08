@@ -18,19 +18,26 @@ struct Calendar: View {
 //        }
         VStack {
             Form {
-                DatePicker("When is your birthday?", selection: $selectDate, displayedComponents: .date)
-                    // .labelsHidden()
-                    .foregroundColor(.green)
-                    // .background(with: .black)
-            }
-            .frame(height: 350)
-            .background(Color.blue)
-            Form {
+                Section(header: Text("Due Date")) {
+                    DatePicker("When is your birthday?", selection: $selectDate, displayedComponents: .date)
+                        // .labelsHidden()
+                        .foregroundColor(.green)
+                        // .background(with: .black)
+                }
+                
                 DatePicker("", selection: $selectDate, displayedComponents: .date)
                 Text("Your selected date: \(selectDate)")
                     .foregroundColor(.red)
                     .background(Color.green)
+                
+                Spacer(minLength: 0)
+                
             }
+            .frame(height: 350)
+            .background(Color.blue)
+           
+            
+            Spacer()
         }
     }
 }
