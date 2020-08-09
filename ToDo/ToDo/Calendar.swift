@@ -101,7 +101,7 @@ struct Calendar_Previews: PreviewProvider {
 }
 
 struct CalendarView: UIViewRepresentable {
-    @Environment(\.presentationMode) var presentationMode
+    // @Environment(\.presentationMode) var presentationMode
     @Binding var date: Date
     
     init(date: Binding<Date>) {
@@ -129,9 +129,9 @@ struct CalendarView: UIViewRepresentable {
     func updateUIView(_ uiView: UIView, context: UIViewRepresentableContext<CalendarView>) {
         context.coordinator.fsCalendar?.select(date)
     }
-    func dismiss() {
-        presentationMode.wrappedValue.dismiss()
-    }
+//    func dismiss() {
+//        presentationMode.wrappedValue.dismiss()
+//    }
     class Coordinator: NSObject, FSCalendarDelegate {
         var control: CalendarView
         var date: Date

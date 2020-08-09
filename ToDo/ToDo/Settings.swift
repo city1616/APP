@@ -12,8 +12,7 @@ import CoreData
 
 struct Settings: View {
     
-    @Environment(\.presentationMode) var present
-    
+//    @Environment(\.presentationMode) var present
     
     @State var userName: String = ""
     @State var isPrivate: Bool = true
@@ -140,6 +139,7 @@ struct Settings: View {
                 }
                 // .accentColor(Color(self.colors[self.colerIndex]))
                 .navigationBarTitle("Settings")
+                // .navigationBarTitleDisplayMode(.automatic)
             }
         }
         // .accentColor(UIColor(Color(#colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1))))

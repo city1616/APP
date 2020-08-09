@@ -146,7 +146,7 @@ struct ToDoMain: View {
                             }
                             Section() {
                                 Button(action: {
-                                    self.saveTask() // core data
+                                    self.saveTasks() // core data
                                     self.getTasks() // read core data
                                     // self.AddTask()
                                     self.addItem.toggle()
@@ -171,7 +171,7 @@ struct ToDoMain: View {
         
     }
     
-    func saveTask() { // saving data in core data
+    func saveTasks() { // saving data in core data
         let app = UIApplication.shared.delegate as! AppDelegate
 
         let context = app.persistentContainer.viewContext
@@ -300,6 +300,8 @@ struct ToDoMain: View {
         taskStore.tasks.append(newTask)
     }
 }
+
+
 
 struct ToDoMain_Previews: PreviewProvider {
     static var previews: some View {
