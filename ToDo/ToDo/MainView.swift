@@ -301,7 +301,8 @@ struct MainView: View {
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         // MainView(showSideMenu: false)
-        MainView(searchbar: "", placeholder: "placeholder")
+        // MainView(searchbar: "", placeholder: "placeholder")
+        MainView()
     }
 }
 
