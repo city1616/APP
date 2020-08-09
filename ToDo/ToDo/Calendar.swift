@@ -7,10 +7,15 @@
 //
 
 import SwiftUI
+import FSCalendar
 
 struct Calendar: View {
     @State var selectDate = Date()
+    @State var colorPick: Color = Color.purple
     
+//    let formatter = DateFormatter()
+//    formatter.dateFormat = "mm/dd/yyyy"
+//
     var body: some View {
 //        VStack {
 //
@@ -20,7 +25,7 @@ struct Calendar: View {
             Form {
                 Section(header: Text("Due Date").fontWeight(.bold)) {
                     DatePicker("When is your birthday?", selection: $selectDate, displayedComponents: .date)
-                        // .labelsHidden()
+                        // .labelsHidden() // Text 숨기기
                         .foregroundColor(.green)
                         // .background(with: .black)
                 }
@@ -33,10 +38,21 @@ struct Calendar: View {
                         .fontWeight(.bold)
                         // .background(Color.green)
                 }
+                
+                Section(header: Text("Date")) {
+                    DatePicker("", selection: $selectDate)
+                    Text("Your selected date: \(selectDate, formatter: self.DateFormat())")
+                        .foregroundColor(.pink)
+                        .fontWeight(.bold)
+                        // .background(Color.green)
+                }
+                
+                Section(header: Text("Color Pick")) {
+                    ColorPicker("Color", selection: $colorPick)
+                }
           
             }
-            .frame(height: 350)
-            .background(Color.blue)
+            // .background(Color.blue)
            
             
             Spacer()
