@@ -17,6 +17,7 @@ struct MainView: View {
     @State var searchbar: String = ""
     @State var placeholder: String = "search task!!!"
     @State var index = 0
+    @State var date = Date()
     
     @State var showSideMenu = false
     
@@ -76,6 +77,8 @@ struct MainView: View {
                     
                     // .padding(.vertical)
                     
+                    CalendarView(date: $date)
+                    
                     ScrollView(.vertical, showsIndicators: false) {
                         VStack {
                             
@@ -114,21 +117,13 @@ struct MainView: View {
                             .cornerRadius(30) // 12
                             .padding(.all, 10)
                             
+                            
+                            
                             ScrollView(.horizontal, showsIndicators: false) {
                                 HStack(spacing: 20) {
                                     ForEach(0 ..< 7 ) {i in
                                         GeometryReader { geometry in
-                //                                HStack {
-                                                    circleImage()
-//                                                        .onTapGesture {
-//                                                            withAnimation {
-//                                                                self.showSideMenu.toggle()
-//                                                            }
-//                                                        }
-            //                                        circleImage()
-            //                                        circleImage()
-                                                        
-                                                    
+                                                circleImage()
                                                     // .rotation3DEffect(Angle(degrees: 30), axis: (x: 10.0, y: 10, z: 10.0))
                                                     .rotation3DEffect(Angle(degrees: (Double(geometry.frame(in: .global).minX) - 40) / 10), axis: (x: 0, y: 50, z: 50))
                 //                                }
@@ -143,7 +138,7 @@ struct MainView: View {
                             }
         //                        .background(LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)), Color(#colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1))]), startPoint: .top, endPoint: .bottom))
         //                        .edgesIgnoringSafeArea(.top)
-                                .frame(width: UIScreen.main.bounds.width, height: 300)
+                                .frame(width: UIScreen.main.bounds.width, height: 250)
                                 .padding(.top, 10)
                                 // .padding(40)
                             // gradientViewTest()
