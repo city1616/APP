@@ -164,7 +164,7 @@ struct MainView: View {
                                             withAnimation {
                                                  self.index = 0
                                             }
-                                    }
+                                        }
                                     Spacer(minLength: 0)
                                     Text("Future")
                                         .foregroundColor(self.index == 1 ? .white : Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)).opacity(0.7))

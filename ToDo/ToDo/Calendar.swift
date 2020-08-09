@@ -143,8 +143,8 @@ struct CalendarView: UIViewRepresentable {
         func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
             self.control.date = date
         }
-        func calendar(calendar: FSCalendar!, hasEventForDate date: NSDate!) -> Bool {
-            return shouldShowEventDot
-        }
+//        func calendar(calendar: FSCalendar!, hasEventForDate date: NSDate!) -> Bool {
+//            return shouldShowEventDot
+//        }
     }
 }

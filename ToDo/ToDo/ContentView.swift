@@ -16,6 +16,7 @@ struct ContentView: View {
     }
     
 //    @Binding var showSideMenu: Bool
+    @State var BtnColor: Color = Color(#colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1))
     @State var selectedView = 0
     // var col = #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
      // @Binding var colorIndex: Int
@@ -42,7 +43,7 @@ struct ContentView: View {
                         Image(systemName: "calendar")
                         Text("Calendar")
                 }.tag(2)
-                Settings(colorIndex: $colIndex)
+                Settings(BtnColor: $BtnColor)
                     .tabItem {
                         Image(systemName: "hammer.fill")
                         Text("Settings")
@@ -56,7 +57,8 @@ struct ContentView: View {
             // .padding(.top, 45)
             // .background(Color(#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)))
             // .edgesIgnoringSafeArea(.top)
-            .accentColor(Color(col[colIndex])) // Button color
+            // .accentColor(Color(col[colIndex])) // Button color
+            .accentColor(BtnColor)
             // #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
         }
     }
