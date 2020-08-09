@@ -118,6 +118,7 @@ struct CalendarView: UIViewRepresentable {
         calendar.delegate = context.coordinator
         context.coordinator.fsCalendar = calendar
         calendar.backgroundColor = UIColor(Color(#colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)))
+        calendar.scrollDirection = .vertical
         view.addSubview(calendar)
         
         return view
@@ -141,6 +142,9 @@ struct CalendarView: UIViewRepresentable {
         }
         func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
             self.control.date = date
+        }
+        func calendar(calendar: FSCalendar!, hasEventForDate date: NSDate!) -> Bool {
+            return shouldShowEventDot
         }
     }
 }
