@@ -27,6 +27,7 @@
 		41B3AE5124CF1BB700732A4E /* ToDoMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B3AE5024CF1BB700732A4E /* ToDoMain.swift */; };
 		41C7A0C624C8189200C3FDA9 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C7A0C524C8189200C3FDA9 /* DetailView.swift */; };
 		41DB622724D8224100D365DA /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DB622624D8224100D365DA /* test.swift */; };
+		F8627B51D41AF9C9A7C0F212 /* Pods_ToDo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DEAA067A27BF636C334135E /* Pods_ToDo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,9 @@
 		41B3AE5024CF1BB700732A4E /* ToDoMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoMain.swift; sourceTree = "<group>"; };
 		41C7A0C524C8189200C3FDA9 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		41DB622624D8224100D365DA /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
+		4C0DF841F13F6FB7399B9A70 /* Pods-ToDo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToDo.release.xcconfig"; path = "Target Support Files/Pods-ToDo/Pods-ToDo.release.xcconfig"; sourceTree = "<group>"; };
+		4DEAA067A27BF636C334135E /* Pods_ToDo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ToDo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE5C2B77C87E92BCA6F19659 /* Pods-ToDo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToDo.debug.xcconfig"; path = "Target Support Files/Pods-ToDo/Pods-ToDo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,17 +63,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8627B51D41AF9C9A7C0F212 /* Pods_ToDo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		171A197977C01784D968DF74 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4DEAA067A27BF636C334135E /* Pods_ToDo.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		389018B4F895AD6EBDAF38CF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EE5C2B77C87E92BCA6F19659 /* Pods-ToDo.debug.xcconfig */,
+				4C0DF841F13F6FB7399B9A70 /* Pods-ToDo.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		4140EE5424C5A9B4005D6243 = {
 			isa = PBXGroup;
 			children = (
 				4140EE5F24C5A9B4005D6243 /* ToDo */,
 				4140EE5E24C5A9B4005D6243 /* Products */,
+				389018B4F895AD6EBDAF38CF /* Pods */,
+				171A197977C01784D968DF74 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -124,9 +149,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4140EE7424C5A9B5005D6243 /* Build configuration list for PBXNativeTarget "ToDo" */;
 			buildPhases = (
+				538134FBB2D794C422C1221D /* [CP] Check Pods Manifest.lock */,
 				4140EE5924C5A9B4005D6243 /* Sources */,
 				4140EE5A24C5A9B4005D6243 /* Frameworks */,
 				4140EE5B24C5A9B4005D6243 /* Resources */,
+				6F33F76ADC20EA918A537E76 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -182,6 +209,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		538134FBB2D794C422C1221D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ToDo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6F33F76ADC20EA918A537E76 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ToDo/Pods-ToDo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ToDo/Pods-ToDo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ToDo/Pods-ToDo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4140EE5924C5A9B4005D6243 /* Sources */ = {
@@ -340,6 +409,7 @@
 		};
 		4140EE7524C5A9B5005D6243 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EE5C2B77C87E92BCA6F19659 /* Pods-ToDo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -360,6 +430,7 @@
 		};
 		4140EE7624C5A9B5005D6243 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4C0DF841F13F6FB7399B9A70 /* Pods-ToDo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

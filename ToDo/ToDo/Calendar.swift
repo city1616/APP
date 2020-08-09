@@ -15,13 +15,16 @@ struct Calendar: View {
     
 //    let formatter = DateFormatter()
 //    formatter.dateFormat = "mm/dd/yyyy"
-//
+
+    let calendar = FSCalendar(frame: CGRect(x: 0, y: 0, width: 320, height: 300))
+    
     var body: some View {
 //        VStack {
 //
 //            Spacer()
 //        }
         VStack {
+            
             Form {
                 Section(header: Text("Due Date").fontWeight(.bold)) {
                     DatePicker("When is your birthday?", selection: $selectDate, displayedComponents: .date)
@@ -66,6 +69,16 @@ struct Calendar: View {
         formatter.dateStyle = .long
         return formatter
     }
+    
+//    fileprivate weak var calendar: FSCalendar! {
+//        let calendar = FSCalendar(frame: CGRect(x: 0, y: 0, width: 320, height: 300))
+//        calendar.dataSource = self
+//        calendar.delegate = self
+//        view.addSubview(calendar)
+//        self.calendar = calendar
+//    }
+    
+    
     
 }
 
