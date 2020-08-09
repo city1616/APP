@@ -35,8 +35,9 @@ struct MainView: View {
         return NavigationView {
             ZStack(alignment: .leading) {
                     VStack {
-                        
+                      
                         CalendarView(date: $date)
+                            .padding(.top, 45)
                         
                         ScrollView(.vertical, showsIndicators: false) {
                             VStack {
@@ -175,21 +176,21 @@ struct MainView: View {
                         // .edgesIgnoringSafeArea(.top)
                         // .frame(width: UIScreen.main.bounds.width, height: 460)
                         
-                        Spacer()
+                        
                     }
                         
                     .gesture(drag)
                     // .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 130)
                     .offset(x: self.showSideMenu ? UIScreen.main.bounds.width / 2 : 0)
                     .disabled(self.showSideMenu ? true : false)
-    //                .onTapGesture {
-    //                    withAnimation {
-    //                        self.showSideMenu = false
-    //
-    //                        // ToDoMain.getTasks()
-    //                        print("onTapGesture")
-    //                    }
-    //                }
+                    .onTapGesture {
+                        withAnimation {
+                            self.showSideMenu = false
+    
+                            // ToDoMain.getTasks()
+                            print("onTapGesture")
+                        }
+                    }
                     .background(LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)), Color(#colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1))]), startPoint: .top, endPoint: .bottom))
                     // .edgesIgnoringSafeArea(.top)
                     .onAppear {
@@ -207,8 +208,12 @@ struct MainView: View {
                 }
             
             .navigationTitle("Home")
-            // .navigationBarTitleDisplayMode(.automatic)
-            .navigationBarItems(leading: Button(action: {}) {
+            .navigationBarTitleDisplayMode(.automatic)
+            .navigationBarItems(leading: Button(action: {
+                withAnimation {
+                    self.showSideMenu.toggle()
+                }
+            }) {
                 Image(systemName: "line.horizontal.3")
                     .font(.largeTitle)
             }, trailing: Button(action: {}) {

@@ -3,11 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		4112985D24C6DB5100239BB4 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4112985C24C6DB5100239BB4 /* Settings.swift */; };
+		412E961924E0110C00310101 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412E961824E0110C00310101 /* MainTabView.swift */; };
 		4140EE6124C5A9B4005D6243 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4140EE6024C5A9B4005D6243 /* AppDelegate.swift */; };
 		4140EE6324C5A9B4005D6243 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4140EE6224C5A9B4005D6243 /* SceneDelegate.swift */; };
 		4140EE6624C5A9B4005D6243 /* ToDo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4140EE6424C5A9B4005D6243 /* ToDo.xcdatamodeld */; };
@@ -32,6 +33,7 @@
 
 /* Begin PBXFileReference section */
 		4112985C24C6DB5100239BB4 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		412E961824E0110C00310101 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		4140EE5D24C5A9B4005D6243 /* ToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4140EE6024C5A9B4005D6243 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4140EE6224C5A9B4005D6243 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -84,7 +86,6 @@
 				EE5C2B77C87E92BCA6F19659 /* Pods-ToDo.debug.xcconfig */,
 				4C0DF841F13F6FB7399B9A70 /* Pods-ToDo.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -112,6 +113,7 @@
 				4140EE6024C5A9B4005D6243 /* AppDelegate.swift */,
 				4140EE6224C5A9B4005D6243 /* SceneDelegate.swift */,
 				4140EE6724C5A9B4005D6243 /* ContentView.swift */,
+				412E961824E0110C00310101 /* MainTabView.swift */,
 				41B3AE4824C84B9600732A4E /* Card_Test.swift */,
 				41B3AE4A24C9D64D00732A4E /* SideMenu.swift */,
 				4140EE7D24C5B508005D6243 /* todo.swift */,
@@ -268,6 +270,7 @@
 				418D180524D047A400464E72 /* Task.swift in Sources */,
 				41C7A0C624C8189200C3FDA9 /* DetailView.swift in Sources */,
 				4112985D24C6DB5100239BB4 /* Settings.swift in Sources */,
+				412E961924E0110C00310101 /* MainTabView.swift in Sources */,
 				4140EE7E24C5B508005D6243 /* todo.swift in Sources */,
 				4140EE6824C5A9B4005D6243 /* ContentView.swift in Sources */,
 				4140EE6324C5A9B4005D6243 /* SceneDelegate.swift in Sources */,
