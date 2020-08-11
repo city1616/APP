@@ -36,8 +36,10 @@ struct MainView: View {
             ZStack(alignment: .leading) {
                     VStack {
                       
-                        CalendarView(date: $date)
-                            .padding(.top, 45)
+                        // Spacer()
+                        
+//                        CalendarView(date: $date)
+//                            .padding(.top, 45)
                         
                         ScrollView(.vertical, showsIndicators: false) {
                             VStack {
