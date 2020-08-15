@@ -20,6 +20,7 @@ struct MainView: View {
     @State var date = Date()
     
     @State var showSideMenu = false
+    @State var showCal = false
     
     var body: some View {
         
@@ -38,8 +39,20 @@ struct MainView: View {
                       
                         // Spacer()
                         
-                        CalendarView(date: $date)
-                            //.padding(.top, 45)
+                        HStack {
+                            // Text("Click")
+                            Button(action: {
+                                print("Click")
+                            }) {
+                                Text("Click")
+                            }
+                        }
+                        .padding()
+                        
+                        if showCal {
+                            CalendarView(date: $date)
+                                //.padding(.top, 45)
+                        }
                         
                         ScrollView(.vertical, showsIndicators: false) {
                             VStack {
@@ -208,7 +221,13 @@ struct MainView: View {
             }) {
                 Image(systemName: "line.horizontal.3")
                     .font(.largeTitle)
-            }, trailing: Button(action: {}) {
+            }, trailing: Button(action: {
+                withAnimation {
+                    self.showCal.toggle()
+                    
+                    print("Show Calendar")
+                }
+            }) {
                 Image(systemName: "square.and.pencil")
                     .font(.largeTitle)
             })
