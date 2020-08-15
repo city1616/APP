@@ -39,15 +39,15 @@ struct MainView: View {
                       
                         // Spacer()
                         
-                        HStack {
-                            // Text("Click")
-                            Button(action: {
-                                print("Click")
-                            }) {
-                                Text("Click")
-                            }
-                        }
-                        .padding()
+//                        HStack {
+//                            // Text("Click")
+//                            Button(action: {
+//                                print("Click")
+//                            }) {
+//                                Text("Click")
+//                            }
+//                        }
+//                        .padding()
                         
                         if showCal {
                             CalendarView(date: $date)
