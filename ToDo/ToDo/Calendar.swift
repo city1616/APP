@@ -14,13 +14,37 @@ import UIKit
 struct Calendar: View {
     @State var date = Date()
     
+    @State var testpop = false
+    
 //    let formatter = DateFormatter()
 //    formatter.dateFormat = "mm/dd/yyyy"
 
     let calendar = FSCalendar(frame: CGRect(x: 0, y: 0, width: 320, height: 300))
     
     var body: some View {
-        CalendarView(date: $date)
+        VStack {
+            HStack {
+                Text("Calendar")
+                    // .foregroundColor(.black)
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    // .padding(.trailing, 20)
+                    .padding()
+                
+                Spacer(minLength: 0)
+            }
+            CalendarView(date: $date)
+                .clipShape(RoundedRectangle(cornerRadius: 20))
+            
+            Button(action: {
+                self.testpop.toggle()
+            }, label: {
+                Text("Button")
+            }).sheet(isPresented: $testpop) {
+                calSecond()
+            }
+            
+        }
     }
     func DateFormat() -> DateFormatter {
         let formatter = DateFormatter()
@@ -69,6 +93,7 @@ struct CalendarView: UIViewRepresentable {
         calendar.backgroundColor = UIColor(Color(#colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)))
         calendar.scrollDirection = .vertical
         view.addSubview(calendar)
+//            .frame(width: view.frame.size.width, height: 150)
         
         return view
     }
