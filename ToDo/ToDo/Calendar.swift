@@ -12,66 +12,15 @@ import FSCalendar
 import UIKit
 
 struct Calendar: View {
-    @State var selectDate = Date()
-    @State var colorPick: Color = Color.purple
-    @State var pop = false
+    @State var date = Date()
+    
 //    let formatter = DateFormatter()
 //    formatter.dateFormat = "mm/dd/yyyy"
 
     let calendar = FSCalendar(frame: CGRect(x: 0, y: 0, width: 320, height: 300))
     
     var body: some View {
-//        VStack {
-//
-//            Spacer()
-//        }
-        VStack {
-            
-            Form {
-                Section(header: Text("Due Date").fontWeight(.bold)) {
-                    DatePicker("When is your birthday?", selection: $selectDate, displayedComponents: .date)
-                        // .labelsHidden() // Text 숨기기
-                        .foregroundColor(.green)
-                        // .background(with: .black)
-                }
-                .foregroundColor(.pink)
-                
-                Section(header: Text("Date")) {
-                    DatePicker("", selection: $selectDate, displayedComponents: .date)
-                    Text("Your selected date: \(selectDate, formatter: self.DateFormat())")
-                        .foregroundColor(.pink)
-                        .fontWeight(.bold)
-                        // .background(Color.green)
-                }
-                
-                Section(header: Text("Date")) {
-                    DatePicker("", selection: $selectDate)
-                    Text("Your selected date: \(selectDate, formatter: self.DateFormat())")
-                        .foregroundColor(.pink)
-                        .fontWeight(.bold)
-                        // .background(Color.green)
-                }
-                
-                Section(header: Text("Color Pick")) {
-                    ColorPicker("Color", selection: $colorPick)
-                }
-                
-                Section() {
-                    Button(action: {
-                        self.pop.toggle()
-                    }) {
-                        Text("View Calendar")
-                    }.sheet(isPresented: $pop) {
-                        CalendarView(date: $selectDate)
-                    }
-                }
-          
-            }
-            // .background(Color.blue)
-           
-            
-            Spacer()
-        }
+        CalendarView(date: $date)
     }
     func DateFormat() -> DateFormatter {
         let formatter = DateFormatter()
@@ -146,5 +95,77 @@ struct CalendarView: UIViewRepresentable {
 //        func calendar(calendar: FSCalendar!, hasEventForDate date: NSDate!) -> Bool {
 //            return shouldShowEventDot
 //        }
+    }
+}
+
+struct calSecond: View {
+    
+    @State var selectDate = Date()
+    @State var colorPick: Color = Color.purple
+    @State var pop = false
+    
+    let calendar = FSCalendar(frame: CGRect(x: 0, y: 0, width: 320, height: 300))
+    
+    var body: some View {
+//        VStack {
+//
+//            Spacer()
+//        }
+        VStack {
+            
+            Form {
+                Section(header: Text("Due Date").fontWeight(.bold)) {
+                    DatePicker("When is your birthday?", selection: $selectDate, displayedComponents: .date)
+                        // .labelsHidden() // Text 숨기기
+                        .foregroundColor(.green)
+                        // .background(with: .black)
+                }
+                .foregroundColor(.pink)
+                
+                Section(header: Text("Date")) {
+                    DatePicker("", selection: $selectDate, displayedComponents: .date)
+                    Text("Your selected date: \(selectDate, formatter: self.DateFormat())")
+                        .foregroundColor(.pink)
+                        .fontWeight(.bold)
+                        // .background(Color.green)
+                }
+                
+                Section(header: Text("Date")) {
+                    DatePicker("", selection: $selectDate)
+                    Text("Your selected date: \(selectDate, formatter: self.DateFormat())")
+                        .foregroundColor(.pink)
+                        .fontWeight(.bold)
+                        // .background(Color.green)
+                }
+                
+                Section(header: Text("Color Pick")) {
+                    ColorPicker("Color", selection: $colorPick)
+                }
+                
+                Section() {
+                    Button(action: {
+                        self.pop.toggle()
+                    }) {
+                        Text("View Calendar")
+                    }.sheet(isPresented: $pop) {
+                        CalendarView(date: $selectDate)
+                    }
+                }
+          
+            }
+            // .background(Color.blue)
+           
+            
+            Spacer()
+        }
+    }
+    
+    func DateFormat() -> DateFormatter {
+        let formatter = DateFormatter()
+        // formatter.dateFormat = "dd-MM-YYYY"
+        // formatter.dateFormat = "HH : mm"
+        // formatter.timeStyle = .long
+        formatter.dateStyle = .long
+        return formatter
     }
 }

@@ -155,20 +155,26 @@ struct MainView: View {
                                     ScrollView(.horizontal, showsIndicators: false) {
                                         HStack {
                                             ForEach(0 ..< self.taskStore.tasks.count, id: \.self) { i in
-                                                HStack {
+                                                VStack { // HStack에서 수정함
+                                                    Spacer(minLength: 0)
                                                     VStack {
                                                         Text("\(self.taskStore.tasks[i].work)")
                                                         Text("\(self.taskStore.tasks[i].date, formatter: self.taskDateFormat())")
                                                     }
                                                     Spacer(minLength: 0)
                                                     Text("\(self.taskStore.tasks[i].description)")
+                                                    Spacer(minLength: 0)
                                                 }
                                                 .foregroundColor(.white)
                                                 .frame(width: 200, height: 200)
                                                 .padding(.horizontal, 10)
                                                 .padding(.vertical, 20)
                                                 .background(Color.black)
-                                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                                                // .clipShape(RoundedRectangle(cornerRadius: 10))
+                                                .clipShape(Circle())
+                                                .overlay(
+                                                    Circle().stroke(Color.white, lineWidth: 4))
+                                                .shadow(radius: 10)
                                             }
                                         }
                                         .padding()
