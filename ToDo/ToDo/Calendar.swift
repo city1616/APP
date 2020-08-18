@@ -31,6 +31,8 @@ struct Calendar: View {
                     // .padding(.trailing, 20)
                     .padding()
                 
+                Text("Test")
+                
                 Spacer(minLength: 0)
             }
             CalendarView(date: $date)
