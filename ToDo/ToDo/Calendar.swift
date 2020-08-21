@@ -97,6 +97,19 @@ struct CalendarView: UIViewRepresentable {
         calendar.backgroundColor = UIColor(Color(#colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)))
         calendar.scrollDirection = .vertical
         // calendar.allowsMultipleSelection = true;
+        calendar.scope = .week
+        
+        // calendar color
+        calendar.appearance.headerTitleColor = UIColor.red
+        calendar.appearance.weekdayTextColor = UIColor.red
+        calendar.appearance.eventDefaultColor = UIColor.green
+        calendar.appearance.selectionColor = UIColor.green
+        calendar.appearance.todayColor = UIColor.systemPink
+        calendar.appearance.todaySelectionColor = UIColor.orange
+        
+        
+        
+        
         // calendar.apperance.headerTitleColor = UIColor.red
         view.addSubview(calendar)
 //            .frame(width: view.frame.size.width, height: 150)
