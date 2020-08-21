@@ -122,9 +122,11 @@ struct CalendarView: UIViewRepresentable {
     func updateUIView(_ uiView: UIView, context: UIViewRepresentableContext<CalendarView>) {
         context.coordinator.fsCalendar?.select(date)
     }
+    
 //    func dismiss() {
 //        presentationMode.wrappedValue.dismiss()
 //    }
+    
     class Coordinator: NSObject, FSCalendarDataSource, FSCalendarDelegate {
         
         fileprivate let gregorian: NSCalendar! = NSCalendar(calendarIdentifier:NSCalendar.Identifier.gregorian)
@@ -149,8 +151,9 @@ struct CalendarView: UIViewRepresentable {
             return [13].contains(day) ? Image(systemName: "pencil") : nil
         }
         func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-            let day: Int! = self.gregorian.component(.day, from: date)
-            return day % 5 == 0 ? day/5 : 0
+//            let day: Int! = self.gregorian.component(.day, from: date)
+//            return day % 5 == 0 ? day/5 : 0
+            return 2
         }
         func calendar(_ calendar: FSCalendar, subtitleFor date: Date) -> String? {
             return "abc"
