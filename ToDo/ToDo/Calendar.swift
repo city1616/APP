@@ -16,6 +16,8 @@ struct Calendar: View {
     
     @State var testpop = false
     
+    
+    
 //    let formatter = DateFormatter()
 //    formatter.dateFormat = "mm/dd/yyyy"
 
@@ -85,7 +87,7 @@ struct CalendarView: UIViewRepresentable {
     
     func makeUIView(context: UIViewRepresentableContext<CalendarView>) -> UIView {
         let view = UIView(frame: UIScreen.main.bounds)
-        let height: CGFloat = 300.0
+        let height: CGFloat = UIDevice.current.model.hasPrefix("iPad") ? 400 : 300
         let width = view.frame.size.width
         let frame = CGRect(x: 0.0, y: 0.0, width: width, height: height)
         let calendar = FSCalendar(frame: frame)
@@ -94,6 +96,8 @@ struct CalendarView: UIViewRepresentable {
         context.coordinator.fsCalendar = calendar
         calendar.backgroundColor = UIColor(Color(#colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)))
         calendar.scrollDirection = .vertical
+        // calendar.allowsMultipleSelection = true;
+        // calendar.apperance.headerTitleColor = UIColor.red
         view.addSubview(calendar)
 //            .frame(width: view.frame.size.width, height: 150)
         
@@ -108,7 +112,12 @@ struct CalendarView: UIViewRepresentable {
 //    func dismiss() {
 //        presentationMode.wrappedValue.dismiss()
 //    }
-    class Coordinator: NSObject, FSCalendarDelegate {
+    class Coordinator: NSObject, FSCalendarDataSource, FSCalendarDelegate {
+        
+        fileprivate let gregorian: NSCalendar! = NSCalendar(calendarIdentifier:NSCalendar.Identifier.gregorian)
+        
+        weak var calendar: FSCalendar!
+        // self.calendar.apperance.headerTitleColor = UIColor.red
         var control: CalendarView
         var date: Date
         var fsCalendar: FSCalendar?
@@ -122,6 +131,14 @@ struct CalendarView: UIViewRepresentable {
 //        func calendar(calendar: FSCalendar!, hasEventForDate date: NSDate!) -> Bool {
 //            return shouldShowEventDot
 //        }
+        func calendar(_ calendar: FSCalendar, imageFor date: Date) -> Image? {
+            let day: Int! = gregorian.component(.day, from: date)
+            return [13].contains(day) ? Image(systemName: "pencil") : nil
+        }
+        func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+            let day: Int! = self.gregorian.component(.day, from: date)
+            return day % 5 == 0 ? day/5 : 0
+        }
     }
 }
 
