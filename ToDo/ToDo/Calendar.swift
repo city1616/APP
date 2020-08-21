@@ -97,7 +97,7 @@ struct CalendarView: UIViewRepresentable {
         calendar.backgroundColor = UIColor(Color(#colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)))
         calendar.scrollDirection = .vertical
         // calendar.allowsMultipleSelection = true;
-        calendar.scope = .week
+        // calendar.scope = .week
         
         // calendar color
         calendar.appearance.headerTitleColor = UIColor.red
@@ -107,7 +107,7 @@ struct CalendarView: UIViewRepresentable {
         calendar.appearance.todayColor = UIColor.systemPink
         calendar.appearance.todaySelectionColor = UIColor.orange
         
-        
+        calendar.appearance.borderRadius = 0 // Rectangle
         
         
         // calendar.apperance.headerTitleColor = UIColor.red
@@ -145,12 +145,18 @@ struct CalendarView: UIViewRepresentable {
 //            return shouldShowEventDot
 //        }
         func calendar(_ calendar: FSCalendar, imageFor date: Date) -> Image? {
-            let day: Int! = gregorian.component(.day, from: date)
+            let day: Int! = self.gregorian.component(.day, from: date)
             return [13].contains(day) ? Image(systemName: "pencil") : nil
         }
         func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
             let day: Int! = self.gregorian.component(.day, from: date)
             return day % 5 == 0 ? day/5 : 0
+        }
+        func calendar(_ calendar: FSCalendar, subtitleFor date: Date) -> String? {
+            return "abc"
+        }
+        func calendar(calendar: FSCalendar!, hasEventForDate date: NSDate!) -> Bool {
+            return true
         }
     }
 }
