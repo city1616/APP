@@ -9,29 +9,64 @@ import SwiftUI
 import RealityKit
 
 struct ContentView : View {
-    var body: some View {
-        return ARViewContainer().edgesIgnoringSafeArea(.all)
-    }
-}
+    @EnvironmentObject var data: DataModel
+    
+    @State var ShowMenu = false
 
-struct ARViewContainer: UIViewRepresentable {
-    
-    func makeUIView(context: Context) -> ARView {
+    var body: some View {
+        NavigationView {
+            ZStack {
+                if data.enableAR {
+                    ARDisplayView()
+                }
+                else {
+                    VStack {
+                        Text("AR Enable")
+                        Spacer()
+                    }
+                }
+                if self.ShowMenu {
+                    VStack(alignment:.leading) {
+                        ARUIView()
+                        Spacer()
+                        Spacer()
+                    }
+                }
+            }
+//            if self.ShowMenu {
+//                HStack {
+//                    ARUIView()
+//                    if data.enableAR {
+//                        ARDisplayView()
+//                    }
+//                    else {
+//                        Spacer()
+//                    }
+//                }
+//            }
+            .navigationTitle("AR_TEST")
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarItems(leading: Button(action: {
+                withAnimation {
+                    self.ShowMenu.toggle()
+                }
+            }) {
+                Text("AR")
+            })
+        }
+        .edgesIgnoringSafeArea(.all)
         
-        let arView = ARView(frame: .zero)
-        
-        // Load the "Box" scene from the "Experience" Reality File
-        let boxAnchor = try! Experience.loadBox()
-        
-        // Add the box anchor to the scene
-        arView.scene.anchors.append(boxAnchor)
-        
-        return arView
-        
+//        HStack {
+//            ARUIView()
+//            if data.enableAR {
+//                ARDisplayView()
+//            }
+//            else {
+//                Spacer()
+//            }
+//        }
+        // return ARViewContainer().edgesIgnoringSafeArea(.all)
     }
-    
-    func updateUIView(_ uiView: ARView, context: Context) {}
-    
 }
 
 #if DEBUG
